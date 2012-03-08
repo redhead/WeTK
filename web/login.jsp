@@ -14,13 +14,7 @@
                                 <span class="hidden">-</span>
                                 <span class="long">elektronická třídní kniha</span>
                         </h1>
-                        <!--<nav>
-                                <ul>
-                                        <li><a href="#">Zápis hodiny</a></li>
-                                        <li><a href="#">Můj rozvrh</a></li>
-                                        <li><a href="#">Administrace třídy</a></li>
-                                </ul>
-                        </nav>-->
+                        
                 </header>
                
                 <div id="loginTable">
