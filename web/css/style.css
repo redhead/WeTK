@@ -172,4 +172,10 @@ span.checkbox input {
 #loginTable input{
         margin-bottom: 10px;
         padding: 5px;
+        background-color: white;
+}
+
+#loginTable #loginButton {
+        background-color: lightsalmon;
+        
 }
