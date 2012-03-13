@@ -28,7 +28,7 @@
                                 <table>
                                         <tr><td>Jméno: </td><td><input type="text" id="j_username"></td></tr>
                                         <tr><td>Heslo: </td><td><input type="password" id="j_password"></tr>
-                                        <tr><td><input type="submit" value="Přihlásit"></td><td></td></tr>
+                                        <tr><td><input type="submit" value="Přihlásit" id="loginButton"></td><td></td></tr>
                                 </table>
                         </form>
                 </div>
