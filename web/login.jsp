@@ -25,13 +25,11 @@
                 <div id="loginTable">
                         <h2>Přihlášení</h2>
                         <form id="login" method="post" action="j_security_check">
-                                <label for="userName">Jméno:</label>
-                                <input type="text" id="j_username">
-                                <br>
-                                <label for="password">Heslo:   </label>
-                                <input type="password" id="j_password">
-                                <br>
-                                <input type="submit" value="Přihlásit">
+                                <table>
+                                        <tr><td>Jméno: </td><td><input type="text" id="j_username"></td></tr>
+                                        <tr><td>Heslo: </td><td><input type="password" id="j_password"></tr>
+                                        <tr><td><input type="submit" value="Přihlásit"></td><td></td></tr>
+                                </table>
                         </form>
                 </div>
 
