@@ -160,7 +160,6 @@ span.checkbox input {
 /*   Medy's  part of css   */
 
 #loginTable{
-        display: block;
         margin: 0 auto;
         padding: 10px;
         width: 260px;
@@ -175,7 +174,14 @@ span.checkbox input {
         background-color: white;
 }
 
-#loginTable #loginButton {
+#loginButton {
         background-color: lightsalmon;
-        
+}
+
+#j_username {
+        width: 90%;
+}
+
+#j_password {
+        width: 90%;
 }
