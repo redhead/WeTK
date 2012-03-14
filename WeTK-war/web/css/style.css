@@ -79,6 +79,10 @@ hr {
 	margin: 20px 0 20px 0;
 }
 
+.center {
+	text-align: center;
+}
+
 #prevLesson {
 	float: left;
 }
@@ -160,28 +164,48 @@ span.checkbox input {
 /*   Medy's  part of css   */
 
 #loginTable{
-        margin: 0 auto;
-        padding: 10px;
-        width: 260px;
-        height: 170px;
-        border-radius: 5px 5px 5px 5px;
-        background-color: #D6EAFF;
+	margin: 50px auto;
+	padding: 10px;
+	width: 280px;
+	height: 170px;
+	border-radius: 5px 5px 5px 5px;
+	background-color: #D6EAFF;
 }
 
-#loginTable input{
-        margin-bottom: 10px;
-        padding: 5px;
-        background-color: white;
+#loginTable table {
+	margin: 0 auto;
 }
 
-input#loginButton {
-        background-color: lightsalmon;
+#loginTable td, #loginTable th {
+	vertical-align: middle;
 }
 
-#j_username {
-        width: 90%;
+#loginTable th {
+	text-align: right;
 }
 
-#j_password {
-        width: 90%;
+#loginTable h2 {
+	background-color: #b4d9ff;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+#loginTable label {
+	margin-right: 10px;
+}
+
+#loginTable input {
+	padding: 5px;
+	background-color: white;
+}
+
+.loginButton {
+	text-align: center;
+	padding-top: 10px;
+}
+
+.loginButton input#loginButton {
+	background-color: lightgreen;
+	padding-left: 20px;
+	padding-right: 20px;
 }
