@@ -11,9 +11,14 @@ import javax.persistence.*;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = ClassEntity.GET_BY_TITLE, query = "SELECT c FROM ClassEntity c WHERE c.title = :title")
+})
 public class ClassEntity extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
+
+	public static final String GET_BY_TITLE = "getByTitle";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
