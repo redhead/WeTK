@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <h:body>
+		<ui:composition template="templates/layout.xhtml">
+			<ui:define name="content">
+				<h2>Zápis hodiny</h2>
+
+				<form class="find-entry-form form-inline well">
+					<label for="selectedClass">Třída: </label>
+					<select id="selectedClass" class="input-small">
+						<option>3.C</option>
+						<option>4.C</option>
+					</select>
+
+					<label for="date">Datum:</label>
+					<input id="date" type="text" data-datepicker="datepicker" class="input-small" />
+
+					<label for="hour">Hodina:</label>
+					<input id="hour" type="number" value="1" class="span1" />
+
+					<button type="submit" class="btn">
+						<span class="icon-search"></span><span class="hidden">Hledat</span> 
+					</button>
+				</form>
+
+				<div id="prevLesson"><a href=""></a></div>
+				<div id="nextLesson"><a href=""></a></div>
+
+				<form class="form-horizontal">
+					<fieldset>
+						<div class="control-group">
+							<label for="topic" class="control-label">Téma:</label>
+							<div class="controls">
+								<input id="topic" type="text" class="topic-input" />
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label for="subject" class="control-label">Předmět:</label>
+							<div class="controls">
+								<select id="subject">
+									<option>AJ - Anglický jazyk</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label for="lessonNumber" class="control-label">Číslo hodiny:</label>
+							<div class="controls">
+								<input id="lessonNumber" type="number" value="1" />
+							</div>
+						</div>
+
+						<div class="control-group">
+							<div class="controls">
+								<label class="checkbox"><input type="checkbox" /> Suplováno</label>
+							</div>
+						</div>
+						
+						<div class="controls">
+							<button type="submit" class="btn btn-success">Uložit</button>
+						</div>
+					</fieldset>
+				</form>
+			</ui:define>
+		</ui:composition>
+    </h:body>
+
+</html>

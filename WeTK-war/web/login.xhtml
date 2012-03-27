@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+
+    <h:body>
+		<ui:composition template="templates/layout.xhtml">
+			<ui:define name="content">
+				
+				<div id="loginTable" class="well">
+					<h2>Přihlášení</h2>
+					<form id="login" method="post" class="form-horizontal">
+						<table>
+							<tr>
+								<th><label for="j_username">Jméno:</label></th>
+								<td><input type="text" class="span3" /></td>
+							</tr>
+							<tr>
+								<th><label for="j_password">Heslo:</label></th>
+								<td><input type="password" class="span3" /></td>
+							</tr>
+							<tr>
+								<td colspan="2" class="loginButton">
+									<input type="submit" value="Přihlásit" class="btn btn-success" />
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				
+			</ui:define>
+		</ui:composition>
+    </h:body>
+
+</html>

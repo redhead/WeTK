@@ -15,7 +15,7 @@ header {
 }
 
 header h1 {
-	margin: 5px 0 0 0;
+	margin: 10px 0 0 0;
 	font-weight: normal;
 	float: left;
 	color: steelblue;
@@ -66,13 +66,13 @@ header nav a:hover {
 	color: white;
 	background-color: dodgerblue;
 	border-radius: 3px;
+	text-decoration: none;
 }
 
-.find-entry-form {
-	margin: 5px 0 10px 0;
-	padding: 5px 10px 5px 10px;
-	background-color: #D6EAFF;
-	border-radius: 5px;
+h2 {
+	margin: 0 0 18px 0;
+	font-size: 18px;
+	color: dodgerblue;
 }
 
 hr {
@@ -81,6 +81,18 @@ hr {
 
 .center {
 	text-align: center;
+}
+
+.form-horizontal .control-group {
+	margin-bottom: 9px;
+}
+
+
+.find-entry-form {
+	margin: 5px 0 10px 0;
+	padding: 5px 10px 5px 10px;
+	background-color: #D6EAFF;
+	border-radius: 5px;
 }
 
 #prevLesson {
@@ -108,68 +120,30 @@ hr {
 }
 
 
-input, select {
-	padding: 3px;
-	border-radius: 2px;
-	border: 1px solid #999;
-	font-size: 15px;
-}
-
-input[type=submit] {
-	padding-left: 10px; 
-	padding-right: 10px; 
-}
-
-input[type=number] {
-	width: 50px;
-}
-
-table.lessonEntry {
-	width: 95%;
-	margin: 0 auto 0 auto;
-}
-table.lessonEntry th {
-	width: 120px;
-	text-align: right;
-	padding-right: 10px;
-}
-table.lessonEntry td.compound {
-	font-weight: bold;
-}
-
-table.lessonEntry label {
-	margin-left: 20px;
-}
-
 input.topic-input {
 	font-size: 20px;
 	width: 95%;
-	padding: 5px;
-}
-
-h2 {
-	margin: 0 0 18px 0;
-	font-size: 18px;
-	color: dodgerblue;
-}
-
-span.checkbox label {
-	margin-left: 5px;
-}
-span.checkbox input {
-	margin-left: 15px;
+	padding: 8px;
 }
 
 
 /*   Medy's  part of css   */
 
-#loginTable{
+#loginTable {
 	margin: 50px auto;
 	padding: 10px;
 	width: 280px;
-	height: 170px;
 	border-radius: 5px 5px 5px 5px;
-	background-color: #D6EAFF;
+}
+
+#loginTable h2 {
+	margin-bottom: 5px;
+	border-radius: 5px;
+	text-shadow: white 1px 1px 0px;
+}
+
+#loginTable form {
+	margin-bottom: 0;
 }
 
 #loginTable table {
@@ -178,34 +152,22 @@ span.checkbox input {
 
 #loginTable td, #loginTable th {
 	vertical-align: middle;
+	padding: 5px 0 5px 0;
 }
 
 #loginTable th {
 	text-align: right;
 }
 
-#loginTable h2 {
-	background-color: #b4d9ff;
-	padding: 5px;
-	border-radius: 5px;
-}
-
 #loginTable label {
 	margin-right: 10px;
-}
-
-#loginTable input {
-	padding: 5px;
-	background-color: white;
+	margin-bottom: 0;
 }
 
 .loginButton {
 	text-align: center;
-	padding-top: 10px;
 }
 
-.loginButton input#loginButton {
-	background-color: lightgreen;
-	padding-left: 20px;
-	padding-right: 20px;
+.hidden {
+	display: none;
 }
