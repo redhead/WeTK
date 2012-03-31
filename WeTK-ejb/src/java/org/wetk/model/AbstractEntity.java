@@ -9,7 +9,7 @@ import java.io.Serializable;
  *
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
-abstract class AbstractEntity implements Serializable {
+abstract public class AbstractEntity implements Serializable {
 
 	abstract public Long getId();
 

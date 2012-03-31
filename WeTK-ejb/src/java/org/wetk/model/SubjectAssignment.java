@@ -10,7 +10,7 @@ import javax.persistence.*;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "teacher", "subject" }, name = "unique-teacher-subject"))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "teacher", "subject" }))
 public class SubjectAssignment extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
@@ -20,9 +20,11 @@ public class SubjectAssignment extends AbstractEntity {
 	private Long id;
 
 	@ManyToOne
+	@JoinColumn(name="teacher")
 	private Teacher teacher;
 
 	@OneToOne
+	@JoinColumn(name="subject")
 	private Subject subject;
 
 

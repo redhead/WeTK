@@ -12,13 +12,22 @@ import javax.persistence.*;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = LessonEntry.GET_BY_CLASS_DATE_HOUR,
+	query = "SELECT e FROM LessonEntry e WHERE e.lesson.clazz = :class AND e.date = :date AND e.lessonHour = :lessonHour")
+})
 public class LessonEntry extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
 
+	public static final String GET_BY_CLASS_DATE_HOUR = "LessonEntry.getByClassDateHour";
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+
+	@OneToOne
+	private Lesson lesson;
 
 	private int lessonNumber;
 
@@ -27,7 +36,7 @@ public class LessonEntry extends AbstractEntity {
 	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date date;
 
-	private int hour;
+	private int lessonHour;
 
 	@OneToMany(mappedBy = "lessonEntry", cascade = CascadeType.ALL)
 	private List<Absence> absences;
@@ -74,13 +83,13 @@ public class LessonEntry extends AbstractEntity {
 	}
 
 
-	public int getHour() {
-		return hour;
+	public int getLessonHour() {
+		return lessonHour;
 	}
 
 
-	public void setHour(int hour) {
-		this.hour = hour;
+	public void setLessonHour(int hour) {
+		this.lessonHour = hour;
 	}
 
 
@@ -91,6 +100,16 @@ public class LessonEntry extends AbstractEntity {
 
 	public void setAbsences(List<Absence> absences) {
 		this.absences = absences;
+	}
+
+
+	public Lesson getLesson() {
+		return lesson;
+	}
+
+
+	public void setLesson(Lesson lesson) {
+		this.lesson = lesson;
 	}
 
 }

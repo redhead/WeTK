@@ -36,7 +36,7 @@
 						<div class="control-group">
 							<label for="topic" class="control-label">Téma:</label>
 							<div class="controls">
-								<input id="topic" type="text" class="topic-input" />
+								<input type="text" id="topic" value="#{entries.lessonEntry.topic}" class="topic-input" />
 							</div>
 						</div>
 
@@ -52,7 +52,7 @@
 						<div class="control-group">
 							<label for="lessonNumber" class="control-label">Číslo hodiny:</label>
 							<div class="controls">
-								<input id="lessonNumber" type="number" value="1" />
+								<input type="number" id="lessonNumber" value="#{entries.lessonEntry.lessonNumber}" />
 							</div>
 						</div>
 
@@ -63,7 +63,7 @@
 						</div>
 						
 						<div class="controls">
-							<button type="submit" class="btn btn-success">Uložit</button>
+							<button type="submit" class="btn btn-success btn-large">Uložit</button>
 						</div>
 					</fieldset>
 				</form>

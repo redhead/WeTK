@@ -3,9 +3,8 @@
 package org.wetk.model;
 
 import java.util.List;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import org.wetk.helper.PasswordHashProvider;
 
 
 /**
@@ -13,11 +12,16 @@ import javax.persistence.OneToMany;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Entity
-@DiscriminatorValue(value = "teacher")
+@NamedQueries({
+	@NamedQuery(name = Teacher.GET_ALL_TEACHERS, query = "SELECT t FROM Teacher t ORDER BY username")
+})
 public class Teacher extends Person {
 
 	private static final long serialVersionUID = 1L;
 
+	public static final String GET_ALL_TEACHERS = "Teacher.getAllTeachers";
+
+	@Column(nullable = false, unique = true)
 	private String username;
 
 	private String password;
@@ -26,7 +30,7 @@ public class Teacher extends Person {
 
 	private String titleAfter;
 
-	private boolean admin;
+	private boolean admin = false;
 
 	@OneToMany(mappedBy = "teacher")
 	private List<SubjectAssignment> assignments;
@@ -48,7 +52,7 @@ public class Teacher extends Person {
 
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = PasswordHashProvider.hash(password);
 	}
 
 
@@ -81,4 +85,14 @@ public class Teacher extends Person {
 		this.admin = admin;
 	}
 
+
+	public List<SubjectAssignment> getAssignments() {
+		return assignments;
+	}
+
+
+	public void setAssignments(List<SubjectAssignment> assignments) {
+		this.assignments = assignments;
+	}
+	
 }

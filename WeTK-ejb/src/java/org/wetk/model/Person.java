@@ -9,15 +9,14 @@ import javax.persistence.*;
  *
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
-@Entity
+@MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@DiscriminatorColumn
 public class Person extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	private Long id;
 
 	@Column(length = 15, nullable = false)

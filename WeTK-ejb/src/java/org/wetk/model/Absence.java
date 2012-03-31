@@ -10,7 +10,7 @@ import javax.persistence.*;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "student", "lessonEntry" }, name = "unique-student-lessonEntry"))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "student", "lessonEntry" }))
 public class Absence extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
@@ -20,9 +20,11 @@ public class Absence extends AbstractEntity {
 	private Long id;
 
 	@OneToOne
+	@JoinColumn(name="student")
 	private Student student;
 
 	@ManyToOne
+	@JoinColumn(name="lessonEntry")
 	private LessonEntry lessonEntry;
 
 	private boolean late;

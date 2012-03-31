@@ -25,6 +25,9 @@ public class Lesson extends AbstractEntity {
 
 	private int hour;
 
+	@OneToOne
+	private ClassEntity clazz;
+
 
 	@Override
 	public Long getId() {

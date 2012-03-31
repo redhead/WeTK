@@ -18,7 +18,7 @@ public class ClassEntity extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final String GET_BY_TITLE = "getByTitle";
+	public static final String GET_BY_TITLE = "ClassEntity.getByTitle";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
