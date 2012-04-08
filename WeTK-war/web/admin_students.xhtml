@@ -10,7 +10,7 @@
 	<h:body>
 		<ui:composition template="templates/layout.xhtml">
 			<ui:define name="content">
-				<h2>Správa učitelů</h2>
+				<h2>Správa studentů</h2>
 				<f:view>
 					<h:form class="form-horizontal">
 						<fieldset>
@@ -20,6 +20,21 @@
 								<div class="controls">
 									<h:inputText id="firstName" value="#{students.student.firstName}"  />
 								</div>
+							</div>
+							<div class="control-group">
+								<h:outputLabel for="lastName" value="Příjmení:" class="control-label" />
+								<div class="controls">
+									<h:inputText id="lastName" value="#{students.student.lastName}" />
+								</div>
+							</div>
+							<div class="control-group">
+								<h:outputLabel for="email" value="Email:" class="control-label" />
+								<div class="controls">
+									<h:inputText id="email" value="#{students.student.email}" />
+								</div>
+							</div>
+							<div class="form-actions">
+								<h:commandButton value="Uložit" action="#{students.saveStudent}" class="btn btn-large btn-success" />
 							</div>
 						</fieldset>
 					</h:form>
