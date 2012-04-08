@@ -33,6 +33,20 @@
 									<h:inputText id="email" value="#{students.student.email}" />
 								</div>
 							</div>
+							<div class="control-group">
+								<h:outputLabel for="ordinal" value="Číslo:" class="control-label" />
+								<div class="controls">
+									<h:inputText id="ordinal" value="#{students.student.ordinal}" />
+								</div>
+							</div>
+							<div class="control-group">
+								<h:outputLabel for="class" value="Třída:" class="control-label" />
+								<div class="controls">
+									<h:selectOneMenu id="class" value="#{students.class}">
+										<f:selectItems value="#{classes.selectItems}" />
+									</h:selectOneMenu>
+								</div>
+							</div>
 							<div class="form-actions">
 								<h:commandButton value="Uložit" action="#{students.saveStudent}" class="btn btn-large btn-success" />
 							</div>
