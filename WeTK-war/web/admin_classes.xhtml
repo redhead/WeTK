@@ -10,19 +10,19 @@
 	<h:body>
 		<ui:composition template="templates/layout.xhtml">
 			<ui:define name="content">
-				<h2>Správa tříd</h2>
+				<h2>#{msgs.administration_classes}</h2>
 				<f:view>
 					<h:form class="form-horizontal">
 						<fieldset>
 							<h:inputHidden id="id" value="#{classes.classDTO.id}" />
 							<div class="control-group">
-								<h:outputLabel for="title" value="Název:" class="control-label" />
+								<h:outputLabel for="title" value="#{msgs.class_title}" class="control-label" />
 								<div class="controls">
 									<h:inputText id="title" value="#{classes.classDTO.title}"  />
 								</div>
 							</div>
 							<div class="form-actions">
-								<h:commandButton value="Uložit" action="#{classes.saveClass}" class="btn btn-large btn-success" />
+								<h:commandButton value="#{msgs.action_save}" action="#{classes.saveClass}" class="btn btn-large btn-success" />
 							</div>
 						</fieldset>
 					</h:form>
@@ -37,7 +37,7 @@
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="Název"/>
+									<h:outputText value="#{msgs.class_title}"/>
 								</f:facet>
 								<h:outputText value="#{item.title}"/>
 							</h:column>
