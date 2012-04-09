@@ -6,7 +6,7 @@
 	  xmlns:p="http://primefaces.prime.com.tr/ui">
 
     <h:head>
-		<title>Elektronická třídní kniha</title>
+		<title>#{msgs.layout_title}</title>
 		<link href="../css/bootstrap.css" type="text/css" rel="stylesheet" />
 		<link href="../css/bootstrap-datepicker.css" type="text/css" rel="stylesheet" />
 		<link href="../css/style.css" type="text/css" rel="stylesheet" />
@@ -16,14 +16,14 @@
 
 		<header>
 			<h1>
-				<span class="abbr"><span>e</span>TK</span>
+				<span class="abbr"><span>e</span>#{msgs.layout_CBShortcut}</span>
 				<span class="hidden">-</span>
-				<span class="long">elektronická třídní kniha</span>
+				<span class="long">#{msgs.layout_title}</span>
 			</h1>
 			<nav>
 				<ul>
-					<li><a href="zapis.jsp">Zápis hodiny</a></li>
-					<li><a href="login.jsp">Odhlášení</a></li>
+					<li><a href="zapis.jsp">#{msgs.layout_lessonEntry}</a></li>
+					<li><a href="login.jsp">#{msgs.layout_logout}</a></li>
 				</ul>
 			</nav>
 		</header>
