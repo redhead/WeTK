@@ -23,4 +23,7 @@ public interface ITeacher {
 
 	public Teacher find(Long id);
 
+
+	public void delete(Long id);
+
 }

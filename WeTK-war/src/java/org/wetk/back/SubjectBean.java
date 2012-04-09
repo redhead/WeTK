@@ -41,6 +41,12 @@ public class SubjectBean {
 	}
 
 
+	public String delete(Long id) throws Exception {
+		model.delete(id);
+		return null;
+	}
+
+
 	public String saveSubject() {
 		model.save(subject);
 		return "success";

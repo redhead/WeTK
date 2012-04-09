@@ -20,9 +20,12 @@ public interface IStudent {
 	public List<Student> getAllStudents();
 
 
-	public void save(StudentDTO dto, ClassDTO clazz);
+	public void save(StudentDTO dto, Long clazz);
 
 
 	public Student find(Long id);
+
+
+	public void delete(Long id);
 
 }

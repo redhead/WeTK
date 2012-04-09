@@ -36,6 +36,15 @@ public class SubjectModel extends AbstractModel implements ISubject {
 	}
 
 
+	@Override
+	public void delete(Long id) {
+		Subject entity = find(id);
+		if(entity != null) {
+			getEntityManager().remove(entity);
+		}
+	}
+
+
 	private Subject dtoToEntity(SubjectDTO dto) {
 		if(dto.getId() != null) {
 			Subject clazz = find(dto.getId());

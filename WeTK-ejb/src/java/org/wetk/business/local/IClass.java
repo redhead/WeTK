@@ -25,4 +25,7 @@ public interface IClass {
 
 	public ClassEntity find(Long id);
 
+
+	public void delete(Long id);
+
 }

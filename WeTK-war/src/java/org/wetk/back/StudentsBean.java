@@ -8,7 +8,6 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import org.wetk.business.local.IStudent;
-import org.wetk.dto.ClassDTO;
 import org.wetk.dto.StudentDTO;
 import org.wetk.model.Student;
 
@@ -26,7 +25,13 @@ public class StudentsBean {
 
 	private StudentDTO student = new StudentDTO();
 
-	private ClassDTO clazz;
+	private Long classId = null;
+
+
+	public StudentsBean() {
+		student.setOrdinal(1);
+		student.setEmail("@");
+	}
 
 
 	public StudentDTO getStudent() {
@@ -39,13 +44,22 @@ public class StudentsBean {
 		if(s == null) {
 			throw new Exception("Student not found");
 		}
+		if(s.getClazz() != null) {
+			classId = s.getClazz().getId();
+		}
 		student = new StudentDTO(s);
 		return null;
 	}
 
 
+	public String delete(Long id) throws Exception {
+		model.delete(id);
+		return null;
+	}
+
+
 	public String saveStudent() {
-		model.save(student, clazz);
+		model.save(student, classId);
 		return "success";
 	}
 
@@ -60,13 +74,13 @@ public class StudentsBean {
 	}
 
 
-	public ClassDTO getClass_() {
-		return clazz;
+	public Long getClassId() {
+		return classId;
 	}
 
 
-	public void setClass_(ClassDTO clazz) {
-		this.clazz = clazz;
+	public void setClassId(Long clazz) {
+		this.classId = clazz;
 	}
 
 }

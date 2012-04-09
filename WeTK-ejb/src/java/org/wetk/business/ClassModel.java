@@ -37,6 +37,15 @@ public class ClassModel extends AbstractModel implements IClass {
 	}
 
 
+	@Override
+	public void delete(Long id) {
+		ClassEntity entity = find(id);
+		if(entity != null) {
+			getEntityManager().remove(entity);
+		}
+	}
+
+
 	private ClassEntity dtoToEntity(ClassDTO dto) {
 		if(dto.getId() != null) {
 			ClassEntity clazz = find(dto.getId());
