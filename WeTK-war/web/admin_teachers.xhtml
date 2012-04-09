@@ -65,9 +65,6 @@
 							<div class="form-actions">
 								<h:commandButton value="Uložit" action="#{teachers.saveTeacher}" class="btn btn-large btn-success" />
 							</div>
-							<h:selectOneMenu id="class" value="#{students.class_}">
-								<f:selectItems value="#{classes.selectItems}" />
-							</h:selectOneMenu>
 						</fieldset>
 					</h:form>
 
@@ -77,6 +74,7 @@
 								<f:facet name="header">
 									<h:outputText value=""/>
 								</f:facet>
+								<h:commandButton action="#{teachers.delete(item.id)}" value="smazat" class="btn-mini btn btn-danger" />
 								<h:commandButton action="#{teachers.edit(item.id)}" value="upravit" class="btn-mini btn" />
 							</h:column>
 							<h:column>

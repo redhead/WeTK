@@ -43,6 +43,12 @@ public class TeachersBean {
 	}
 
 
+	public String delete(Long id) throws Exception {
+		model.delete(id);
+		return null;
+	}
+
+
 	public String saveTeacher() {
 		model.save(teacher, password);
 		return "success";

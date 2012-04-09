@@ -23,4 +23,7 @@ public interface ISubject {
 
 	public Subject find(Long id);
 
+
+	public void delete(Long id);
+
 }

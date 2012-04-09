@@ -5,6 +5,7 @@ package org.wetk.business;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.wetk.model.AbstractEntity;
+import org.wetk.model.Student;
 
 
 /**
@@ -35,5 +36,4 @@ abstract public class AbstractModel {
 		System.out.println("FLUSH");
 		em.flush();
 	}
-
 }

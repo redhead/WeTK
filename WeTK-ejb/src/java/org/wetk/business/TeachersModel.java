@@ -38,6 +38,15 @@ public class TeachersModel extends AbstractModel implements ITeacher {
 	}
 
 
+	@Override
+	public void delete(Long id) {
+		Teacher entity = find(id);
+		if(entity != null) {
+			getEntityManager().remove(entity);
+		}
+	}
+
+
 	private Teacher dtoToEntity(TeacherDTO dto) {
 		if(dto.getId() != null) {
 			Teacher teacher = find(dto.getId());
