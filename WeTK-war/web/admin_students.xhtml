@@ -63,15 +63,21 @@
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="Uživatelské jméno" />
-								</f:facet>
-								<h:outputText value="#{item.username}" />
-							</h:column>
-							<h:column>
-								<f:facet name="header">
 									<h:outputText value="Celé jméno"/>
 								</f:facet>
 								<h:outputText value="#{item.fullName}"/>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Třída" />
+								</f:facet>
+								<h:outputText value="#{item.class}" /> <!-- tady nevim jestli class nebo clazz.. ale spis class.-->
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Číslo" />
+								</f:facet>
+								<h:outputText value="#{item.ordinal}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">
