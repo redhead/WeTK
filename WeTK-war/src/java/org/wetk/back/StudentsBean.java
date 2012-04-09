@@ -29,7 +29,7 @@ public class StudentsBean {
 	private ClassDTO clazz;
 
 
-	public StudentDTO getClassDTO() {
+	public StudentDTO getStudent() {
 		return student;
 	}
 
