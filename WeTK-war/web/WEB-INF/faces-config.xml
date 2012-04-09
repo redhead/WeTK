@@ -9,9 +9,32 @@
 	<navigation-rule>
 		<from-view-id>/admin_teachers.xhtml</from-view-id>
 		<navigation-case>
-			<from-action>#{teachers.saveTeacher}</from-action>
 			<from-outcome>success</from-outcome>
 			<to-view-id>/admin_teachers.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/admin_students.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/admin_students.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/admin_classes.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/admin_classes.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/admin_subjects.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/admin_subjects.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
