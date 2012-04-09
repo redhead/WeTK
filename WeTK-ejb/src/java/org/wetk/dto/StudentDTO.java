@@ -86,6 +86,11 @@ public class StudentDTO {
 	}
 
 
+	public String getFullName() {
+		return firstName + " " + lastName;
+	}
+
+
 	public Student toEntity(Student student) {
 		student.setId(id);
 		student.setFirstName(firstName);
