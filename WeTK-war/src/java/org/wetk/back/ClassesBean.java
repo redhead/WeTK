@@ -65,7 +65,7 @@ public class ClassesBean {
 		List<ClassEntity> classes = model.getAllClasses();
 		List<SelectItem> items = new ArrayList<SelectItem>();
 		for(ClassEntity c : classes) {
-			items.add(new SelectItem(c, c.getTitle()));
+			items.add(new SelectItem(c.getId(), c.getTitle()));
 		}
 		return items;
 	}
