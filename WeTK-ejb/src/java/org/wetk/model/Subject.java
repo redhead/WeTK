@@ -2,10 +2,7 @@
  */
 package org.wetk.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 /**
@@ -13,9 +10,14 @@ import javax.persistence.Id;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = Subject.GET_ALL_SUBJECTS, query = "SELECT s FROM Subject s ORDER BY s.code")
+})
 public class Subject extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
+
+	public static final String GET_ALL_SUBJECTS = "Subject.getAllSubjects";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

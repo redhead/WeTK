@@ -12,13 +12,16 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQueries({
-	@NamedQuery(name = ClassEntity.GET_BY_TITLE, query = "SELECT c FROM ClassEntity c WHERE c.title = :title")
+	@NamedQuery(name = ClassEntity.GET_BY_TITLE, query = "SELECT c FROM ClassEntity c WHERE c.title = :title"),
+	@NamedQuery(name = ClassEntity.GET_ALL_SUBJECTS, query = "SELECT c FROM ClassEntity c ORDER BY c.title")
 })
 public class ClassEntity extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
 
 	public static final String GET_BY_TITLE = "ClassEntity.getByTitle";
+
+	public static final String GET_ALL_SUBJECTS = "ClassEntity.getAllSubjects";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,6 +32,9 @@ public class ClassEntity extends AbstractEntity {
 	@OneToMany(mappedBy = "clazz")
 	@OrderBy("ordinal")
 	private List<Student> students;
+
+	@OneToOne(optional = false)
+	private Teacher teacher;
 
 
 	@Override
@@ -59,6 +65,16 @@ public class ClassEntity extends AbstractEntity {
 
 	public void setStudents(List<Student> students) {
 		this.students = students;
+	}
+
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
 	}
 
 }

@@ -19,7 +19,7 @@
 							<div class="control-group">
 								<h:outputLabel for="firstName" value="Jméno:" class="control-label" />
 								<div class="controls">
-									<h:inputText id="firstName" value="#{teachers.teacher.firstName}"  />
+									<h:inputText id="firstName" value="#{teachers.teacher.firstName}" />
 								</div>
 							</div>
 							<div class="control-group">
@@ -37,7 +37,7 @@
 							<div class="control-group">
 								<h:outputLabel for="password" value="Heslo:" class="control-label" />
 								<div class="controls">
-									<p:password id="password" value="#{teachers.password}" feedback="false" minLength="2" />
+									<h:inputSecret id="password" value="#{teachers.password}" />
 									<c:if test="#{teachers.teacher.id != null}">
 										<span class="help-inline">Nevyplňujte pokud nechcete heslo měnit</span>
 									</c:if>
@@ -65,6 +65,9 @@
 							<div class="form-actions">
 								<h:commandButton value="Uložit" action="#{teachers.saveTeacher}" class="btn btn-large btn-success" />
 							</div>
+							<h:selectOneMenu id="class" value="#{students.class_}">
+								<f:selectItems value="#{classes.selectItems}" />
+							</h:selectOneMenu>
 						</fieldset>
 					</h:form>
 

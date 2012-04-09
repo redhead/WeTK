@@ -2,6 +2,7 @@
  */
 package org.wetk.dto;
 
+import org.wetk.model.ClassEntity;
 import org.wetk.model.Teacher;
 
 

@@ -35,6 +35,9 @@ public class Teacher extends Person {
 	@OneToMany(mappedBy = "teacher")
 	private List<SubjectAssignment> assignments;
 
+	@OneToOne(mappedBy = "teacher")
+	private ClassEntity clazz;
+
 
 	public String getUsername() {
 		return username;
@@ -94,5 +97,15 @@ public class Teacher extends Person {
 	public void setAssignments(List<SubjectAssignment> assignments) {
 		this.assignments = assignments;
 	}
-	
+
+
+	public ClassEntity getClazz() {
+		return clazz;
+	}
+
+
+	public void setClazz(ClassEntity clazz) {
+		this.clazz = clazz;
+	}
+
 }

@@ -14,7 +14,12 @@ import org.wetk.model.AbstractEntity;
 abstract public class AbstractModel {
 
 	@PersistenceContext
-	protected EntityManager em;
+	private EntityManager em;
+
+
+	protected EntityManager getEntityManager() {
+		return em;
+	}
 
 
 	public void saveEntity(AbstractEntity entity) {

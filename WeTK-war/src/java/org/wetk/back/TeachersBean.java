@@ -44,7 +44,6 @@ public class TeachersBean {
 
 
 	public String saveTeacher() {
-		System.out.println("Password" + password);
 		model.save(teacher, password);
 		return "success";
 	}
