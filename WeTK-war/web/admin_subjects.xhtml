@@ -21,6 +21,12 @@
 									<h:inputText id="title" value="#{subjects.subject.title}"  />
 								</div>
 							</div>
+							<div class="control-group">
+								<h:outputLabel for="title" value="#{msgs.subject_code}" class="control-label" />
+								<div class="controls">
+									<h:inputText id="title" value="#{subjects.subject.code}"  />
+								</div>
+							</div>
 							<div class="form-actions">
 								<h:commandButton value="#{msgs.action_save}" action="#{subjects.saveSubject}" class="btn btn-large btn-success" />
 							</div>
@@ -33,6 +39,12 @@
 									<h:outputText value=""/>
 								</f:facet>
 								<h:commandButton action="#{subjects.edit(item.id)}" value="#{msgs.action_edit}" class="btn-mini btn" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="#{msgs.subject_code}"/>
+								</f:facet>
+								<h:outputText value="#{item.code}"/>
 							</h:column>
 							<h:column>
 								<f:facet name="header">
