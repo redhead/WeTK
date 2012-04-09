@@ -7,8 +7,10 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.model.SelectItem;
 import org.wetk.business.local.ITeacher;
 import org.wetk.dto.TeacherDTO;
+import org.wetk.model.ClassEntity;
 import org.wetk.model.Teacher;
 
 
@@ -64,6 +66,16 @@ public class TeachersBean {
 		return dtos;
 	}
 
+
+	public List<SelectItem> getSelectItems() {
+		List<Teacher> teachers = model.getAllTeachers();
+		List<SelectItem> items = new ArrayList<SelectItem>();
+		for(Teacher t : teachers) {
+			String fullName = new TeacherDTO(t).getFullName();
+			items.add(new SelectItem(t.getId(), fullName));
+		}
+		return items;
+	}
 
 	public String getPassword() {
 		return password;

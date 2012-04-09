@@ -43,7 +43,7 @@
 							<div class="control-group">
 								<h:outputLabel for="class" value="#{msgs.student_class}" class="control-label" />
 								<div class="controls">
-									<h:selectOneMenu id="class" value="#{students.classId}" class="span1" required="true" requiredMessage="Je nutné vybrat třídu">
+									<h:selectOneMenu id="class" value="#{students.classId}" class="span1" required="true" requiredMessage="#{msgs.student_message_classRequired}">
 										<f:selectItem itemValue="" itemLabel="" />
 										<f:selectItems value="#{classes.selectItems}" />
 									</h:selectOneMenu>
@@ -61,8 +61,8 @@
 								<f:facet name="header">
 									<h:outputText value=""/>
 								</f:facet>
-								<h:commandButton action="#{students.delete(item.id)}" value="#{msgs.action_delete}" class="btn-mini btn btn-danger" onclick="return confirm('Opravdu?')" />
-								<h:commandButton action="#{classes.edit(item.id)}" value="#{msgs.action_edit}" class="btn-mini btn" />
+								<h:commandButton action="#{students.delete(item.id)}" value="#{msgs.action_delete}" class="btn-mini btn btn-danger" onclick="return confirm('#{msgs.message_confirmDelete}')" />
+								<h:commandButton action="#{students.edit(item.id)}" value="#{msgs.action_edit}" class="btn-mini btn" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">

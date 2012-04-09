@@ -27,7 +27,7 @@ public class ClassesBean {
 
 	private ClassDTO clazz = new ClassDTO();
 
-	private TeacherDTO headTeacher;
+	private Long teacherId = null;
 
 
 	public ClassDTO getClassDTO() {
@@ -39,6 +39,9 @@ public class ClassesBean {
 		ClassEntity t = model.find(id);
 		if(t == null) {
 			throw new Exception("Class not found");
+		}
+		if(t.getTeacher() != null) {
+			teacherId = t.getTeacher().getId();
 		}
 		clazz = new ClassDTO(t);
 		return null;
@@ -52,7 +55,7 @@ public class ClassesBean {
 
 
 	public String saveClass() {
-		model.save(clazz, headTeacher);
+		model.save(clazz, teacherId);
 		return "success";
 	}
 
@@ -77,13 +80,13 @@ public class ClassesBean {
 	}
 
 
-	public TeacherDTO getHeadTeacher() {
-		return headTeacher;
+	public Long getTeacherId() {
+		return teacherId;
 	}
 
 
-	public void setHeadTeacher(TeacherDTO headTeacher) {
-		this.headTeacher = headTeacher;
+	public void setTeacherId(Long teacherId) {
+		this.teacherId = teacherId;
 	}
 
 }

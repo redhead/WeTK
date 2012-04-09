@@ -6,8 +6,8 @@ import java.util.List;
 import javax.ejb.Stateless;
 import org.wetk.business.local.IClass;
 import org.wetk.dto.ClassDTO;
-import org.wetk.dto.TeacherDTO;
 import org.wetk.model.ClassEntity;
+import org.wetk.model.Teacher;
 
 
 /**
@@ -24,9 +24,12 @@ public class ClassModel extends AbstractModel implements IClass {
 
 
 	@Override
-	public void save(ClassDTO dto, TeacherDTO headTeacher) {
+	public void save(ClassDTO dto, Long teacherId) {
 		ClassEntity clazz = dtoToEntity(dto);
-		//fixme: clazz.setTeacher();
+
+		Teacher teacher = getEntityManager().getReference(Teacher.class, teacherId);
+		clazz.setTeacher(teacher);
+
 		saveEntity(clazz);
 	}
 

@@ -20,7 +20,7 @@ public interface IClass {
 	public List<ClassEntity> getAllClasses();
 
 
-	public void save(ClassDTO clazz, TeacherDTO headTeacher);
+	public void save(ClassDTO clazz, Long teacherId);
 
 
 	public ClassEntity find(Long id);
