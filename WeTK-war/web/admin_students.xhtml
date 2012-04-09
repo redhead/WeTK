@@ -61,7 +61,7 @@
 								<f:facet name="header">
 									<h:outputText value=""/>
 								</f:facet>
-								<h:commandButton action="#{students.delete(item.id)}" value="smazat" class="btn-mini btn btn-danger" />
+								<h:commandButton action="#{students.delete(item.id)}" value="smazat" class="btn-mini btn btn-danger" onclick="return confirm('Opravdu?')" />
 								<h:commandButton action="#{students.edit(item.id)}" value="upravit" class="btn-mini btn" />
 							</h:column>
 							<h:column>
