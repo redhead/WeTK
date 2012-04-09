@@ -36,13 +36,13 @@
 							<div class="control-group">
 								<h:outputLabel for="ordinal" value="Pořadové číslo:" class="control-label" />
 								<div class="controls">
-									<h:inputText id="ordinal" value="#{students.student.ordinal}" />
+									<h:inputText id="ordinal" value="#{students.student.ordinal}" class="span1" />
 								</div>
 							</div>
 							<div class="control-group">
 								<h:outputLabel for="class" value="Třída:" class="control-label" />
 								<div class="controls">
-									<h:selectOneMenu id="class" value="#{students.class}">
+									<h:selectOneMenu id="class" value="#{students.class_}" class="span1">
 										<f:selectItems value="#{classes.selectItems}" />
 									</h:selectOneMenu>
 								</div>
