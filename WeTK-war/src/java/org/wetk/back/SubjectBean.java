@@ -8,7 +8,6 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import org.wetk.business.local.ISubject;
-import org.wetk.dto.ClassDTO;
 import org.wetk.dto.SubjectDTO;
 import org.wetk.model.Subject;
 
@@ -27,7 +26,7 @@ public class SubjectBean {
 	private SubjectDTO subject = new SubjectDTO();
 
 
-	public SubjectDTO getClassDTO() {
+	public SubjectDTO getSubject() {
 		return subject;
 	}
 
@@ -35,7 +34,7 @@ public class SubjectBean {
 	public String edit(Long id) throws Exception {
 		Subject t = model.find(id);
 		if(t == null) {
-			throw new Exception("Class not found");
+			throw new Exception("Subject not found");
 		}
 		subject = new SubjectDTO(t);
 		return null;
