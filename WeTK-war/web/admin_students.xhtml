@@ -10,37 +10,37 @@
 	<h:body>
 		<ui:composition template="templates/layout.xhtml">
 			<ui:define name="content">
-				<h2>Správa studentů</h2>
+				<h2>#{msgs.administration_students}</h2>
 				<f:view>
 					<h:form class="form-horizontal">
 						<fieldset>
 							<h:inputHidden id="id" value="#{students.student.id}" />
 							<div class="control-group">
-								<h:outputLabel for="firstName" value="Jméno:" class="control-label" />
+								<h:outputLabel for="firstName" value="#{msgs.person_firstName}" class="control-label" />
 								<div class="controls">
 									<h:inputText id="firstName" value="#{students.student.firstName}"  />
 								</div>
 							</div>
 							<div class="control-group">
-								<h:outputLabel for="lastName" value="Příjmení:" class="control-label" />
+								<h:outputLabel for="lastName" value="#{msgs.person_lastName}" class="control-label" />
 								<div class="controls">
 									<h:inputText id="lastName" value="#{students.student.lastName}" />
 								</div>
 							</div>
 							<div class="control-group">
-								<h:outputLabel for="email" value="Email:" class="control-label" />
+								<h:outputLabel for="email" value="#{msgs.person_email}" class="control-label" />
 								<div class="controls">
 									<h:inputText id="email" value="#{students.student.email}" />
 								</div>
 							</div>
 							<div class="control-group">
-								<h:outputLabel for="ordinal" value="Pořadové číslo:" class="control-label" />
+								<h:outputLabel for="ordinal" value="#{msgs.student_ordinal}" class="control-label" />
 								<div class="controls">
 									<h:inputText id="ordinal" value="#{students.student.ordinal}" class="span1" />
 								</div>
 							</div>
 							<div class="control-group">
-								<h:outputLabel for="class" value="Třída:" class="control-label" />
+								<h:outputLabel for="class" value="#{msgs.student_class}" class="control-label" />
 								<div class="controls">
 									<h:selectOneMenu id="class" value="#{students.class_}" class="span1">
 										<f:selectItems value="#{classes.selectItems}" />
@@ -48,7 +48,7 @@
 								</div>
 							</div>
 							<div class="form-actions">
-								<h:commandButton value="Uložit" action="#{students.saveStudent}" class="btn btn-large btn-success" />
+								<h:commandButton value="#{msgs.action_save}" action="#{students.saveStudent}" class="btn btn-large btn-success" />
 							</div>
 						</fieldset>
 					</h:form>
@@ -59,29 +59,29 @@
 								<f:facet name="header">
 									<h:outputText value=""/>
 								</f:facet>
-								<h:commandButton action="#{students.edit(item.id)}" value="upravit" class="btn-mini btn" />
+								<h:commandButton action="#{students.edit(item.id)}" value="#{msgs.action_edit}" class="btn-mini btn" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="Celé jméno"/>
+									<h:outputText value="#{msgs.person_fullName}"/>
 								</f:facet>
 								<h:outputText value="#{item.fullName}"/>
 							</h:column>
 							<!--<h:column>
 								<f:facet name="header">
-									<h:outputText value="Třída" />
+									<h:outputText value="#{msgs.student_class}" />
 								</f:facet>
 								<h:outputText value="#{item.class}" />  tady nevim jestli class nebo clazz.. ale spis class.
 							</h:column>-->
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="Číslo" />
+									<h:outputText value="#{msgs.student_ordinal}" />
 								</f:facet>
 								<h:outputText value="#{item.ordinal}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="Email"/>
+									<h:outputText value="#{msgs.person_email}"/>
 								</f:facet>
 								<h:outputText value="#{item.email}"/>
 							</h:column>
