@@ -56,13 +56,13 @@ public class LessonsBean {
 	}
 
 
-	public String saveSubject() {
+	public String saveLesson() {
 		model.save(lesson, classId, assignmentId);
 		return "success";
 	}
 
 
-	public List<LessonDTO> getSubjects() {
+	public List<LessonDTO> getLessons() {
 		List<Lesson> lessons = model.getAllLessons();
 		List<LessonDTO> dtos = new ArrayList<LessonDTO>();
 		for(Lesson l : lessons) {
