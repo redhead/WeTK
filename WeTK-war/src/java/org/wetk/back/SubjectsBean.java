@@ -7,9 +7,11 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.model.SelectItem;
 import org.wetk.business.local.ISubject;
 import org.wetk.dto.SubjectDTO;
 import org.wetk.model.Subject;
+import org.wetk.model.SubjectAssignment;
 
 
 /**
@@ -60,6 +62,16 @@ public class SubjectsBean {
 			dtos.add(new SubjectDTO(s));
 		}
 		return dtos;
+	}
+
+
+	public List<SelectItem> getSelectItems() {
+		List<Subject> subjects = model.getAllSubjects();
+		List<SelectItem> items = new ArrayList<SelectItem>();
+		for(Subject s : subjects) {
+			items.add(new SelectItem(s.getId(), s.getTitle()));
+		}
+		return items;
 	}
 
 }

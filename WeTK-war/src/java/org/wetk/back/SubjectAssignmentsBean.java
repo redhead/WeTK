@@ -36,19 +36,19 @@ public class SubjectAssignmentsBean {
 	}
 
 
-	public String delete(Long teacherId, Long subjectId) throws Exception {
-		model.delete(teacherId, subjectId);
+	public String delete(Long id) throws Exception {
+		model.delete(id);
 		return null;
 	}
 
 
-	public String saveClass() {
+	public String saveAssignment() {
 		model.save(teacherId, subjectId);
 		return "success";
 	}
 
 
-	public List<SubjectAssignmentDTO> getClasses() {
+	public List<SubjectAssignmentDTO> getAssignments() {
 		List<SubjectAssignment> assigns = model.getAllAssignments();
 		List<SubjectAssignmentDTO> dtos = new ArrayList<SubjectAssignmentDTO>();
 		for(SubjectAssignment a : assigns) {

@@ -51,8 +51,8 @@ public class SubjectAssignmentModel extends AbstractModel implements ISubjectAss
 
 
 	@Override
-	public void delete(Long teacherId, Long subjectId) {
-		SubjectAssignment entity = find(teacherId, subjectId);
+	public void delete(Long id) {
+		SubjectAssignment entity = getEntityManager().getReference(SubjectAssignment.class, id);
 		if(entity != null) {
 			getEntityManager().remove(entity);
 		}

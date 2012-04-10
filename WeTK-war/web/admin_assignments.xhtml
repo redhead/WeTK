@@ -17,28 +17,21 @@
 						<fieldset>
 							<h:inputHidden id="id" value="#{assignments.assignment.id}" />
 							<div class="control-group">
-								<h:outputLabel for="fullName" value="#{msgs.person_fullName}" class="control-label" />
+								<h:outputLabel for="teacher" value="#{msgs.assignment_teacher}" class="control-label" />
 								<div class="controls">
-									<h:inputText id="fullName" value="#{assignments.assignment.teacher.fullName}" />
+									<h:selectOneMenu id="teacher" value="#{assignments.teacherId}" required="true" requiredMessage="#{msgs.assignments_message_teacherRequired}">
+										<f:selectItem itemValue="" itemLabel="" />
+										<f:selectItems value="#{teachers.selectItems}" />
+									</h:selectOneMenu>
 								</div>
 							</div>
 							<div class="control-group">
-								<h:outputLabel for="username" value="#{msgs.teacher_username}" class="control-label" />
+								<h:outputLabel for="subject" value="#{msgs.assignment_subject}" class="control-label" />
 								<div class="controls">
-									<h:inputText id="username" value="#{assignments.assignment.teacher.username}" />
-								</div>
-							</div>
-							<hr/>
-							<div class="control-group">
-								<h:outputLabel for="code" value="#{msgs.subject_code}" class="control-label" />
-								<div class="controls">
-									<h:inputText id="code" value="#{assignments.assignment.subject.code}" />
-								</div>
-							</div>
-							<div class="control-group">
-								<h:outputLabel for="title" value="#{msgs.subject_title}" class="control-label" />
-								<div class="controls">
-									<h:inputText id="title" value="#{assignments.assignment.subject.title}" />
+									<h:selectOneMenu id="subject" value="#{assignments.subjectId}" required="true" requiredMessage="#{msgs.assignments_message_teacherRequired}">
+										<f:selectItem itemValue="" itemLabel="" />
+										<f:selectItems value="#{subjects.selectItems}" />
+									</h:selectOneMenu>
 								</div>
 							</div>
 							<div class="form-actions">
@@ -55,7 +48,6 @@
 									<h:outputText value=""/>
 								</f:facet>
 								<h:commandButton action="#{assignments.delete(item.id)}" value="#{msgs.action_delete}" class="btn-mini btn btn-danger" onclick="return confirm('#{msgs.message_confirmDelete}')" />
-								<h:commandButton action="#{assignments.edit(item.id)}" value="#{msgs.action_edit}" class="btn-mini btn" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">

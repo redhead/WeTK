@@ -23,6 +23,6 @@ public interface ISubjectAssignment {
 	public SubjectAssignment find(Long teacherId, Long subjectId);
 
 
-	public void delete(Long teacherId, Long subjectId);
+	public void delete(Long id);
 
 }
