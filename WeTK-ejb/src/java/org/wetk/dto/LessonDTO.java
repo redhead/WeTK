@@ -3,6 +3,8 @@
 package org.wetk.dto;
 
 import org.wetk.model.Lesson;
+import org.wetk.model.SubjectAssignment;
+import org.wetk.model.Teacher;
 
 
 /**
@@ -34,7 +36,28 @@ public class LessonDTO {
 
 	public LessonDTO(Lesson lesson) {
 		if(lesson == null) return;
+
 		id = lesson.getId();
+		day = lesson.getDay();
+		hour = lesson.getHour();
+
+		if(lesson.getClazz() != null) {
+			classId = lesson.getClazz().getId();
+			classTitle = lesson.getClazz().getTitle();
+		}
+
+		SubjectAssignment assign = lesson.getAssignment();
+		if(assign != null) {
+			assignmentId = assign.getId();
+			Teacher t = assign.getTeacher();
+			if(t != null) {
+				teacherFullName = new TeacherDTO(t).getFullName();
+			}
+			if(assign.getSubject() != null) {
+				subjectTitle = assign.getSubject().getTitle();
+			}
+		}
+
 	}
 
 
