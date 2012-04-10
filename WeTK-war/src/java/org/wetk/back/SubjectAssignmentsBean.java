@@ -62,9 +62,8 @@ public class SubjectAssignmentsBean {
 		List<SubjectAssignment> assigns = model.getAllAssignments();
 		List<SelectItem> items = new ArrayList<SelectItem>();
 		for(SubjectAssignment a : assigns) {
-			String id = a.getSubject().getId() + "-" + a.getTeacher().getId();
 			String label = a.getSubject().getTitle() + " - " + a.getTeacher().getLastName() + ", " + a.getTeacher().getFirstName();
-			items.add(new SelectItem(id, label));
+			items.add(new SelectItem(a.getId(), label));
 		}
 		return items;
 	}
