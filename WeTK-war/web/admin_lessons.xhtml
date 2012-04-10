@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:c="http://java.sun.com/jsp/jstl/core"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <h:body>
+		<ui:composition template="templates/layout.xhtml">
+			<ui:define name="content">
+				<h2>#{msgs.administration_lessons}</h2>
+
+				<f:view>
+					<h:form class="form-horizontal">
+						<fieldset>
+							<h:inputHidden id="id" value="#{lessons.lesson.id}" />
+							<div class="control-group">
+								<h:outputLabel for="class" value="#{msgs.class_class}" class="control-label" />
+								<div class="controls">
+									<h:selectOneMenu id="class" value="#{lessons.classTitle}" class="span1" required="true" requiredMessage="#{msgs.message_classRequired}">
+										<f:selectItem itemValue="" itemLabel="" />
+										<f:selectItems value="#{classes.selectItems}" />
+									</h:selectOneMenu>
+								</div>
+							</div>
+							<div class="control-group">
+								<h:outputLabel for="class" value="#{msgs.assignment_assignment}" class="control-label" />
+								<div class="controls">
+									<h:selectOneMenu id="class" value="#{lessons.title}" class="span1" required="true" requiredMessage="#{msgs.message_assignRequired}">
+										<f:selectItem itemValue="" itemLabel="" />
+										<f:selectItems value="#{assignments.selectItems}" />
+									</h:selectOneMenu>
+								</div>
+							</div>
+							<div class="control-group">
+								<h:outputLabel for="ordinal" value="#{msgs.lesson_day}" class="control-label" />
+								<div class="controls">
+									<h:inputText id="ordinal" value="#{lessons.lesson.day}" class="span1" />
+								</div>
+							</div>
+							<div class="control-group">
+								<h:outputLabel for="ordinal" value="#{msgs.lesson_hour}" class="control-label" />
+								<div class="controls">
+									<h:inputText id="ordinal" value="#{lessons.lesson.hour}" class="span1" />
+								</div>
+							</div>
+							<div class="form-actions">
+								<h:commandButton value="#{msgs.action_save}" action="#{lessons.saveLesson}" class="btn btn-large btn-success" />
+								<h:commandButton value="#{msgs.action_reset}" type="reset" class="btn btn-large btn-action" />
+							</div>
+						</fieldset>
+					</h:form>
+
+					<h:form>
+						<h:dataTable value="#{lessons.lessons}" var="item" class="table table-striped table-bordered table-condensed">
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value=""/>
+								</f:facet>
+								<h:commandButton action="#{lessons.delete(item.id)}" value="#{msgs.action_delete}" class="btn-mini btn btn-danger" onclick="return confirm('#{msgs.message_confirmDelete}')" />
+								<h:commandButton action="#{lessons.edit(item.id)}" value="#{msgs.action_edit}" class="btn-mini btn" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="#{msgs.teacher_username}" />
+								</f:facet>
+								<h:outputText value="#{item.username}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="#{msgs.person_fullName}"/>
+								</f:facet>
+								<h:outputText value="#{item.fullName}"/>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="#{msgs.person_email}"/>
+								</f:facet>
+								<h:outputText value="#{item.email}"/>
+							</h:column>
+						</h:dataTable>
+					</h:form>
+
+
+				</f:view>
+
+			</ui:define>
+		</ui:composition>
+    </h:body>
+
+</html>
