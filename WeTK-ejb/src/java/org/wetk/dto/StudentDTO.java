@@ -21,18 +21,28 @@ public class StudentDTO {
 
 	private int ordinal;
 
+	private Long classId;
+
+	private String classTitle;
+
 
 	public StudentDTO() {
 	}
 
 
-	public StudentDTO(Student clazz) {
-		if(clazz == null) return;
-		id = clazz.getId();
-		firstName = clazz.getFirstName();
-		lastName = clazz.getLastName();
-		email = clazz.getEmail();
-		ordinal = clazz.getOrdinal();
+	public StudentDTO(Student student) {
+		if(student == null) return;
+		
+		id = student.getId();
+		firstName = student.getFirstName();
+		lastName = student.getLastName();
+		email = student.getEmail();
+		ordinal = student.getOrdinal();
+		
+		if(student.getClazz() != null) {
+			classId = student.getClazz().getId();
+			classTitle = student.getClazz().getTitle();
+		}
 	}
 
 
@@ -88,6 +98,26 @@ public class StudentDTO {
 
 	public String getFullName() {
 		return firstName + " " + lastName;
+	}
+
+
+	public Long getClassId() {
+		return classId;
+	}
+
+
+	public void setClassId(Long classId) {
+		this.classId = classId;
+	}
+
+
+	public String getClassTitle() {
+		return classTitle;
+	}
+
+
+	public void setClassTitle(String classTitle) {
+		this.classTitle = classTitle;
 	}
 
 
