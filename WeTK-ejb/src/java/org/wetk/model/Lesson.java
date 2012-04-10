@@ -10,9 +10,14 @@ import javax.persistence.*;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = Lesson.GET_ALL_LESSONS, query = "SELECT l FROM Lesson l ORDER BY clazz.title, day, hour")
+})
 public class Lesson extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
+
+	public static final String GET_ALL_LESSONS = "Lesson.getAllLessons";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
