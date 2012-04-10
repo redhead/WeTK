@@ -24,8 +24,8 @@ public class SubjectModel extends AbstractModel implements ISubject {
 
 	@Override
 	public void save(SubjectDTO dto) {
-		Subject clazz = dtoToEntity(dto);
-		saveEntity(clazz);
+		Subject entity = dtoToEntity(dto);
+		saveEntity(entity);
 	}
 
 
