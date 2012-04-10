@@ -7,12 +7,9 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.model.SelectItem;
 import org.wetk.business.local.ILesson;
 import org.wetk.dto.LessonDTO;
-import org.wetk.dto.SubjectDTO;
 import org.wetk.model.Lesson;
-import org.wetk.model.Subject;
 
 
 /**
@@ -69,6 +66,26 @@ public class LessonsBean {
 			dtos.add(new LessonDTO(l));
 		}
 		return dtos;
+	}
+
+
+	public Long getAssignmentId() {
+		return assignmentId;
+	}
+
+
+	public void setAssignmentId(Long assignmentId) {
+		this.assignmentId = assignmentId;
+	}
+
+
+	public Long getClassId() {
+		return classId;
+	}
+
+
+	public void setClassId(Long classId) {
+		this.classId = classId;
 	}
 
 }
