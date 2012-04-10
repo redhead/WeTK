@@ -46,9 +46,9 @@ public class SubjectModel extends AbstractModel implements ISubject {
 
 	private Subject dtoToEntity(SubjectDTO dto) {
 		if(dto.getId() != null) {
-			Subject clazz = find(dto.getId());
-			if(clazz != null) {
-				return dto.toEntity(clazz);
+			Subject subject = find(dto.getId());
+			if(subject != null) {
+				return dto.toEntity(subject);
 			}
 		}
 		return dto.toEntity(new Subject());
