@@ -69,4 +69,14 @@ public class Lesson extends AbstractEntity {
 		this.hour = hour;
 	}
 
+
+	public ClassEntity getClazz() {
+		return clazz;
+	}
+
+
+	public void setClazz(ClassEntity clazz) {
+		this.clazz = clazz;
+	}
+
 }
