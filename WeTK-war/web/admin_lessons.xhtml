@@ -19,16 +19,16 @@
 							<div class="control-group">
 								<h:outputLabel for="class" value="#{msgs.class_class}" class="control-label" />
 								<div class="controls">
-									<h:selectOneMenu id="class" value="#{lessons.classTitle}" class="span1" required="true" requiredMessage="#{msgs.message_classRequired}">
+									<h:selectOneMenu id="class" value="#{lessons.lesson.classId}" class="span1" required="true" requiredMessage="#{msgs.message_classRequired}">
 										<f:selectItem itemValue="" itemLabel="" />
 										<f:selectItems value="#{classes.selectItems}" />
 									</h:selectOneMenu>
 								</div>
 							</div>
 							<div class="control-group">
-								<h:outputLabel for="class" value="#{msgs.assignment_assignment}" class="control-label" />
+								<h:outputLabel for="assignment" value="#{msgs.assignment_assignment}" class="control-label" />
 								<div class="controls">
-									<h:selectOneMenu id="class" value="#{lessons.title}" class="span1" required="true" requiredMessage="#{msgs.message_assignRequired}">
+									<h:selectOneMenu id="assignment" value="#{lessons.lesson.assignmentId}" class="span1" required="true" requiredMessage="#{msgs.message_assignRequired}">
 										<f:selectItem itemValue="" itemLabel="" />
 										<f:selectItems value="#{assignments.selectItems}" />
 									</h:selectOneMenu>
