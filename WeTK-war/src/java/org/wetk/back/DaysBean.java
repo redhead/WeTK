@@ -30,5 +30,22 @@ public class DaysBean {
 
 		return items;
 	}
-	
+
+
+	public String getDayTitle(int day) {
+		switch(day) {
+			case Calendar.MONDAY:
+				return Utils.message("day_mon");
+			case Calendar.TUESDAY:
+				return Utils.message("day_tue");
+			case Calendar.WEDNESDAY:
+				return Utils.message("day_wed");
+			case Calendar.THURSDAY:
+				return Utils.message("day_thu");
+			case Calendar.FRIDAY:
+				return Utils.message("day_fri");
+		}
+		return "";
+	}
+
 }
