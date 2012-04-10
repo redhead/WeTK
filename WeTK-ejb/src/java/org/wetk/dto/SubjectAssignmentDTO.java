@@ -24,6 +24,7 @@ public class SubjectAssignmentDTO {
 
 	public SubjectAssignmentDTO(SubjectAssignment assign) {
 		if(assign == null) return;
+		id = assign.getId();
 		teacher = new TeacherDTO(assign.getTeacher());
 		subject = new SubjectDTO(assign.getSubject());
 	}
@@ -56,6 +57,12 @@ public class SubjectAssignmentDTO {
 
 	public void setTeacher(TeacherDTO teacher) {
 		this.teacher = teacher;
+	}
+
+
+	public SubjectAssignment toEntity(SubjectAssignment assign) {
+		assign.setId(id);
+		return assign;
 	}
 
 }

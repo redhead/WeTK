@@ -2,11 +2,7 @@
  */
 package org.wetk.model;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
 
 
 /**
@@ -17,33 +13,53 @@ import javax.persistence.NamedQuery;
 @NamedQueries({
 	@NamedQuery(name = SubjectAssignment.GET_ALL_ASSIGNMENTS, query = "SELECT a FROM SubjectAssignment a ORDER BY a.subject.title, a.teacher.lastName")
 })
-public class SubjectAssignment implements Serializable {
+public class SubjectAssignment extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
 
 	public static final String GET_ALL_ASSIGNMENTS = "SubjectAssignment.getAllAssignments";
 
 	@Id
-	private SubjectAssignmentComposite key = new SubjectAssignmentComposite();
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
+	@ManyToOne
+	@JoinColumn(name = "teacher")
+	private Teacher teacher;
+
+	@OneToOne
+	@JoinColumn(name = "subject")
+	private Subject subject;
 
 
 	public Teacher getTeacher() {
-		return key.getTeacher();
+		return teacher;
 	}
 
 
 	public void setTeacher(Teacher teacher) {
-		key.setTeacher(teacher);
+		this.teacher = teacher;
 	}
 
 
 	public Subject getSubject() {
-		return key.getSubject();
+		return subject;
 	}
 
 
 	public void setSubject(Subject subject) {
-		key.setSubject(subject);
+		this.subject = subject;
+	}
+
+
+	@Override
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }
