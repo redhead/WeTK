@@ -19,7 +19,7 @@
 							<div class="control-group">
 								<h:outputLabel for="class" value="#{msgs.class_class}" class="control-label" />
 								<div class="controls">
-									<h:selectOneMenu id="class" value="#{lessons.classTitle}" class="span1" required="true" requiredMessage="#{msgs.message_classRequired}">
+									<h:selectOneMenu id="class" value="#{lessons.classId}" class="span1" required="true" requiredMessage="#{msgs.message_classRequired}">
 										<f:selectItem itemValue="" itemLabel="" />
 										<f:selectItems value="#{classes.selectItems}" />
 									</h:selectOneMenu>
@@ -28,7 +28,7 @@
 							<div class="control-group">
 								<h:outputLabel for="class" value="#{msgs.assignment_assignment}" class="control-label" />
 								<div class="controls">
-									<h:selectOneMenu id="class" value="#{lessons.title}" class="span1" required="true" requiredMessage="#{msgs.message_assignRequired}">
+									<h:selectOneMenu id="class" value="#{lessons.assignmentId}" class="span1" required="true" requiredMessage="#{msgs.message_assignRequired}">
 										<f:selectItem itemValue="" itemLabel="" />
 										<f:selectItems value="#{assignments.selectItems}" />
 									</h:selectOneMenu>
@@ -64,21 +64,33 @@
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="#{msgs.teacher_username}" />
+									<h:outputText value="#{msgs.class_title}" />
 								</f:facet>
-								<h:outputText value="#{item.username}" />
+								<h:outputText value="#{item.classTitle}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="#{msgs.subject_title}"/>
+								</f:facet>
+								<h:outputText value="#{item.subjectTitle}"/>
 							</h:column>
 							<h:column>
 								<f:facet name="header">
 									<h:outputText value="#{msgs.person_fullName}"/>
 								</f:facet>
-								<h:outputText value="#{item.fullName}"/>
+								<h:outputText value="#{item.teacherFullName}"/>
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="#{msgs.person_email}"/>
+									<h:outputText value="#{msgs.lesson_day}"/>
 								</f:facet>
-								<h:outputText value="#{item.email}"/>
+								<h:outputText value="#{item.day}"/>
+							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="#{msgs.lesson_hour}"/>
+								</f:facet>
+								<h:outputText value="#{item.hour}"/>
 							</h:column>
 						</h:dataTable>
 					</h:form>
