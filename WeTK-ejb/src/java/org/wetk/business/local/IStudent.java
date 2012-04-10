@@ -4,9 +4,7 @@ package org.wetk.business.local;
 
 import java.util.List;
 import javax.ejb.Local;
-import org.wetk.dto.ClassDTO;
 import org.wetk.dto.StudentDTO;
-import org.wetk.model.ClassEntity;
 import org.wetk.model.Student;
 
 

@@ -2,7 +2,11 @@
  */
 package org.wetk.model;
 
-import javax.persistence.*;
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 
 /**
@@ -10,52 +14,36 @@ import javax.persistence.*;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "teacher", "subject" }))
-public class SubjectAssignment extends AbstractEntity {
+@NamedQueries({
+	@NamedQuery(name = SubjectAssignment.GET_ALL_ASSIGNMENTS, query = "SELECT a FROM SubjectAssignment a ORDER BY a.subject.title, a.teacher.lastName")
+})
+public class SubjectAssignment implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	public static final String GET_ALL_ASSIGNMENTS = "SubjectAssignment.getAllAssignments";
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-
-	@ManyToOne
-	@JoinColumn(name="teacher")
-	private Teacher teacher;
-
-	@OneToOne
-	@JoinColumn(name="subject")
-	private Subject subject;
+	private SubjectAssignmentComposite key = new SubjectAssignmentComposite();
 
 
 	public Teacher getTeacher() {
-		return teacher;
+		return key.getTeacher();
 	}
 
 
 	public void setTeacher(Teacher teacher) {
-		this.teacher = teacher;
+		key.setTeacher(teacher);
 	}
 
 
 	public Subject getSubject() {
-		return subject;
+		return key.getSubject();
 	}
 
 
 	public void setSubject(Subject subject) {
-		this.subject = subject;
-	}
-
-
-	@Override
-	public Long getId() {
-		return id;
-	}
-
-
-	public void setId(Long id) {
-		this.id = id;
+		key.setSubject(subject);
 	}
 
 }

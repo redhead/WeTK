@@ -5,7 +5,6 @@ package org.wetk.business;
 import java.util.List;
 import javax.ejb.Stateless;
 import org.wetk.business.local.IStudent;
-import org.wetk.dto.ClassDTO;
 import org.wetk.dto.StudentDTO;
 import org.wetk.model.ClassEntity;
 import org.wetk.model.Student;

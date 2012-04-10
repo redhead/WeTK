@@ -44,10 +44,8 @@ public class StudentsBean {
 		if(s == null) {
 			throw new Exception("Student not found");
 		}
-		if(s.getClazz() != null) {
-			classId = s.getClazz().getId();
-		}
 		student = new StudentDTO(s);
+		classId = student.getClassId();
 		return null;
 	}
 
