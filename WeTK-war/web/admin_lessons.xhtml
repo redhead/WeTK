@@ -66,19 +66,19 @@
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="#{msgs.class_title}" />
+									<h:outputText value="#{msgs.class}" />
 								</f:facet>
 								<h:outputText value="#{item.classTitle}" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="#{msgs.subject_title}"/>
+									<h:outputText value="#{msgs.subject}"/>
 								</f:facet>
 								<h:outputText value="#{item.subjectTitle}"/>
 							</h:column>
 							<h:column>
 								<f:facet name="header">
-									<h:outputText value="#{msgs.person_fullName}"/>
+									<h:outputText value="#{msgs.teacher}"/>
 								</f:facet>
 								<h:outputText value="#{item.teacherFullName}"/>
 							</h:column>
@@ -86,7 +86,7 @@
 								<f:facet name="header">
 									<h:outputText value="#{msgs.lesson_day}"/>
 								</f:facet>
-								<h:outputText value="#{item.day}"/>
+								<h:outputText value="#{days.getDayTitle(item.day)}"/>
 							</h:column>
 							<h:column>
 								<f:facet name="header">
