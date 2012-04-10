@@ -11,7 +11,6 @@ import javax.faces.model.SelectItem;
 import org.wetk.business.local.ISubject;
 import org.wetk.dto.SubjectDTO;
 import org.wetk.model.Subject;
-import org.wetk.model.SubjectAssignment;
 
 
 /**
