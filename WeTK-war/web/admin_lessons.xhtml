@@ -10,6 +10,10 @@
     <h:body>
 		<ui:composition template="templates/layout.xhtml">
 			<ui:define name="content">
+				<ui:include src="templates/admin-menu.xhtml">
+					<ui:param name="active" value="lessons" />
+				</ui:include>
+				
 				<h2>#{msgs.administration_lessons}</h2>
 
 				<f:view>

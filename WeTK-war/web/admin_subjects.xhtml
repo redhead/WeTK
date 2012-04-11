@@ -10,7 +10,12 @@
 	<h:body>
 		<ui:composition template="templates/layout.xhtml">
 			<ui:define name="content">
+				<ui:include src="templates/admin-menu.xhtml">
+					<ui:param name="active" value="subjects" />
+				</ui:include>
+				
 				<h2>#{msgs.administration_subjects}</h2>
+				
 				<f:view>
 					<h:form class="form-horizontal">
 						<fieldset>

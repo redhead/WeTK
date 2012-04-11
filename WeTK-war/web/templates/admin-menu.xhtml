@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <ui:composition>
+		<h:form>
+			<ul class="nav nav-tabs">
+				<li class="#{active eq 'teachers' ? 'active' : ''}">
+					<h:link outcome="pretty:admin-teachers" value="#{msgs.administration_teachers}" />
+				</li>
+				<li class="#{active eq 'classes' ? 'active' : ''}">
+					<h:link outcome="pretty:admin-classes" value="#{msgs.administration_classes}" />
+				</li>
+				<li class="#{active eq 'students' ? 'active' : ''}">
+					<h:link outcome="pretty:admin-students" value="#{msgs.administration_students}" />
+				</li>
+				<li class="#{active eq 'subjects' ? 'active' : ''}">
+					<h:link outcome="pretty:admin-subjects" value="#{msgs.administration_subjects}" />
+				</li>
+				<li class="#{active eq 'assignments' ? 'active' : ''}">
+					<h:link outcome="pretty:admin-assignments" value="#{msgs.administration_teachers_assignments}" />
+				</li>
+				<li class="#{active eq 'lessons' ? 'active' : ''}">
+					<h:link outcome="pretty:admin-lessons" value="#{msgs.administration_lessons}" />
+				</li>
+			</ul>
+		</h:form>
+	</ui:composition>
+</html>

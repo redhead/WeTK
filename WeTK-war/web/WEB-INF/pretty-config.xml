@@ -1,0 +1,41 @@
+
+<pretty-config xmlns="http://ocpsoft.com/prettyfaces/3.3.0" 
+			   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			   xsi:schemaLocation="http://ocpsoft.com/prettyfaces/3.3.0
+			   http://ocpsoft.com/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.0.xsd">
+
+	<url-mapping id="home"> 
+		<pattern value="/" /> 
+		<view-id value="/faces/index.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="admin">
+		<pattern value="/admin" />
+		<view-id value="/faces/admin.xhtml" />
+	</url-mapping>
+	<url-mapping id="admin-assignments">
+		<pattern value="/admin/rozvrhy-ucitelu" />
+		<view-id value="/faces/admin_assignments.xhtml" />
+	</url-mapping>
+	<url-mapping id="admin-classes">
+		<pattern value="/admin/tridy" />
+		<view-id value="/faces/admin_classes.xhtml" />
+	</url-mapping>
+	<url-mapping id="admin-lessons">
+		<pattern value="/admin/rozvrhy-hodin" />
+		<view-id value="/faces/admin_lessons.xhtml" />
+	</url-mapping>
+	<url-mapping id="admin-students">
+		<pattern value="/admin/studenti" />
+		<view-id value="/faces/admin_students.xhtml" />
+	</url-mapping>
+	<url-mapping id="admin-subjects">
+		<pattern value="/admin/predmety" />
+		<view-id value="/faces/admin_subjects.xhtml" />
+	</url-mapping>
+	<url-mapping id="admin-teachers">
+		<pattern value="/admin/ucitele" />
+		<view-id value="/faces/admin_teachers.xhtml" />
+	</url-mapping>
+	
+</pretty-config>

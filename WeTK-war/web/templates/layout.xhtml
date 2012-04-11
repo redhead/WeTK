@@ -7,10 +7,10 @@
 
     <h:head>
 		<title>#{msgs.layout_title}</title>
-		<link href="../img/eTKicon.png" rel="shortcut icon" />
-		<link href="../css/bootstrap.css" type="text/css" rel="stylesheet" />
-		<link href="../css/bootstrap-datepicker.css" type="text/css" rel="stylesheet" />
-		<link href="../css/style.css" type="text/css" rel="stylesheet" />
+		<link href="#{request.contextPath}/img/eTKicon.png" rel="shortcut icon" />
+		<link href="#{request.contextPath}/css/bootstrap.css" type="text/css" rel="stylesheet" />
+		<link href="#{request.contextPath}/css/bootstrap-datepicker.css" type="text/css" rel="stylesheet" />
+		<link href="#{request.contextPath}/css/style.css" type="text/css" rel="stylesheet" />
     </h:head>
 
     <h:body>
@@ -22,10 +22,12 @@
 				<span class="long">#{msgs.layout_title}</span>
 			</h1>
 			<nav>
-				<ul>
-					<li><a href="zapis.jsp">#{msgs.layout_lessonEntry}</a></li>
-					<li><a href="login.jsp">#{msgs.layout_logout}</a></li>
-				</ul>
+				<h:form>
+					<ul>
+						<li><a href="lessonEntry.xhtml">#{msgs.layout_lessonEntry}</a></li>
+						<li><h:commandLink action="#{user.logout}" value="#{msgs.layout_logout}" /></li>
+					</ul>
+				</h:form>
 			</nav>
 		</header>
 

@@ -10,7 +10,12 @@
 	<h:body>
 		<ui:composition template="templates/layout.xhtml">
 			<ui:define name="content">
+				<ui:include src="templates/admin-menu.xhtml">
+					<ui:param name="active" value="students" />
+				</ui:include>
+				
 				<h2>#{msgs.administration_students}</h2>
+				
 				<f:view>
 					<h:form class="form-horizontal">
 						<h:messages errorClass="error" class="alert alert-error unstyled" />
