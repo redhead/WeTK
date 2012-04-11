@@ -30,6 +30,11 @@ public class LessonsBean {
 	private Long assignmentId;
 
 
+	public LessonsBean() {
+		lesson.setHour(1);
+	}
+
+
 	public LessonDTO getLesson() {
 		return lesson;
 	}
