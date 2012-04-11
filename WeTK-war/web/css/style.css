@@ -4,7 +4,7 @@ body {
 	font-family: Tahoma, Helvetica;
 	max-width: 980px;
 	margin: 0 auto 0 auto;
-	background: white url('../images/background.png') repeat-x;
+	background: white url('../img/background.png') repeat-x;
 	color: #333;
 	font-size: 15px;
 }
