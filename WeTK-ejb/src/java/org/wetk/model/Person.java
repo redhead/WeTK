@@ -11,7 +11,7 @@ import javax.persistence.*;
  */
 @MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Person extends AbstractEntity {
+public abstract class Person extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
 
