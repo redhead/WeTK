@@ -49,6 +49,12 @@
 									<h:inputText id="email" value="#{teachers.teacher.email}" />
 								</div>
 							</div>
+							<div class="control-group">
+								<h:outputLabel for="admin" value="#{msgs.teacher_admin}" class="control-label" />
+								<div class="controls">
+									<h:selectBooleanCheckbox id="admin" value="#{teachers.teacher.admin}" />
+								</div>
+							</div>
 							<hr/>
 							<div class="control-group">
 								<h:outputLabel for="titleBefore" value="#{msgs.teacher_titleBefore}" class="control-label" />
