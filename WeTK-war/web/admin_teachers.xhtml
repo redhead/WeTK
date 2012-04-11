@@ -17,7 +17,7 @@
 				<h2>#{msgs.administration_teachers}</h2>
 
 				<f:view>
-					<h:form class="form-horizontal">
+					<h:form class="form-horizontal admin-form">
 						<fieldset>
 							<h:inputHidden id="id" value="#{teachers.teacher.id}" />
 							<div class="control-group">
@@ -53,6 +53,12 @@
 									<h:inputText id="email" value="#{teachers.teacher.email}" />
 								</div>
 							</div>
+							<div class="control-group">
+								<h:outputLabel for="admin" value="#{msgs.teacher_admin}" class="control-label" />
+								<div class="controls">
+									<h:selectBooleanCheckbox id="admin" value="#{teachers.teacher.admin}" />
+								</div>
+							</div>
 							<hr/>
 							<div class="control-group">
 								<h:outputLabel for="titleBefore" value="#{msgs.teacher_titleBefore}" class="control-label" />
@@ -74,7 +80,7 @@
 					</h:form>
 
 					<h:form>
-						<h:dataTable value="#{teachers.teachers}" var="item" class="table table-striped table-bordered table-condensed">
+						<h:dataTable value="#{teachers.teachers}" columnClasses="action-column" var="item" class="table table-striped table-bordered table-condensed admin-table">
 							<h:column>
 								<f:facet name="header">
 									<h:outputText value=""/>
