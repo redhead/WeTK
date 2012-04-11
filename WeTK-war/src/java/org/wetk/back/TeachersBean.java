@@ -30,6 +30,11 @@ public class TeachersBean {
 	private String password;
 
 
+	public TeachersBean() {
+		teacher.setEmail("@");
+	}
+
+
 	public TeacherDTO getTeacher() {
 		return teacher;
 	}
@@ -76,6 +81,7 @@ public class TeachersBean {
 		}
 		return items;
 	}
+
 
 	public String getPassword() {
 		return password;
