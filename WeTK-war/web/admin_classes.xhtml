@@ -12,7 +12,7 @@
 			<ui:define name="content">
 				<h2>#{msgs.administration_classes}</h2>
 				<f:view>
-					<h:form class="form-horizontal">
+					<h:form class="form-horizontal admin-form">
 						<h:messages errorClass="error" class="alert alert-error unstyled" />
 						<fieldset>
 							<h:inputHidden id="id" value="#{classes.classDTO.id}" />
@@ -38,7 +38,7 @@
 						</fieldset>
 					</h:form>
 					<h:form>
-						<h:dataTable value="#{classes.classes}" var="item" class="table table-striped table-bordered table-condensed">
+						<h:dataTable value="#{classes.classes}" var="item" columnClasses="action-column" class="table table-striped table-bordered table-condensed admin-table">
 							<h:column>
 								<f:facet name="header">
 									<h:outputText value=""/>

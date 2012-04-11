@@ -176,3 +176,14 @@ input.topic-input {
 .hidden {
 	display: none;
 }
+
+.admin-form .btn-success {
+	margin-right: 10px;
+}
+.admin-table .btn-danger {
+	margin-right: 5px;
+}
+.admin-table .action-column {
+	width: 125px;
+	text-align: center;
+}
