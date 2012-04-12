@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:p="http://primefaces.prime.com.tr/ui"
+	  xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:composition>
+		<h:form>
+			<ul>
+				<li><h:link outcome="pretty:lessonEntry" value="#{msgs.lessonEntry_heading}" /></li>
+				<c:if test="#{user.hasClass}">
+					<li><h:link outcome="pretty:class" value="#{msgs.class_heading}" /></li>
+				</c:if>
+				<li><h:link outcome="pretty:timetable" value="#{msgs.timetable_heading}" /></li>
+				<c:if test="#{user.isAdmin}">
+					<li><h:link outcome="pretty:admin" value="#{msgs.administration_heading}" /></li>
+				</c:if>
+				<li><h:commandLink action="#{user.logout}" value="#{msgs.logout}" /></li>
+			</ul>
+		</h:form>
+	</ui:composition>
+</html>

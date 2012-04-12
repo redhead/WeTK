@@ -38,4 +38,16 @@
 		<view-id value="/faces/admin_teachers.xhtml" />
 	</url-mapping>
 	
+	<url-mapping id="class">
+		<pattern value="/trida" />
+		<view-id value="/faces/class.xhtml" />
+	</url-mapping>
+	<url-mapping id="timetable">
+		<pattern value="/muj-rozvrh" />
+		<view-id value="/faces/timetable.xhtml" />
+	</url-mapping>
+	<url-mapping id="lessonEntry">
+		<pattern value="/zaznam-hodiny" />
+		<view-id value="/faces/lessonEntry.xhtml" />
+	</url-mapping>
 </pretty-config>
