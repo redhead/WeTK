@@ -5,15 +5,11 @@
 		<jta-data-source>wetkDataSource</jta-data-source>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
-		<!--<property name="hibernate.hbm2ddl.auto" value="update"/>-->
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect"/>
-			<property name="hibernate.connection.username" value="etk.sablik.eu"/>
-			<property name="hibernate.connection.password" value="etkDB555"/>
-			<property name="hibernate.connection.url" value="jdbc:mysql://sql16.pipni.cz:3306/etk_sablik_eu"/>
-			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
 			<property name="hibernate.hbm2ddl.auto" value="update"/>
 			<property name="hibernate.show_sql" value="true"/>
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+			<property name="hibernate.format_sql" value="true"/>
 		</properties>
 	</persistence-unit>
 </persistence>
