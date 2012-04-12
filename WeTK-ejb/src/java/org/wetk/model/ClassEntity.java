@@ -27,6 +27,7 @@ public class ClassEntity extends AbstractEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@Column(nullable = false)
 	private String title;
 
 	@OneToMany(mappedBy = "clazz")

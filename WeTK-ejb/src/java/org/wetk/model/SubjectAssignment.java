@@ -13,6 +13,7 @@ import javax.persistence.*;
 @NamedQueries({
 	@NamedQuery(name = SubjectAssignment.GET_ALL_ASSIGNMENTS, query = "SELECT a FROM SubjectAssignment a ORDER BY a.subject.title, a.teacher.lastName")
 })
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "teacher", "subject" }), name = "unique_assignment")
 public class SubjectAssignment extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;

@@ -23,14 +23,14 @@ public class Lesson extends AbstractEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private SubjectAssignment assignment;
 
 	private int day;
 
 	private int hour;
 
-	@OneToOne
+	@OneToOne(optional = false)
 	private ClassEntity clazz;
 
 

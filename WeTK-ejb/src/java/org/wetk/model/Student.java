@@ -2,10 +2,7 @@
  */
 package org.wetk.model;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.*;
 
 
 /**
@@ -22,9 +19,10 @@ public class Student extends Person {
 
 	public static final String GET_ALL_STUDENTS = "Student.getAllStudents";
 
+	@Column(nullable = false)
 	private int ordinal;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private ClassEntity clazz;
 
 

@@ -18,12 +18,13 @@ public class Note extends AbstractEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@Column(nullable = false)
 	private String description;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private Student student;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private LessonEntry lessonEntry;
 
 

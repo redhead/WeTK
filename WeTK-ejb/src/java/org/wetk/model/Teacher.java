@@ -27,15 +27,17 @@ public class Teacher extends Person {
 	@Column(nullable = false, unique = true)
 	private String username;
 
+	@Column(nullable = false)
 	private String password;
 
 	private String titleBefore;
 
 	private String titleAfter;
 
+	@Column(nullable = false)
 	private boolean admin = false;
 
-	@OneToMany(mappedBy = "teacher")
+	@OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
 	private List<SubjectAssignment> assignments;
 
 	@OneToOne(mappedBy = "teacher")

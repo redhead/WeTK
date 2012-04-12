@@ -3,10 +3,7 @@
 package org.wetk.model;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 /**
@@ -25,6 +22,9 @@ public class Grade extends AbstractEntity {
 	private double grade;
 
 	private String comment;
+
+	@OneToOne(optional = false)
+	private Subject subject;
 
 
 	@Override
@@ -50,6 +50,16 @@ public class Grade extends AbstractEntity {
 
 	public double getGrade() {
 		return grade;
+	}
+
+
+	public Subject getSubject() {
+		return subject;
+	}
+
+
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
 
 

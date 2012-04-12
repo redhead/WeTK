@@ -26,7 +26,7 @@ public class LessonEntry extends AbstractEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@OneToOne
+	@OneToOne(optional = false)
 	private Lesson lesson;
 
 	private int lessonNumber;
