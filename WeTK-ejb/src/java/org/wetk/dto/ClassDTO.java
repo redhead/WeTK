@@ -15,6 +15,10 @@ public class ClassDTO {
 
 	private String title;
 
+	private Long teacherId;
+
+	private String teacherFullName;
+
 
 	public ClassDTO() {
 	}
@@ -24,6 +28,10 @@ public class ClassDTO {
 		if(clazz == null) return;
 		id = clazz.getId();
 		title = clazz.getTitle();
+		if(clazz.getTeacher() != null) {
+			teacherId = clazz.getTeacher().getId();
+			teacherFullName = new TeacherDTO(clazz.getTeacher()).getFullName();
+		}
 	}
 
 
@@ -44,6 +52,26 @@ public class ClassDTO {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+
+	public String getTeacherFullName() {
+		return teacherFullName;
+	}
+
+
+	public void setTeacherFullName(String teacherFullName) {
+		this.teacherFullName = teacherFullName;
+	}
+
+
+	public Long getTeacherId() {
+		return teacherId;
+	}
+
+
+	public void setTeacherId(Long teacherId) {
+		this.teacherId = teacherId;
 	}
 
 
