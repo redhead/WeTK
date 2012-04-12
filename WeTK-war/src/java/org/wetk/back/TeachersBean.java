@@ -5,12 +5,16 @@ package org.wetk.back;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import org.wetk.ErrorType;
+import org.wetk.Utils;
 import org.wetk.business.local.ITeacher;
 import org.wetk.dto.TeacherDTO;
-import org.wetk.model.ClassEntity;
 import org.wetk.model.Teacher;
 
 
@@ -57,8 +61,16 @@ public class TeachersBean {
 
 
 	public String saveTeacher() {
-		model.save(teacher, password);
-		return "success";
+		try {
+			model.save(teacher, password);
+			return "success";
+		} catch(EJBException e) {
+			if(Utils.getErrorType(e) == ErrorType.DUPLICATE) {
+				String msg = Utils.getString("error_userExists", teacher.getUsername());
+				Utils.addMessage("form-errors", msg);
+			}
+		}
+		return null;
 	}
 
 
@@ -76,6 +88,18 @@ public class TeachersBean {
 		List<Teacher> teachers = model.getAllTeachers();
 		List<SelectItem> items = new ArrayList<SelectItem>();
 		for(Teacher t : teachers) {
+			String fullName = new TeacherDTO(t).getFullName();
+			items.add(new SelectItem(t.getId(), fullName));
+		}
+		return items;
+	}
+
+
+	public List<SelectItem> getClasslessTeachersSelectItems() {
+		List<Teacher> teachers = model.getAllTeachers();
+		List<SelectItem> items = new ArrayList<SelectItem>();
+		for(Teacher t : teachers) {
+			if(t.getClazz() != null) continue;
 			String fullName = new TeacherDTO(t).getFullName();
 			items.add(new SelectItem(t.getId(), fullName));
 		}
