@@ -15,6 +15,7 @@ import javax.persistence.*;
 	@NamedQuery(name = ClassEntity.GET_BY_TITLE, query = "SELECT c FROM ClassEntity c WHERE c.title = :title"),
 	@NamedQuery(name = ClassEntity.GET_ALL_SUBJECTS, query = "SELECT c FROM ClassEntity c ORDER BY c.title")
 })
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "teacher"))
 public class ClassEntity extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
