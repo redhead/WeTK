@@ -27,6 +27,8 @@ public class Note extends AbstractEntity {
 	@ManyToOne(optional = false)
 	private LessonEntry lessonEntry;
 
+	private boolean solved;
+
 
 	@Override
 	public Long getId() {
@@ -66,6 +68,16 @@ public class Note extends AbstractEntity {
 
 	public void setLessonEntry(LessonEntry lessonEntry) {
 		this.lessonEntry = lessonEntry;
+	}
+
+
+	public boolean isSolved() {
+		return solved;
+	}
+
+
+	public void setSolved(boolean solved) {
+		this.solved = solved;
 	}
 
 }

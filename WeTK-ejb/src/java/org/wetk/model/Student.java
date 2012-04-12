@@ -2,6 +2,7 @@
  */
 package org.wetk.model;
 
+import java.util.List;
 import javax.persistence.*;
 
 
@@ -13,6 +14,7 @@ import javax.persistence.*;
 @NamedQueries({
 	@NamedQuery(name = Student.GET_ALL_STUDENTS, query = "SELECT s FROM Student s ORDER BY s.lastName, s.firstName")
 })
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "ordinal", "clazz" }))
 public class Student extends Person {
 
 	private static final long serialVersionUID = 1L;
@@ -23,7 +25,11 @@ public class Student extends Person {
 	private int ordinal;
 
 	@ManyToOne(optional = false)
+	@JoinColumn(name = "clazz")
 	private ClassEntity clazz;
+
+	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Absence> absences;
 
 
 	public int getOrdinal() {

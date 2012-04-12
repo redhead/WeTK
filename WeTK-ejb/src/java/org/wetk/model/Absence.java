@@ -19,7 +19,7 @@ public class Absence extends AbstractEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="student")
 	private Student student;
 
