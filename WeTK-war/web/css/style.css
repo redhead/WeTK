@@ -111,17 +111,17 @@ hr {
 	height: 75px;
 	width: 20px;
 	border-radius: 5px 0 0 5px;
-	background: #D6EAFF url('../images/arrows.png') no-repeat 0px center;
+	background: #D6EAFF url('../img/arrows.png') no-repeat 0px center;
 }
 #nextLesson a {
 	border-radius: 0 5px 5px 0;
-	background: #D6EAFF url('../images/arrows.png') no-repeat -40px center;
+	background: #D6EAFF url('../img/arrows.png') no-repeat -40px center;
 }
 #prevLesson a:hover {
-	background: dodgerblue url('../images/arrows.png') no-repeat -20px center;
+	background: dodgerblue url('../img/arrows.png') no-repeat -20px center;
 }
 #nextLesson a:hover {
-	background: dodgerblue url('../images/arrows.png') no-repeat -60px center;
+	background: dodgerblue url('../img/arrows.png') no-repeat -60px center;
 }
 
 
