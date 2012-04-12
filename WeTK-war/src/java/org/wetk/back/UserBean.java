@@ -19,7 +19,7 @@ public class UserBean {
 	public String logout() {
 		HttpSession sess = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		sess.invalidate();
-		return "index";
+		return "pretty:home";
 	}
 
 }
