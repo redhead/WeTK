@@ -24,7 +24,7 @@
 							<div class="control-group">
 								<h:outputLabel for="title" value="#{msgs.class_title}" class="control-label" />
 								<div class="controls">
-									<h:inputText id="title" value="#{classes.classDTO.title}"  />
+									<h:inputText id="title" value="#{classes.classDTO.title}" required="true" requiredMessage="#{msgs.message_classTitleRequired}" />
 								</div>
 							</div>
 							<div class="control-group">

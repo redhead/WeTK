@@ -18,24 +18,25 @@
 
 				<f:view>
 					<h:form class="form-horizontal admin-form">
+						<h:messages errorClass="error" class="alert alert-error unstyled" />
 						<fieldset>
 							<h:inputHidden id="id" value="#{teachers.teacher.id}" />
 							<div class="control-group">
 								<h:outputLabel for="firstName" value="#{msgs.person_firstName}" class="control-label" />
 								<div class="controls">
-									<h:inputText id="firstName" value="#{teachers.teacher.firstName}" />
+									<h:inputText id="firstName" value="#{teachers.teacher.firstName}" required="true" requiredMessage="#{msgs.message_firstNameRequired}" />
 								</div>
 							</div>
 							<div class="control-group">
 								<h:outputLabel for="lastName" value="#{msgs.person_lastName}" class="control-label" />
 								<div class="controls">
-									<h:inputText id="lastName" value="#{teachers.teacher.lastName}" />
+									<h:inputText id="lastName" value="#{teachers.teacher.lastName}" required="true" requiredMessage="#{msgs.message_lastNameRequired}" />
 								</div>
 							</div>
 							<div class="control-group">
 								<h:outputLabel for="username" value="#{msgs.teacher_username}" class="control-label" />
 								<div class="controls">
-									<h:inputText id="username" value="#{teachers.teacher.username}" />
+									<h:inputText id="username" value="#{teachers.teacher.username}" required="true" requiredMessage="#{msgs.message_usernameRequired}" />
 								</div>
 							</div>
 							<div class="control-group">
@@ -50,7 +51,7 @@
 							<div class="control-group">
 								<h:outputLabel for="email" value="#{msgs.person_email}" class="control-label" />
 								<div class="controls">
-									<h:inputText id="email" value="#{teachers.teacher.email}" />
+									<h:inputText id="email" value="#{teachers.teacher.email}" required="true" requiredMessage="#{msgs.message_emailRequired}" />
 								</div>
 							</div>
 							<div class="control-group">

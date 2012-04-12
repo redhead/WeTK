@@ -24,19 +24,19 @@
 							<div class="control-group">
 								<h:outputLabel for="firstName" value="#{msgs.person_firstName}" class="control-label" />
 								<div class="controls">
-									<h:inputText id="firstName" value="#{students.student.firstName}"  />
+									<h:inputText id="firstName" value="#{students.student.firstName}" required="true" requiredMessage="#{msgs.message_firstNameRequired}" />
 								</div>
 							</div>
 							<div class="control-group">
 								<h:outputLabel for="lastName" value="#{msgs.person_lastName}" class="control-label" />
 								<div class="controls">
-									<h:inputText id="lastName" value="#{students.student.lastName}" />
+									<h:inputText id="lastName" value="#{students.student.lastName}" required="true" requiredMessage="#{msgs.message_lastNameRequired}" />
 								</div>
 							</div>
 							<div class="control-group">
 								<h:outputLabel for="email" value="#{msgs.person_email}" class="control-label" />
 								<div class="controls">
-									<h:inputText id="email" value="#{students.student.email}" />
+									<h:inputText id="email" value="#{students.student.email}" required="true" requiredMessage="#{msgs.message_emailRequired}" />
 								</div>
 							</div>
 							<div class="control-group">
@@ -48,7 +48,7 @@
 							<div class="control-group">
 								<h:outputLabel for="class" value="#{msgs.student_class}" class="control-label" />
 								<div class="controls">
-									<h:selectOneMenu id="class" value="#{students.classId}" class="span1" required="true" requiredMessage="#{msgs.student_message_classRequired}">
+									<h:selectOneMenu id="class" value="#{students.classId}" class="span1" required="true" requiredMessage="#{msgs.message_classRequired}">
 										<f:selectItem itemValue="" itemLabel="" />
 										<f:selectItems value="#{classes.selectItems}" />
 									</h:selectOneMenu>
