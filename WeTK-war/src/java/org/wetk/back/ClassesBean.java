@@ -5,12 +5,14 @@ package org.wetk.back;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.model.SelectItem;
+import org.wetk.ErrorType;
+import org.wetk.Utils;
 import org.wetk.business.local.IClass;
 import org.wetk.dto.ClassDTO;
-import org.wetk.dto.TeacherDTO;
 import org.wetk.model.ClassEntity;
 
 
@@ -55,8 +57,16 @@ public class ClassesBean {
 
 
 	public String saveClass() {
-		model.save(clazz, teacherId);
-		return "success";
+		try {
+			model.save(clazz, teacherId);
+			return "success";
+		} catch(EJBException e) {
+			if(Utils.getErrorType(e) == ErrorType.DUPLICATE) {
+				String msg = Utils.getString("error_classExists", clazz.getTitle());
+				Utils.addMessage("form-errors", msg);
+			}
+		}
+		return null;
 	}
 
 
