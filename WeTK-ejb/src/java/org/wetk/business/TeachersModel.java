@@ -4,6 +4,7 @@ package org.wetk.business;
 
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 import org.wetk.business.local.ITeacher;
 import org.wetk.dto.TeacherDTO;
 import org.wetk.model.Teacher;
@@ -35,6 +36,18 @@ public class TeachersModel extends AbstractModel implements ITeacher {
 	@Override
 	public Teacher find(Long id) {
 		return getEntityManager().find(Teacher.class, id);
+	}
+
+
+	@Override
+	public Teacher findByUsername(String username) {
+		Query q = getEntityManager().createNamedQuery(Teacher.GET_BY_USERNAME);
+		q.setParameter("username", username);
+		try {
+			return (Teacher) q.getSingleResult();
+		} catch(Exception e) {
+			return null;
+		}
 	}
 
 

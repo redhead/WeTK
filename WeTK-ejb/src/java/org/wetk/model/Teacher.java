@@ -13,13 +13,16 @@ import org.wetk.helper.PasswordHashProvider;
  */
 @Entity
 @NamedQueries({
-	@NamedQuery(name = Teacher.GET_ALL_TEACHERS, query = "SELECT t FROM Teacher t ORDER BY username")
+	@NamedQuery(name = Teacher.GET_ALL_TEACHERS, query = "SELECT t FROM Teacher t ORDER BY username"),
+	@NamedQuery(name = Teacher.GET_BY_USERNAME, query = "SELECT t FROM Teacher t WHERE username = :username")
 })
 public class Teacher extends Person {
 
 	private static final long serialVersionUID = 1L;
 
 	public static final String GET_ALL_TEACHERS = "Teacher.getAllTeachers";
+
+	public static final String GET_BY_USERNAME = "Teacher.getByUsername";
 
 	@Column(nullable = false, unique = true)
 	private String username;

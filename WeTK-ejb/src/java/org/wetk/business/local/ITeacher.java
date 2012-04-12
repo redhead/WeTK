@@ -24,6 +24,9 @@ public interface ITeacher {
 	public Teacher find(Long id);
 
 
+	public Teacher findByUsername(String username);
+
+
 	public void delete(Long id);
 
 }
