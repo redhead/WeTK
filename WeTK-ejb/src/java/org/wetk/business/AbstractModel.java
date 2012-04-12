@@ -5,7 +5,6 @@ package org.wetk.business;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.wetk.model.AbstractEntity;
-import org.wetk.model.Student;
 
 
 /**
@@ -25,15 +24,13 @@ abstract public class AbstractModel {
 
 	public void saveEntity(AbstractEntity entity) {
 		if(entity.getId() == null) {
-			System.out.println("PERSIST");
 			em.persist(entity);
 		} else {
-			System.out.println("MERGE");
 			System.out.println(entity);
 			System.out.println(entity.getId());
 			em.merge(entity);
 		}
-		System.out.println("FLUSH");
 		em.flush();
 	}
+
 }
