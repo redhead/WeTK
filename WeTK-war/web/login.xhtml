@@ -10,15 +10,15 @@
 			<ui:define name="content">
 				
 				<div id="loginTable" class="well">
-					<h2>Přihlášení</h2>
+					<h2>#{msgs.login}</h2>
 					<form action="j_security_check" id="login" method="post" class="form-horizontal">
 						<table>
 							<tr>
-								<th><label for="j_username">Jméno:</label></th>
+								<th><label for="j_username">#{msgs.teacher_username}</label></th>
 								<td><input name="j_username" id="j_username" type="text" class="span3" /></td>
 							</tr>
-							<tr>
-								<th><label for="j_password">Heslo:</label></th>
+							<tr> 
+								<th><label for="j_password">#{msgs.teacher_password}</label></th>
 								<td><input name="j_password" id="j_password" type="password" class="span3" /></td>
 							</tr>
 							<tr>
