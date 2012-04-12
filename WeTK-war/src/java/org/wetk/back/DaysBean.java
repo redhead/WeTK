@@ -22,11 +22,11 @@ public class DaysBean {
 	public List<SelectItem> getSelectItems() {
 		List<SelectItem> items = new ArrayList<SelectItem>();
 
-		items.add(new SelectItem(Calendar.MONDAY, Utils.message("day_mon")));
-		items.add(new SelectItem(Calendar.TUESDAY, Utils.message("day_tue")));
-		items.add(new SelectItem(Calendar.WEDNESDAY, Utils.message("day_wed")));
-		items.add(new SelectItem(Calendar.THURSDAY, Utils.message("day_thu")));
-		items.add(new SelectItem(Calendar.FRIDAY, Utils.message("day_fri")));
+		items.add(new SelectItem(Calendar.MONDAY, Utils.getString("day_mon")));
+		items.add(new SelectItem(Calendar.TUESDAY, Utils.getString("day_tue")));
+		items.add(new SelectItem(Calendar.WEDNESDAY, Utils.getString("day_wed")));
+		items.add(new SelectItem(Calendar.THURSDAY, Utils.getString("day_thu")));
+		items.add(new SelectItem(Calendar.FRIDAY, Utils.getString("day_fri")));
 
 		return items;
 	}
@@ -35,15 +35,15 @@ public class DaysBean {
 	public String getDayTitle(int day) {
 		switch(day) {
 			case Calendar.MONDAY:
-				return Utils.message("day_mon");
+				return Utils.getString("day_mon");
 			case Calendar.TUESDAY:
-				return Utils.message("day_tue");
+				return Utils.getString("day_tue");
 			case Calendar.WEDNESDAY:
-				return Utils.message("day_wed");
+				return Utils.getString("day_wed");
 			case Calendar.THURSDAY:
-				return Utils.message("day_thu");
+				return Utils.getString("day_thu");
 			case Calendar.FRIDAY:
-				return Utils.message("day_fri");
+				return Utils.getString("day_fri");
 		}
 		return "";
 	}
