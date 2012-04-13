@@ -30,7 +30,7 @@ public class Lesson extends AbstractEntity {
 
 	private int hour;
 
-	@OneToOne(optional = false)
+	@ManyToOne(optional = false)
 	private ClassEntity clazz;
 
 

@@ -28,7 +28,7 @@ public class SubjectAssignment extends AbstractEntity {
 	@JoinColumn(name = "teacher")
 	private Teacher teacher;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "subject")
 	private Subject subject;
 
