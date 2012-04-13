@@ -25,7 +25,6 @@ public class StudentModel extends AbstractModel<Student, StudentDTO> implements 
 
 	@Override
 	public void save(StudentDTO dto, Long classId) {
-		System.out.println("CLASS ID : " + classId);
 		Student student = dtoToEntity(dto);
 
 		ClassEntity clazz = find(ClassEntity.class, classId);

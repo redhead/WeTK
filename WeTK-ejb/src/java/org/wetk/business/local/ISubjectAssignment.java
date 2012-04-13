@@ -12,7 +12,7 @@ import org.wetk.entity.SubjectAssignment;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Local
-public interface ISubjectAssignment extends IAbstractModel<SubjectAssignment> {
+public interface ISubjectAssignment extends IAbstractAdminModel<SubjectAssignment> {
 
 	public void save(Long teacherId, Long subjectId);
 

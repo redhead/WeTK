@@ -12,7 +12,7 @@ import org.wetk.entity.Student;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Local
-public interface IStudent extends IAbstractModel<Student> {
+public interface IStudent extends IAbstractAdminModel<Student> {
 
 	public void save(StudentDTO dto, Long clazzId);
 

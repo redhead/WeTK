@@ -12,7 +12,7 @@ import org.wetk.entity.ClassEntity;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Local
-public interface IClass extends IAbstractModel<ClassEntity> {
+public interface IClass extends IAbstractAdminModel<ClassEntity> {
 
 	public void save(ClassDTO clazz, Long teacherId);
 

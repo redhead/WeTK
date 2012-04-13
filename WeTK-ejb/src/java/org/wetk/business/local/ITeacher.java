@@ -13,7 +13,7 @@ import org.wetk.entity.Teacher;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Local
-public interface ITeacher extends IAbstractModel<Teacher> {
+public interface ITeacher extends IAbstractAdminModel<Teacher> {
 
 	public void save(TeacherDTO teacher, String password);
 

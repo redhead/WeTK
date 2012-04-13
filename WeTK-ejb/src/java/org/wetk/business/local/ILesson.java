@@ -12,7 +12,7 @@ import org.wetk.entity.Lesson;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Local
-public interface ILesson extends IAbstractModel<Lesson> {
+public interface ILesson extends IAbstractAdminModel<Lesson> {
 
 	public void save(LessonDTO lesson, Long classId, Long assignmentId);
 

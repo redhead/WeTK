@@ -12,7 +12,7 @@ import org.wetk.entity.Subject;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Local
-public interface ISubject extends IAbstractModel<Subject> {
+public interface ISubject extends IAbstractAdminModel<Subject> {
 
 	public void save(SubjectDTO subject);
 

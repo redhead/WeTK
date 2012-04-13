@@ -2,7 +2,6 @@
  */
 package org.wetk.entity;
 
-import java.io.Serializable;
 import javax.persistence.*;
 
 
@@ -11,9 +10,14 @@ import javax.persistence.*;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = Grade.GET_ALL_FOR_STUDENT, query = "SELECT g FROM Grade g WHERE g.student = :student")
+})
 public class Grade extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
+
+	public static final String GET_ALL_FOR_STUDENT = "Grade.getAllForStudent";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,8 +27,11 @@ public class Grade extends AbstractEntity {
 
 	private String comment;
 
-	@OneToOne(optional = false)
+	@ManyToOne(optional = false)
 	private Subject subject;
+
+	@ManyToOne(optional = false)
+	private Student student;
 
 
 	@Override
@@ -65,6 +72,16 @@ public class Grade extends AbstractEntity {
 
 	public void setGrade(double grade) {
 		this.grade = grade;
+	}
+
+
+	public Student getStudent() {
+		return student;
+	}
+
+
+	public void setStudent(Student student) {
+		this.student = student;
 	}
 
 }

@@ -10,9 +10,14 @@ import javax.persistence.*;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Entity
+@NamedQueries({
+	@NamedQuery(name = Note.GET_ALL_FOR_STUDENT, query = "SELECT n FROM Note n WHERE n.student = :student")
+})
 public class Note extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
+
+	public static final String GET_ALL_FOR_STUDENT = "Note.getAllForStudent";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
