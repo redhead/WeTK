@@ -57,6 +57,12 @@
 								</f:facet>
 								<h:outputText value="#{item.title}"/>
 							</h:column>
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="#{msgs.class_teacher}"/>
+								</f:facet>
+								<h:outputText value="#{item.teacherFullName}"/>
+							</h:column>
 						</h:dataTable>
 					</h:form>
 				</f:view>
