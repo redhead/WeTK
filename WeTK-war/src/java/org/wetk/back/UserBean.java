@@ -46,9 +46,13 @@ public class UserBean {
 
 	public boolean getHasClass() {
 		Principal p = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
+		
+		if(p == null) return false;
+		
 		String username = p.getName();
 		Teacher t = teacherModel.findByUsername(username);
-		return (t.getClazz() != null);
+		
+		return (t != null && t.getClazz() != null);
 	}
 
 }
