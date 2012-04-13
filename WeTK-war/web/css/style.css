@@ -92,6 +92,10 @@ hr {
 	font-size: 80%;
 }
 
+ul.alert.alert-error {
+	margin-left: 0;
+	padding-left: 35px;
+}
 
 .find-entry-form {
 	margin: 5px 0 10px 0;
