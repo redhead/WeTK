@@ -13,7 +13,7 @@ import org.wetk.ErrorType;
 import org.wetk.Utils;
 import org.wetk.business.local.IClass;
 import org.wetk.dto.ClassDTO;
-import org.wetk.model.ClassEntity;
+import org.wetk.entity.ClassEntity;
 
 
 /**
@@ -25,7 +25,7 @@ import org.wetk.model.ClassEntity;
 public class ClassesBean {
 
 	@EJB
-	private IClass model;
+	private IClass classModel;
 
 	private ClassDTO clazz = new ClassDTO();
 
@@ -38,7 +38,7 @@ public class ClassesBean {
 
 
 	public String edit(Long id) throws Exception {
-		ClassEntity t = model.find(id);
+		ClassEntity t = classModel.find(id);
 		if(t == null) {
 			throw new Exception("Class not found");
 		}
@@ -51,14 +51,14 @@ public class ClassesBean {
 
 
 	public String delete(Long id) throws Exception {
-		model.delete(id);
+		classModel.delete(id);
 		return null;
 	}
 
 
 	public String saveClass() {
 		try {
-			model.save(clazz, teacherId);
+			classModel.save(clazz, teacherId);
 			return "success";
 		} catch(EJBException e) {
 			if(Utils.getErrorType(e) == ErrorType.DUPLICATE) {
@@ -71,7 +71,7 @@ public class ClassesBean {
 
 
 	public List<ClassDTO> getClasses() {
-		List<ClassEntity> classes = model.getAllClasses();
+		List<ClassEntity> classes = classModel.getAll();
 		List<ClassDTO> dtos = new ArrayList<ClassDTO>();
 		for(ClassEntity c : classes) {
 			dtos.add(new ClassDTO(c));
@@ -81,7 +81,7 @@ public class ClassesBean {
 
 
 	public List<SelectItem> getSelectItems() {
-		List<ClassEntity> classes = model.getAllClasses();
+		List<ClassEntity> classes = classModel.getAll();
 		List<SelectItem> items = new ArrayList<SelectItem>();
 		for(ClassEntity c : classes) {
 			items.add(new SelectItem(c.getId(), c.getTitle()));

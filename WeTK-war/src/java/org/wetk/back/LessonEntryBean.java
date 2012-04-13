@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import org.wetk.model.Absence;
-import org.wetk.model.ClassEntity;
-import org.wetk.model.LessonEntry;
+import org.wetk.entity.Absence;
+import org.wetk.entity.ClassEntity;
+import org.wetk.entity.LessonEntry;
 
 
 /**

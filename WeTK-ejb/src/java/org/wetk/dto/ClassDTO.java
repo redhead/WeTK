@@ -2,14 +2,14 @@
  */
 package org.wetk.dto;
 
-import org.wetk.model.ClassEntity;
+import org.wetk.entity.ClassEntity;
 
 
 /**
  *
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
-public class ClassDTO {
+public class ClassDTO extends AbstractDTO<ClassEntity> {
 
 	private Long id;
 
@@ -35,6 +35,7 @@ public class ClassDTO {
 	}
 
 
+	@Override
 	public Long getId() {
 		return id;
 	}
@@ -75,6 +76,7 @@ public class ClassDTO {
 	}
 
 
+	@Override
 	public ClassEntity toEntity(ClassEntity clazz) {
 		clazz.setId(id);
 		clazz.setTitle(title);

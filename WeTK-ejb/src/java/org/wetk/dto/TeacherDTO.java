@@ -2,14 +2,14 @@
  */
 package org.wetk.dto;
 
-import org.wetk.model.Teacher;
+import org.wetk.entity.Teacher;
 
 
 /**
  *
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
-public class TeacherDTO {
+public class TeacherDTO extends AbstractDTO<Teacher> {
 
 	private Long id;
 
@@ -45,6 +45,7 @@ public class TeacherDTO {
 	}
 
 
+	@Override
 	public Long getId() {
 		return id;
 	}
@@ -144,6 +145,7 @@ public class TeacherDTO {
 	}
 
 
+	@Override
 	public Teacher toEntity(Teacher t) {
 		t.setUsername(getUsername());
 		t.setFirstName(getFirstName());

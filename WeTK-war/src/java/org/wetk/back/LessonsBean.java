@@ -9,7 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import org.wetk.business.local.ILesson;
 import org.wetk.dto.LessonDTO;
-import org.wetk.model.Lesson;
+import org.wetk.entity.Lesson;
 
 
 /**
@@ -21,7 +21,7 @@ import org.wetk.model.Lesson;
 public class LessonsBean {
 
 	@EJB
-	private ILesson model;
+	private ILesson lessonModel;
 
 	private LessonDTO lesson = new LessonDTO();
 
@@ -41,7 +41,7 @@ public class LessonsBean {
 
 
 	public String edit(Long id) throws Exception {
-		Lesson l = model.find(id);
+		Lesson l = lessonModel.find(id);
 		if(l == null) {
 			throw new Exception("Lesson not found");
 		}
@@ -53,19 +53,19 @@ public class LessonsBean {
 
 
 	public String delete(Long id) throws Exception {
-		model.delete(id);
+		lessonModel.delete(id);
 		return null;
 	}
 
 
 	public String saveLesson() {
-		model.save(lesson, classId, assignmentId);
+		lessonModel.save(lesson, classId, assignmentId);
 		return "success";
 	}
 
 
 	public List<LessonDTO> getLessons() {
-		List<Lesson> lessons = model.getAllLessons();
+		List<Lesson> lessons = lessonModel.getAll();
 		List<LessonDTO> dtos = new ArrayList<LessonDTO>();
 		for(Lesson l : lessons) {
 			dtos.add(new LessonDTO(l));

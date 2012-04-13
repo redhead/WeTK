@@ -2,14 +2,14 @@
  */
 package org.wetk.dto;
 
-import org.wetk.model.SubjectAssignment;
+import org.wetk.entity.SubjectAssignment;
 
 
 /**
  *
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
-public class SubjectAssignmentDTO {
+public class SubjectAssignmentDTO extends AbstractDTO<SubjectAssignment> {
 
 	private Long id;
 
@@ -30,6 +30,7 @@ public class SubjectAssignmentDTO {
 	}
 
 
+	@Override
 	public Long getId() {
 		return id;
 	}
@@ -60,6 +61,7 @@ public class SubjectAssignmentDTO {
 	}
 
 
+	@Override
 	public SubjectAssignment toEntity(SubjectAssignment assign) {
 		assign.setId(id);
 		return assign;

@@ -2,14 +2,14 @@
  */
 package org.wetk.dto;
 
-import org.wetk.model.Subject;
+import org.wetk.entity.Subject;
 
 
 /**
  *
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
-public class SubjectDTO {
+public class SubjectDTO extends AbstractDTO<Subject> {
 
 	private Long id;
 
@@ -30,6 +30,7 @@ public class SubjectDTO {
 	}
 
 
+	@Override
 	public Long getId() {
 		return id;
 	}
@@ -60,6 +61,7 @@ public class SubjectDTO {
 	}
 
 
+	@Override
 	public Subject toEntity(Subject subject) {
 		subject.setId(id);
 		subject.setTitle(title);

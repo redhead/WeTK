@@ -10,7 +10,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.model.SelectItem;
 import org.wetk.business.local.ISubject;
 import org.wetk.dto.SubjectDTO;
-import org.wetk.model.Subject;
+import org.wetk.entity.Subject;
 
 
 /**
@@ -22,7 +22,7 @@ import org.wetk.model.Subject;
 public class SubjectsBean {
 
 	@EJB
-	private ISubject model;
+	private ISubject subjectModel;
 
 	private SubjectDTO subject = new SubjectDTO();
 
@@ -33,7 +33,7 @@ public class SubjectsBean {
 
 
 	public String edit(Long id) throws Exception {
-		Subject t = model.find(id);
+		Subject t = subjectModel.find(id);
 		if(t == null) {
 			throw new Exception("Subject not found");
 		}
@@ -43,19 +43,19 @@ public class SubjectsBean {
 
 
 	public String delete(Long id) throws Exception {
-		model.delete(id);
+		subjectModel.delete(id);
 		return null;
 	}
 
 
 	public String saveSubject() {
-		model.save(subject);
+		subjectModel.save(subject);
 		return "success";
 	}
 
 
 	public List<SubjectDTO> getSubjects() {
-		List<Subject> subjects = model.getAllSubjects();
+		List<Subject> subjects = subjectModel.getAll();
 		List<SubjectDTO> dtos = new ArrayList<SubjectDTO>();
 		for(Subject s : subjects) {
 			dtos.add(new SubjectDTO(s));
@@ -65,7 +65,7 @@ public class SubjectsBean {
 
 
 	public List<SelectItem> getSelectItems() {
-		List<Subject> subjects = model.getAllSubjects();
+		List<Subject> subjects = subjectModel.getAll();
 		List<SelectItem> items = new ArrayList<SelectItem>();
 		for(Subject s : subjects) {
 			items.add(new SelectItem(s.getId(), s.getTitle()));

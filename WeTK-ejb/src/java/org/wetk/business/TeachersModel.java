@@ -7,7 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.Query;
 import org.wetk.business.local.ITeacher;
 import org.wetk.dto.TeacherDTO;
-import org.wetk.model.Teacher;
+import org.wetk.entity.Teacher;
 
 
 /**
@@ -15,10 +15,10 @@ import org.wetk.model.Teacher;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Stateless
-public class TeachersModel extends AbstractModel implements ITeacher {
+public class TeachersModel extends AbstractModel<Teacher, TeacherDTO> implements ITeacher {
 
 	@Override
-	public List<Teacher> getAllTeachers() {
+	public List<Teacher> getAll() {
 		return getEntityManager().createNamedQuery(Teacher.GET_ALL_TEACHERS).getResultList();
 	}
 
@@ -34,12 +34,6 @@ public class TeachersModel extends AbstractModel implements ITeacher {
 
 
 	@Override
-	public Teacher find(Long id) {
-		return getEntityManager().find(Teacher.class, id);
-	}
-
-
-	@Override
 	public Teacher findByUsername(String username) {
 		Query q = getEntityManager().createNamedQuery(Teacher.GET_BY_USERNAME);
 		q.setParameter("username", username);
@@ -48,26 +42,6 @@ public class TeachersModel extends AbstractModel implements ITeacher {
 		} catch(Exception e) {
 			return null;
 		}
-	}
-
-
-	@Override
-	public void delete(Long id) {
-		Teacher entity = find(id);
-		if(entity != null) {
-			getEntityManager().remove(entity);
-		}
-	}
-
-
-	private Teacher dtoToEntity(TeacherDTO dto) {
-		if(dto.getId() != null) {
-			Teacher teacher = find(dto.getId());
-			if(teacher != null) {
-				return dto.toEntity(teacher);
-			}
-		}
-		return dto.toEntity(new Teacher());
 	}
 
 }

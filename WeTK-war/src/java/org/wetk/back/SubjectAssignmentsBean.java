@@ -10,7 +10,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.model.SelectItem;
 import org.wetk.business.local.ISubjectAssignment;
 import org.wetk.dto.SubjectAssignmentDTO;
-import org.wetk.model.SubjectAssignment;
+import org.wetk.entity.SubjectAssignment;
 
 
 /**
@@ -22,7 +22,7 @@ import org.wetk.model.SubjectAssignment;
 public class SubjectAssignmentsBean {
 
 	@EJB
-	private ISubjectAssignment model;
+	private ISubjectAssignment assignmentModel;
 
 	private SubjectAssignmentDTO assignment = new SubjectAssignmentDTO();
 
@@ -37,19 +37,19 @@ public class SubjectAssignmentsBean {
 
 
 	public String delete(Long id) throws Exception {
-		model.delete(id);
+		assignmentModel.delete(id);
 		return null;
 	}
 
 
 	public String saveAssignment() {
-		model.save(teacherId, subjectId);
+		assignmentModel.save(teacherId, subjectId);
 		return "success";
 	}
 
 
 	public List<SubjectAssignmentDTO> getAssignments() {
-		List<SubjectAssignment> assigns = model.getAllAssignments();
+		List<SubjectAssignment> assigns = assignmentModel.getAll();
 		List<SubjectAssignmentDTO> dtos = new ArrayList<SubjectAssignmentDTO>();
 		for(SubjectAssignment a : assigns) {
 			dtos.add(new SubjectAssignmentDTO(a));
@@ -59,7 +59,7 @@ public class SubjectAssignmentsBean {
 
 
 	public List<SelectItem> getSelectItems() {
-		List<SubjectAssignment> assigns = model.getAllAssignments();
+		List<SubjectAssignment> assigns = assignmentModel.getAll();
 		List<SelectItem> items = new ArrayList<SelectItem>();
 		for(SubjectAssignment a : assigns) {
 			String label = a.getSubject().getTitle() + " - " + a.getTeacher().getLastName() + ", " + a.getTeacher().getFirstName();

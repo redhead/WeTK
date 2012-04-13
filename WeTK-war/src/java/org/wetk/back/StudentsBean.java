@@ -9,7 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import org.wetk.business.local.IStudent;
 import org.wetk.dto.StudentDTO;
-import org.wetk.model.Student;
+import org.wetk.entity.Student;
 
 
 /**
@@ -21,7 +21,7 @@ import org.wetk.model.Student;
 public class StudentsBean {
 
 	@EJB
-	private IStudent model;
+	private IStudent studentModel;
 
 	private StudentDTO student = new StudentDTO();
 
@@ -40,7 +40,7 @@ public class StudentsBean {
 
 
 	public String edit(Long id) throws Exception {
-		Student s = model.find(id);
+		Student s = studentModel.find(id);
 		if(s == null) {
 			throw new Exception("Student not found");
 		}
@@ -51,19 +51,19 @@ public class StudentsBean {
 
 
 	public String delete(Long id) throws Exception {
-		model.delete(id);
+		studentModel.delete(id);
 		return null;
 	}
 
 
 	public String saveStudent() {
-		model.save(student, classId);
+		studentModel.save(student, classId);
 		return "success";
 	}
 
 
 	public List<StudentDTO> getStudents() {
-		List<Student> students = model.getAllStudents();
+		List<Student> students = studentModel.getAll();
 		List<StudentDTO> dtos = new ArrayList<StudentDTO>();
 		for(Student s : students) {
 			dtos.add(new StudentDTO(s));

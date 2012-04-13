@@ -6,16 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import org.wetk.ErrorType;
 import org.wetk.Utils;
 import org.wetk.business.local.ITeacher;
 import org.wetk.dto.TeacherDTO;
-import org.wetk.model.Teacher;
+import org.wetk.entity.Teacher;
 
 
 /**
@@ -27,7 +25,7 @@ import org.wetk.model.Teacher;
 public class TeachersBean {
 
 	@EJB
-	private ITeacher model;
+	private ITeacher teacherModel;
 
 	private TeacherDTO teacher = new TeacherDTO();
 
@@ -45,7 +43,7 @@ public class TeachersBean {
 
 
 	public String edit(Long id) throws Exception {
-		Teacher t = model.find(id);
+		Teacher t = teacherModel.find(id);
 		if(t == null) {
 			throw new Exception("Teacher not found");
 		}
@@ -55,14 +53,14 @@ public class TeachersBean {
 
 
 	public String delete(Long id) throws Exception {
-		model.delete(id);
+		teacherModel.delete(id);
 		return null;
 	}
 
 
 	public String saveTeacher() {
 		try {
-			model.save(teacher, password);
+			teacherModel.save(teacher, password);
 			return "success";
 		} catch(EJBException e) {
 			if(Utils.getErrorType(e) == ErrorType.DUPLICATE) {
@@ -75,7 +73,7 @@ public class TeachersBean {
 
 
 	public List<TeacherDTO> getTeachers() {
-		List<Teacher> teachers = model.getAllTeachers();
+		List<Teacher> teachers = teacherModel.getAll();
 		List<TeacherDTO> dtos = new ArrayList<TeacherDTO>();
 		for(Teacher t : teachers) {
 			dtos.add(new TeacherDTO(t));
@@ -85,7 +83,7 @@ public class TeachersBean {
 
 
 	public List<SelectItem> getSelectItems() {
-		List<Teacher> teachers = model.getAllTeachers();
+		List<Teacher> teachers = teacherModel.getAll();
 		List<SelectItem> items = new ArrayList<SelectItem>();
 		for(Teacher t : teachers) {
 			String fullName = new TeacherDTO(t).getFullName();
@@ -96,7 +94,7 @@ public class TeachersBean {
 
 
 	public List<SelectItem> getClasslessTeachersSelectItems() {
-		List<Teacher> teachers = model.getAllTeachers();
+		List<Teacher> teachers = teacherModel.getAll();
 		List<SelectItem> items = new ArrayList<SelectItem>();
 		for(Teacher t : teachers) {
 			if(t.getClazz() != null) continue;

@@ -6,9 +6,10 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 import org.wetk.business.local.ISubjectAssignment;
-import org.wetk.model.Subject;
-import org.wetk.model.SubjectAssignment;
-import org.wetk.model.Teacher;
+import org.wetk.dto.SubjectAssignmentDTO;
+import org.wetk.entity.Subject;
+import org.wetk.entity.SubjectAssignment;
+import org.wetk.entity.Teacher;
 
 
 /**
@@ -16,10 +17,11 @@ import org.wetk.model.Teacher;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Stateless
-public class SubjectAssignmentModel extends AbstractModel implements ISubjectAssignment {
+public class SubjectAssignmentModel extends AbstractModel<SubjectAssignment, SubjectAssignmentDTO>
+		implements ISubjectAssignment {
 
 	@Override
-	public List<SubjectAssignment> getAllAssignments() {
+	public List<SubjectAssignment> getAll() {
 		return getEntityManager().createNamedQuery(SubjectAssignment.GET_ALL_ASSIGNMENTS).getResultList();
 	}
 
@@ -46,15 +48,6 @@ public class SubjectAssignmentModel extends AbstractModel implements ISubjectAss
 			return (SubjectAssignment) q.getSingleResult();
 		} catch(Exception e) {
 			return null;
-		}
-	}
-
-
-	@Override
-	public void delete(Long id) {
-		SubjectAssignment entity = getEntityManager().getReference(SubjectAssignment.class, id);
-		if(entity != null) {
-			getEntityManager().remove(entity);
 		}
 	}
 

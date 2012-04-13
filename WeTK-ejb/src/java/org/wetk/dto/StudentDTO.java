@@ -2,14 +2,14 @@
  */
 package org.wetk.dto;
 
-import org.wetk.model.Student;
+import org.wetk.entity.Student;
 
 
 /**
  *
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
-public class StudentDTO {
+public class StudentDTO extends AbstractDTO<Student> {
 
 	private Long id;
 
@@ -32,13 +32,13 @@ public class StudentDTO {
 
 	public StudentDTO(Student student) {
 		if(student == null) return;
-		
+
 		id = student.getId();
 		firstName = student.getFirstName();
 		lastName = student.getLastName();
 		email = student.getEmail();
 		ordinal = student.getOrdinal();
-		
+
 		if(student.getClazz() != null) {
 			classId = student.getClazz().getId();
 			classTitle = student.getClazz().getTitle();
@@ -46,6 +46,7 @@ public class StudentDTO {
 	}
 
 
+	@Override
 	public Long getId() {
 		return id;
 	}
@@ -121,6 +122,7 @@ public class StudentDTO {
 	}
 
 
+	@Override
 	public Student toEntity(Student student) {
 		student.setId(id);
 		student.setFirstName(firstName);

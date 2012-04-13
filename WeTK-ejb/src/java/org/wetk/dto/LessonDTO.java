@@ -2,16 +2,16 @@
  */
 package org.wetk.dto;
 
-import org.wetk.model.Lesson;
-import org.wetk.model.SubjectAssignment;
-import org.wetk.model.Teacher;
+import org.wetk.entity.Lesson;
+import org.wetk.entity.SubjectAssignment;
+import org.wetk.entity.Teacher;
 
 
 /**
  *
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
-public class LessonDTO {
+public class LessonDTO extends AbstractDTO<Lesson> {
 
 	private Long id;
 
@@ -61,6 +61,7 @@ public class LessonDTO {
 	}
 
 
+	@Override
 	public Long getId() {
 		return id;
 	}
@@ -116,6 +117,7 @@ public class LessonDTO {
 	}
 
 
+	@Override
 	public Lesson toEntity(Lesson lesson) {
 		lesson.setId(id);
 		lesson.setDay(day);

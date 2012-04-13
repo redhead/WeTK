@@ -1,6 +1,6 @@
 /*
  */
-package org.wetk.model;
+package org.wetk.entity;
 
 import java.util.List;
 import javax.persistence.*;
