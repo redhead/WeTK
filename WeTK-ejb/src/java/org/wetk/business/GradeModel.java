@@ -3,6 +3,7 @@
 package org.wetk.business;
 
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.Query;
 import org.wetk.business.local.IGrade;
 import org.wetk.dto.GradeDTO;
@@ -16,6 +17,7 @@ import org.wetk.entity.Subject;
  *
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
+@Stateless
 public class GradeModel extends AbstractModel<Grade, GradeDTO> implements IGrade {
 
 	@Override

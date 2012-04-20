@@ -62,8 +62,27 @@ public class SubjectAssignmentsBean {
 		List<SubjectAssignment> assigns = assignmentModel.getAll();
 		List<SelectItem> items = new ArrayList<SelectItem>();
 		for(SubjectAssignment a : assigns) {
+			items.add(createSelectItem(a));
+		}
+		return items;
+	}
+
+
+	public List<SelectItem> getSelectItemsFor(Long teacherId, Long classId) {
+		List<SubjectAssignment> assigns = assignmentModel.getAllFor(teacherId, classId);
+		List<SubjectAssignment> other = assignmentModel.getAllExcept(assigns, classId);
+
+		List<SelectItem> items = new ArrayList<SelectItem>();
+		for(SubjectAssignment a : assigns) {
 			String label = a.getSubject().getTitle() + " - " + a.getTeacher().getLastName() + ", " + a.getTeacher().getFirstName();
 			items.add(new SelectItem(a.getId(), label));
+		}
+		
+		if(!other.isEmpty()) {
+			items.add(new SelectItem("", "-- suplování --", null, true));
+			for(SubjectAssignment a : other) {
+				items.add(createSelectItem(a));
+			}
 		}
 		return items;
 	}
@@ -86,6 +105,12 @@ public class SubjectAssignmentsBean {
 
 	public void setTeacherId(Long teacherId) {
 		this.teacherId = teacherId;
+	}
+
+
+	private SelectItem createSelectItem(SubjectAssignment a) {
+		String label = a.getSubject().getTitle() + " - " + a.getTeacher().getLastName() + ", " + a.getTeacher().getFirstName();
+		return new SelectItem(a.getId(), label);
 	}
 
 }

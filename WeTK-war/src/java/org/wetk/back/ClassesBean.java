@@ -7,6 +7,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.model.SelectItem;
 import org.wetk.ErrorType;
@@ -14,6 +15,7 @@ import org.wetk.Utils;
 import org.wetk.business.local.IClass;
 import org.wetk.dto.ClassDTO;
 import org.wetk.entity.ClassEntity;
+import org.wetk.entity.Teacher;
 
 
 /**
@@ -26,6 +28,9 @@ public class ClassesBean {
 
 	@EJB
 	private IClass classModel;
+
+	@ManagedProperty(value = "#{user}")
+	private UserBean userBean;
 
 	private ClassDTO clazz = new ClassDTO();
 
@@ -90,6 +95,25 @@ public class ClassesBean {
 	}
 
 
+	public List<SelectItem> getTeacherClassSelectItems() {
+		Teacher teacher = userBean.getTeacher();
+		List<ClassEntity> classes = classModel.getAllFor(teacher);
+		List<ClassEntity> other = classModel.getAllExcept(classes);
+
+		List<SelectItem> items = new ArrayList<SelectItem>();
+		for(ClassEntity c : classes) {
+			items.add(new SelectItem(c.getId(), c.getTitle()));
+		}
+		if(!other.isEmpty()) {
+			items.add(new SelectItem("", "-- ostatní --", null, true));
+			for(ClassEntity c : other) {
+				items.add(new SelectItem(c.getId(), c.getTitle()));
+			}
+		}
+		return items;
+	}
+
+
 	public Long getTeacherId() {
 		return teacherId;
 	}
@@ -97,6 +121,11 @@ public class ClassesBean {
 
 	public void setTeacherId(Long teacherId) {
 		this.teacherId = teacherId;
+	}
+
+
+	public void setUserBean(UserBean user) {
+		this.userBean = user;
 	}
 
 }

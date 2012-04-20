@@ -19,4 +19,10 @@ public interface ISubjectAssignment extends IAbstractAdminModel<SubjectAssignmen
 
 	public SubjectAssignment find(Long teacherId, Long subjectId);
 
+
+	public List<SubjectAssignment> getAllExcept(List<SubjectAssignment> except, Long classId);
+
+
+	public List<SubjectAssignment> getAllFor(Long teacherId, Long classId);
+
 }

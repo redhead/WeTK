@@ -2,9 +2,10 @@
  */
 package org.wetk;
 
-import java.sql.BatchUpdateException;
 import java.sql.SQLException;
 import java.text.MessageFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.ejb.EJBException;
@@ -30,7 +31,7 @@ public class Utils {
 			ResourceBundle bundle = ResourceBundle.getBundle("org.wetk.translation", locale);
 
 			text = bundle.getString(key);
-			
+
 			if(obj != null && obj.length > 0) {
 				return MessageFormat.format(text, obj);
 			}

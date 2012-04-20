@@ -24,7 +24,7 @@
 
 !function ( $ ) { 
 
-  var selector = '[data-datepicker]',
+  var selector = '.datepicker-input',
       all = [];
 
   function clearDatePickers(except) {
@@ -332,7 +332,7 @@
   $.fn.datepicker.defaults = {
     monthNames: ["Leden", "Únor", "Březen", "Duben", "Květen", "Červen",
                  "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec"]
-  , shortDayNames: ["Po", "Út", "St", "Čt", "Pá", "So", "Ne"]
+  , shortDayNames: ["Ne", "Po", "Út", "St", "Čt", "Pá", "So"]
   , startOfWeek: 1
   };
 }( window.jQuery || window.ender );

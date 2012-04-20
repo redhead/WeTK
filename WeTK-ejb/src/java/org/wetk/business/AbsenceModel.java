@@ -2,6 +2,7 @@
  */
 package org.wetk.business;
 
+import javax.ejb.Stateless;
 import org.wetk.business.local.IAbsence;
 import org.wetk.dto.AbsenceDTO;
 import org.wetk.entity.Absence;
@@ -13,6 +14,7 @@ import org.wetk.entity.Student;
  *
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
+@Stateless
 public class AbsenceModel extends AbstractModel<Absence, AbsenceDTO> implements IAbsence {
 
 	@Override

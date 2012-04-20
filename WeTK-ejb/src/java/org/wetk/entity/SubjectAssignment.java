@@ -11,7 +11,17 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQueries({
-	@NamedQuery(name = SubjectAssignment.GET_ALL_ASSIGNMENTS, query = "SELECT a FROM SubjectAssignment a ORDER BY a.subject.title, a.teacher.lastName")
+	@NamedQuery(name = SubjectAssignment.GET_ALL_ASSIGNMENTS,
+	query = "SELECT a FROM SubjectAssignment a ORDER BY a.subject.title, a.teacher.lastName"),
+	@NamedQuery(name = SubjectAssignment.GET_ALL_FOR_TEACHER_CLASS,
+	query = "SELECT a FROM SubjectAssignment a, Lesson l WHERE a.teacher = :teacher"
+	+ " AND l.clazz = :class AND l.assignment.teacher = :teacher AND a = l.assignment"
+	+ " ORDER BY a.subject.title, a.teacher.lastName"),
+	@NamedQuery(name = SubjectAssignment.GET_ALL_FOR_CLASS_EXCEPT,
+	query = "SELECT a FROM SubjectAssignment a, Lesson l"
+		+ " WHERE l.clazz = :class AND a = l.assignment "
+		+ " AND a NOT IN (:assignments)"
+		+ " ORDER BY a.subject.title, a.teacher.lastName")
 })
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "teacher", "subject" }), name = "unique_assignment")
 public class SubjectAssignment extends AbstractEntity {
@@ -19,6 +29,10 @@ public class SubjectAssignment extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	public static final String GET_ALL_ASSIGNMENTS = "SubjectAssignment.getAllAssignments";
+
+	public static final String GET_ALL_FOR_TEACHER_CLASS = "SubjectAssignment.getAllForTeacherClass";
+
+	public static final String GET_ALL_FOR_CLASS_EXCEPT = "SubjectAssignment.getAllForClassExcept";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -15,6 +15,23 @@ abstract public class AbstractEntity implements Serializable {
 
 
 	@Override
+	public boolean equals(Object obj) {
+		if(obj.getClass() == this.getClass()) {
+			AbstractEntity ent = (AbstractEntity) obj;
+			return (ent.getId().equals(this.getId()));
+		}
+		return false;
+	}
+
+
+	@Override
+	public int hashCode() {
+		int hash = (int) (7 * getId());
+		return hash;
+	}
+
+
+	@Override
 	public String toString() {
 		String className = this.getClass().getSimpleName();
 		long id = getId();

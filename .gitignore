@@ -1,3 +1,7 @@
 /nbproject/private/
 /build/
 /WeTK-war/dist/
+/WeTK-ejb/build/
+/WeTK-war/build/
+/WeTK-ejb/dist/
+/dist/

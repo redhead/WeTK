@@ -2,10 +2,10 @@
  */
 package org.wetk.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import org.wetk.entity.ClassEntity;
-import org.wetk.entity.Lesson;
 import org.wetk.entity.LessonEntry;
 import org.wetk.entity.SubjectAssignment;
 
@@ -14,11 +14,9 @@ import org.wetk.entity.SubjectAssignment;
  *
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
-public class LessonEntryDTO extends AbstractDTO<LessonEntry> {
+public class LessonEntryDTO extends AbstractDTO<LessonEntry> implements Serializable {
 
 	private Long id;
-
-	private int lessonNumber;
 
 	private String topic;
 
@@ -34,31 +32,40 @@ public class LessonEntryDTO extends AbstractDTO<LessonEntry> {
 
 	private Long assignmentId;
 
+	private String subjectTitle;
+
+	private String teacherFullname;
+
+	private Long teacherId;
+
 	private List<Long> absentStudentIds;
 
 
+	public LessonEntryDTO() {
+	}
+
+
 	public LessonEntryDTO(LessonEntry entry) {
-		if(entry != null) return;
+		if(entry == null) return;
 
 		id = entry.getId();
-		lessonNumber = entry.getLessonNumber();
 		lessonHour = entry.getLessonHour();
 		topic = entry.getTopic();
 		date = entry.getDate();
 
-		Lesson lesson = entry.getLesson();
-		if(lesson != null) {
-			lessonId = lesson.getId();
+		ClassEntity clazz = entry.getClazz();
+		if(clazz != null) {
+			classId = clazz.getId();
+			classTitle = clazz.getTitle();
+		}
 
-			ClassEntity clazz = lesson.getClazz();
-			if(clazz != null) {
-				classId = clazz.getId();
-				classTitle = clazz.getTitle();
-			}
-
-			SubjectAssignment assign = lesson.getAssignment();
-			if(assign != null) {
-				assignmentId = assign.getId();
+		SubjectAssignment assign = entry.getAssignment();
+		if(assign != null) {
+			assignmentId = assign.getId();
+			if(assign.getSubject() != null) {
+				subjectTitle = assign.getSubject().getTitle();
+				teacherFullname = new TeacherDTO(assign.getTeacher()).getFullName();
+				teacherId = assign.getTeacher().getId();
 			}
 		}
 	}
@@ -80,28 +87,8 @@ public class LessonEntryDTO extends AbstractDTO<LessonEntry> {
 	}
 
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-
 	public int getLessonHour() {
 		return lessonHour;
-	}
-
-
-	public void setLessonHour(int lessonHour) {
-		this.lessonHour = lessonHour;
-	}
-
-
-	public int getLessonNumber() {
-		return lessonNumber;
-	}
-
-
-	public void setLessonNumber(int lessonNumber) {
-		this.lessonNumber = lessonNumber;
 	}
 
 
@@ -140,12 +127,24 @@ public class LessonEntryDTO extends AbstractDTO<LessonEntry> {
 	}
 
 
+	public String getSubjectTitle() {
+		return subjectTitle;
+	}
+
+
+	public String getTeacherFullname() {
+		return teacherFullname;
+	}
+
+
+	public Long getTeacherId() {
+		return teacherId;
+	}
+
+
 	@Override
 	public LessonEntry toEntity(LessonEntry entity) {
 		entity.setId(id);
-		entity.setLessonNumber(lessonNumber);
-		entity.setLessonHour(lessonHour);
-		entity.setDate(date);
 		entity.setTopic(topic);
 		return entity;
 	}

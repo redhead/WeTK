@@ -103,6 +103,19 @@ ul.alert.alert-error {
 	background-color: #D6EAFF;
 	border-radius: 5px;
 }
+.find-entry-form label {
+	margin-left: 10px;
+	margin-right: 5px;
+}
+.find-entry-form .btn {
+	margin-left: 10px;
+}
+.find-entry-form.disabled {
+	background-color: #F8F8F8;
+}
+.find-entry-form.disabled input {
+	color: #000;
+}
 
 #prevLesson {
 	float: left;
@@ -131,10 +144,31 @@ ul.alert.alert-error {
 
 input.topic-input {
 	font-size: 20px;
-	width: 95%;
+	width: 700px;
 	padding: 8px;
 }
 
+.form-horizontal label.radio.inline.substituted-radio {
+	margin-left: 40px;
+}
+
+.lesson-entry {
+	margin: 0 auto 0 auto;
+	width: 90%;
+}
+.lesson-entry table th, .lesson-entry table td {
+	text-align: left;
+	padding: 5px 20px 5px 5px;
+	vertical-align: top;
+}
+.lesson-entry .topic-title {
+	font-size: 20px;
+	color: dodgerblue;
+	height: 30px;
+}
+.lesson-entry-form .form-actions .btn {
+	margin-right: 10px;
+}
 
 /*   Medy's  part of css   */
 

@@ -3,6 +3,7 @@
 package org.wetk.business;
 
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.Query;
 import org.wetk.business.local.INote;
 import org.wetk.dto.NoteDTO;
@@ -14,6 +15,7 @@ import org.wetk.entity.Student;
  *
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
+@Stateless
 public class NoteModel extends AbstractModel<Note, NoteDTO> implements INote {
 
 	@Override

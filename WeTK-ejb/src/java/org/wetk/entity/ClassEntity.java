@@ -13,7 +13,11 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = ClassEntity.GET_BY_TITLE, query = "SELECT c FROM ClassEntity c WHERE c.title = :title"),
-	@NamedQuery(name = ClassEntity.GET_ALL_SUBJECTS, query = "SELECT c FROM ClassEntity c ORDER BY c.title")
+	@NamedQuery(name = ClassEntity.GET_ALL_CLASSES, query = "SELECT c FROM ClassEntity c ORDER BY c.title"),
+	@NamedQuery(name = ClassEntity.GET_ALL_FOR_TEACHER,
+	query = "SELECT l.clazz FROM Lesson l WHERE l.assignment.teacher = :teacher ORDER BY l.clazz.title"),
+	@NamedQuery(name = ClassEntity.GET_ALL_EXCEPT,
+	query = "SELECT c FROM ClassEntity c WHERE c NOT IN (:classes) ORDER BY c.title")
 })
 public class ClassEntity extends AbstractEntity {
 
@@ -21,7 +25,11 @@ public class ClassEntity extends AbstractEntity {
 
 	public static final String GET_BY_TITLE = "ClassEntity.getByTitle";
 
-	public static final String GET_ALL_SUBJECTS = "ClassEntity.getAllSubjects";
+	public static final String GET_ALL_CLASSES = "ClassEntity.getAllSubjects";
+
+	public static final String GET_ALL_FOR_TEACHER = "ClassEntity.getAllForTeacher";
+
+	public static final String GET_ALL_EXCEPT = "ClassEntity.getAllExcept";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

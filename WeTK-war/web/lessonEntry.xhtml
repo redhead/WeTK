@@ -3,70 +3,104 @@
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:c="http://java.sun.com/jsp/jstl/core">
+	  xmlns:c="http://java.sun.com/jsp/jstl/core"
+	  xmlns:f="http://java.sun.com/jsf/core">
 
     <h:body>
 		<ui:composition template="templates/layout.xhtml">
 			<ui:define name="content">
 				<h2>Zápis hodiny</h2>
 
-				<form class="find-entry-form form-inline well">
-					<label for="selectedClass">Třída: </label>
-					<select id="selectedClass" class="input-small">
-						<option>3.C</option>
-						<option>4.C</option>
-					</select>
+				<h:form id="find-entry-form">
+					<h:messages errorClass="error" class="alert alert-error" />
 
-					<label for="date">Datum:</label>
-					<input id="date" type="text" data-datepicker="datepicker" class="input-small" />
+					<div class="find-entry-form form-inline well #{entries.searchDisabled ? 'disabled' : ''}">
+						<h:outputLabel for="selectedClass" value="#{msgs.class}:" />
+						<h:selectOneMenu id="selectedClass" value="#{entries.selectedClassId}" class="span1" disabled="#{entries.searchDisabled}" required="true" requiredMessage="#{msgs.message_classRequired}">
+							<f:selectItem itemValue="" itemLabel="" />
+							<f:selectItems value="#{classes.teacherClassSelectItems}" />
+						</h:selectOneMenu>
 
-					<label for="hour">Hodina:</label>
-					<input id="hour" type="number" value="1" class="span1" />
+						<h:outputLabel for="date" value="#{msgs.date}:" /><span class="input-append">
+							<h:inputText id="date" value="#{entries.date}" class="input-small datepicker-input" disabled="#{entries.searchDisabled}" required="true" requiredMessage="#{msgs.message_dateRequired}">
+								<f:convertDateTime pattern="d.M.yyyy" timeZone="#{days.timeZone}" />
+							</h:inputText><span class="add-on"><i class="icon-calendar"></i></span>
+						</span>
 
-					<button type="submit" class="btn">
-						<span class="icon-search"></span><span class="hidden">Hledat</span> 
-					</button>
-				</form>
+						<h:outputLabel for="hour" value="#{msgs.lesson_hour}:" />
+						<h:inputText id="hour" value="#{entries.lessonHour}" class="span1 number" disabled="#{entries.searchDisabled}" />
 
-				<div id="prevLesson"><a href=""></a></div>
-				<div id="nextLesson"><a href=""></a></div>
+						<h:commandLink action="#{entries.findEntry}" class="btn #{entries.searchDisabled ? 'disabled' : ''}" disabled="#{entries.searchDisabled}">
+							<span class="icon-search"></span><span class="hidden">Hledat</span> 
+						</h:commandLink>
+					</div>
 
-				<form class="form-horizontal">
-					<fieldset>
-						<div class="control-group">
-							<label for="topic" class="control-label">Téma:</label>
-							<div class="controls">
-								<input type="text" id="topic" value="#{entries.lessonEntry.topic}" class="topic-input" />
+					<c:if test="#{!entries.editting}">
+						<div id="prevLesson"><h:commandLink action="#{entries.prevEntry}" /></div>
+						<div id="nextLesson"><h:commandLink action="#{entries.nextEntry}" /></div>
+					</c:if>
+				</h:form>
+
+				<c:if test="#{entries.lessonEntry != null and entries.editting}">
+					<h:form class="form-horizontal lesson-entry-form">
+						<fieldset>
+							<div class="control-group">
+								<h:outputLabel for="topic" value="#{msgs.lessonEntry_topic}:" class="control-label" />
+								<div class="controls">
+									<h:inputText id="topic" value="#{entries.lessonEntry.topic}" class="topic-input" />
+								</div>
 							</div>
-						</div>
 
-						<div class="control-group">
-							<label for="subject" class="control-label">Předmět:</label>
-							<div class="controls">
-								<select id="subject">
-									<option>AJ - Anglický jazyk</option>
-								</select>
+							<div class="control-group">
+								<label for="subject" class="control-label">Předmět:</label>
+								<div class="controls">
+									<h:selectOneMenu id="selectedClass" value="#{entries.assignmentId}" class="span4" required="true" requiredMessage="#{msgs.message_assignRequired}">
+										<f:selectItem itemValue="" itemLabel="" />
+										<f:selectItems value="#{assignments.getSelectItemsFor(user.teacher.id, entries.selectedClassId)}" />
+									</h:selectOneMenu>
+								</div>
 							</div>
-						</div>
 
-						<div class="control-group">
-							<label for="lessonNumber" class="control-label">Číslo hodiny:</label>
-							<div class="controls">
-								<input type="number" id="lessonNumber" value="#{entries.lessonEntry.lessonNumber}" />
+							<div class="form-actions">
+								<h:commandButton value="#{msgs.action_save}" action="#{entries.saveEntry}" class="btn btn-large btn-success" />
+								<h:commandButton value="#{msgs.action_reset}" action="#{entries.cancel}" class="btn btn-large" immediate="true" />
 							</div>
-						</div>
+						</fieldset>
+					</h:form>
+				</c:if>
+				<c:if test="#{entries.lessonEntry != null and !entries.editting}">
+					<div class="lesson-entry">
+						<table>
+							<tr>
+								<th>#{msgs.lessonEntry_topic}:</th>
+								<td class="topic-title">#{entries.lessonEntry.topic}</td>
+							</tr>
+							<tr>
+								<th>#{msgs.subject}:</th>
+								<td>#{entries.lessonEntry.subjectTitle}</td>
+							</tr>
+							<tr>
+								<th>#{msgs.teacher}:</th>
+								<td>
+									#{entries.lessonEntry.teacherFullname}
+									<c:if test="#{user.teacher.id eq entries.lessonEntry.teacherId}">
+										<span class="muted">(já)</span>
+									</c:if>
+								</td>
+							</tr>
+						</table>
 
-						<div class="control-group">
-							<div class="controls">
-								<label class="checkbox"><input type="checkbox" /> Suplováno</label>
-							</div>
-						</div>
-						
-						<div class="controls">
-							<button type="submit" class="btn btn-success btn-large">Uložit</button>
-						</div>
-					</fieldset>
-				</form>
+						<c:if test="#{entries.lessonEntry.teacherId eq user.teacher.id or entries.lessonEntry.classId eq user.teacher.clazz.id}">
+							<hr />
+							<h:form>
+								<div class="btn-group">
+									<h:commandLink action="#{entries.editEntry()}" value="#{msgs.action_edit}" class="btn" />
+									<h:commandLink action="#{entries.deleteEntry()}" value="#{msgs.action_delete}" class="btn btn-danger" onclick="return confirm('#{msgs.message_confirmDelete}')" />
+								</div>
+							</h:form>
+						</c:if>
+					</div>
+				</c:if>
 			</ui:define>
 		</ui:composition>
     </h:body>

@@ -2,10 +2,11 @@
  */
 package org.wetk.back;
 
+import java.io.Serializable;
 import java.security.Principal;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import org.wetk.business.local.ITeacher;
@@ -17,24 +18,33 @@ import org.wetk.entity.Teacher;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @ManagedBean(name = "user")
-@RequestScoped
-public class UserBean {
+@SessionScoped
+public class UserBean implements Serializable {
 
-	public static final String ADMIN_ROLE = "admin";
+	private static final String ADMIN_ROLE = "admin";
 
 	@EJB
 	private ITeacher teacherModel;
 
+	private Teacher loggedInTeacher;
+
+
+	private Principal getUserPrincipal() {
+		return FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
+	}
+
 
 	public boolean getIsLoggedIn() {
-		Principal p = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
-		return (p != null);
+		return (getUserPrincipal() != null);
 	}
 
 
 	public String logout() {
 		HttpSession sess = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		sess.invalidate();
+
+		loggedInTeacher = null;
+
 		return "pretty:home";
 	}
 
@@ -44,15 +54,26 @@ public class UserBean {
 	}
 
 
+	public synchronized Teacher getTeacher() {
+		if(loggedInTeacher == null) {
+			Principal p = getUserPrincipal();
+
+			if(p == null) return null;
+
+			String username = p.getName();
+
+			loggedInTeacher = teacherModel.findByUsername(username);
+			return loggedInTeacher;
+		}
+		return loggedInTeacher;
+	}
+
+
 	public boolean getHasClass() {
-		Principal p = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
-		
-		if(p == null) return false;
-		
-		String username = p.getName();
-		Teacher t = teacherModel.findByUsername(username);
-		
-		return (t != null && t.getClazz() != null);
+		Teacher t = getTeacher();
+		if(t == null) return false;
+
+		return (t.getClazz() != null);
 	}
 
 }

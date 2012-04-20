@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.Query;
 import org.wetk.business.local.ISubjectAssignment;
 import org.wetk.dto.SubjectAssignmentDTO;
+import org.wetk.entity.ClassEntity;
 import org.wetk.entity.Subject;
 import org.wetk.entity.SubjectAssignment;
 import org.wetk.entity.Teacher;
@@ -48,6 +49,37 @@ public class SubjectAssignmentModel extends AbstractModel<SubjectAssignment, Sub
 			return (SubjectAssignment) q.getSingleResult();
 		} catch(Exception e) {
 			return null;
+		}
+	}
+
+
+	@Override
+	public List<SubjectAssignment> getAllFor(Long teacherId, Long classId) {
+		Teacher teacher = getReference(Teacher.class, teacherId);
+		ClassEntity clazz = getReference(ClassEntity.class, classId);
+
+		Query query = getEntityManager().createNamedQuery(SubjectAssignment.GET_ALL_FOR_TEACHER_CLASS);
+		query.setParameter("teacher", teacher);
+		query.setParameter("class", clazz);
+
+		return query.getResultList();
+	}
+
+
+	@Override
+	public List<SubjectAssignment> getAllExcept(List<SubjectAssignment> except, Long classId) {
+		ClassEntity clazz = getReference(ClassEntity.class, classId);
+
+		if(!except.isEmpty()) {
+			Query query = getEntityManager().createNamedQuery(SubjectAssignment.GET_ALL_FOR_CLASS_EXCEPT);
+			query.setParameter("class", clazz);
+			query.setParameter("assignments", except);
+			return query.getResultList();
+		} else {
+			Query query = getEntityManager().createNamedQuery(SubjectAssignment.GET_ALL_FOR_CLASS_EXCEPT);
+			query.setParameter("class", clazz);
+			query.setParameter("assignments", null);
+			return query.getResultList();
 		}
 	}
 

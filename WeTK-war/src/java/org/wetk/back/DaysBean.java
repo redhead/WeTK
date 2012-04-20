@@ -5,8 +5,9 @@ package org.wetk.back;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.model.SelectItem;
 import org.wetk.Utils;
 
@@ -16,7 +17,7 @@ import org.wetk.Utils;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @ManagedBean(name = "days")
-@RequestScoped
+@ApplicationScoped
 public class DaysBean {
 
 	public List<SelectItem> getSelectItems() {
@@ -46,6 +47,11 @@ public class DaysBean {
 				return Utils.getString("day_fri");
 		}
 		return "";
+	}
+
+
+	public TimeZone getTimeZone() {
+		return TimeZone.getDefault();
 	}
 
 }
