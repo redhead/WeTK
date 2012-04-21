@@ -21,6 +21,8 @@ import org.wetk.entity.LessonEntry;
 @SessionScoped
 public class LessonEntryBean implements Serializable {
 
+	private static final String PAGE_ID = "pretty:lessonEntry";
+
 	@EJB
 	private ILessonEntry entryModel;
 
@@ -43,7 +45,6 @@ public class LessonEntryBean implements Serializable {
 	public void findEntry() {
 		LessonEntry entry = entryModel.getLessonEntryFor(selectedClassId, date, lessonHour);
 		setup(entry);
-		editting = (lessonEntry.getId() == null ? true : false);
 	}
 
 
@@ -51,13 +52,25 @@ public class LessonEntryBean implements Serializable {
 		entryModel.save(lessonEntry, selectedClassId, date, lessonHour, assignmentId);
 		editting = false;
 		findEntry();
-		return "pretty:lessonEntry";
+		return PAGE_ID;
+	}
+
+
+	public String deleteEntry() {
+		if(lessonEntry == null || lessonEntry.getId() == null) {
+			return null;
+		}
+
+		entryModel.delete(lessonEntry.getId());
+
+		editting = false;
+		return PAGE_ID;
 	}
 
 
 	public String editEntry() {
 		editting = true;
-		return "pretty:lessonEntry";
+		return PAGE_ID;
 	}
 
 
@@ -66,7 +79,7 @@ public class LessonEntryBean implements Serializable {
 			lessonEntry = null;
 		}
 		editting = false;
-		return "pretty:lessonEntry";
+		return PAGE_ID;
 	}
 
 
@@ -76,7 +89,7 @@ public class LessonEntryBean implements Serializable {
 		if(entry != null) {
 			setup(entry);
 		}
-		return "pretty:lessonEntry";
+		return PAGE_ID;
 	}
 
 
@@ -86,7 +99,8 @@ public class LessonEntryBean implements Serializable {
 		if(entry != null) {
 			setup(entry);
 		}
-		return "pretty:lessonEntry";
+
+		return PAGE_ID;
 	}
 
 
@@ -97,6 +111,8 @@ public class LessonEntryBean implements Serializable {
 		date = lessonEntry.getDate();
 		lessonHour = lessonEntry.getLessonHour();
 		assignmentId = lessonEntry.getAssignmentId();
+
+		editting = (lessonEntry.getId() == null ? true : false);
 	}
 
 

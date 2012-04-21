@@ -35,7 +35,7 @@
 						</h:commandLink>
 					</div>
 
-					<c:if test="#{!entries.editting}">
+					<c:if test="#{!entries.editting || entries.lessonEntry.id == null}">
 						<div id="prevLesson"><h:commandLink action="#{entries.prevEntry}" /></div>
 						<div id="nextLesson"><h:commandLink action="#{entries.nextEntry}" /></div>
 					</c:if>
@@ -68,8 +68,8 @@
 						</fieldset>
 					</h:form>
 				</c:if>
-				<c:if test="#{entries.lessonEntry != null and !entries.editting}">
-					<div class="lesson-entry">
+				<div class="lesson-entry">
+					<c:if test="#{entries.lessonEntry != null and !entries.editting}">
 						<table>
 							<tr>
 								<th>#{msgs.lessonEntry_topic}:</th>
@@ -99,8 +99,11 @@
 								</div>
 							</h:form>
 						</c:if>
-					</div>
-				</c:if>
+					</c:if>
+					<c:if test="#{entries.lessonEntry == null}">
+						<div class="alert info">Vyhledejte hodinu k zapsání ve formuláři výše</div>
+					</c:if>
+				</div>
 			</ui:define>
 		</ui:composition>
     </h:body>

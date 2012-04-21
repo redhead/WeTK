@@ -58,21 +58,29 @@ public class LessonModel extends AbstractModel<Lesson, LessonDTO> implements ILe
 
 	@Override
 	public Lesson findPrevTo(int day, int lessonHour, Teacher teacher) {
-		Query query = getEntityManager().createQuery("SELECT l FROM Lesson l WHERE l.assignment.teacher = :teacher"
-									+ " ORDER BY (l.day > :day OR (l.day = :day AND l.hour >= :hour)),"
-									+ " l.day DESC, l.hour DESC");
-		query.setParameter("teacher", teacher);
-		query.setParameter("day", day);
-		query.setParameter("hour", lessonHour);
-		
-		Lesson lesson = (Lesson) query.getSingleResult();
-		return lesson;
+		return findPrevOrNextTo(day, lessonHour, teacher, true);
 	}
 
 
 	@Override
 	public Lesson findNextTo(int day, int lessonHour, Teacher teacher) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		return findPrevOrNextTo(day, lessonHour, teacher, false);
+	}
+
+
+	private Lesson findPrevOrNextTo(int day, int lessonHour, Teacher teacher, boolean prev) {
+		String type = prev ? Lesson.FIND_PREV_TO : Lesson.FIND_NEXT_TO;
+
+		Query query = getEntityManager().createNamedQuery(type);
+
+		query.setParameter("teacher", teacher);
+		query.setParameter("day", day);
+		query.setParameter("hour", lessonHour);
+
+		query.setMaxResults(1);
+
+		Lesson lesson = (Lesson) query.getSingleResult();
+		return lesson;
 	}
 
 }

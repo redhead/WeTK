@@ -169,6 +169,10 @@ input.topic-input {
 .lesson-entry-form .form-actions .btn {
 	margin-right: 10px;
 }
+.lesson-entry .alert.info {
+	margin-top: 27px;
+	text-align: center;
+}
 
 /*   Medy's  part of css   */
 

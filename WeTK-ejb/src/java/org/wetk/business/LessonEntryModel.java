@@ -38,19 +38,22 @@ public class LessonEntryModel extends AbstractModel<LessonEntry, LessonEntryDTO>
 		try {
 			return (LessonEntry) query.getSingleResult();
 		} catch(NoResultException e) {
-			int day = Utils.getDayOfWeek(date);
-			return computeNewEntryFor(classId, day, lessonHour);
+			return computeNewEntryFor(classId, date, lessonHour);
 		}
 	}
 
 
-	private LessonEntry computeNewEntryFor(Long classId, int day, int lessonHour) {
+	private LessonEntry computeNewEntryFor(Long classId, Date date, int lessonHour) {
+		int day = Utils.getDayOfWeek(date);
 		Lesson lesson = lessonModel.getLessonFor(classId, day, lessonHour);
 
 		LessonEntry entry = new LessonEntry();
 
 		if(lesson != null) {
 			entry.setAssignment(lesson.getAssignment());
+			entry.setDate(date);
+			entry.setLessonHour(lessonHour);
+			entry.setClazz(getReference(ClassEntity.class, classId));
 		}
 
 		return entry;
@@ -91,20 +94,65 @@ public class LessonEntryModel extends AbstractModel<LessonEntry, LessonEntryDTO>
 		query.setParameter("date", date);
 		query.setParameter("lessonHour", lessonHour);
 		query.setParameter("teacher", teacher);
+		
+		query.setMaxResults(1);
 
-		try {
-			return (LessonEntry) query.getSingleResult();
-		} catch(Exception e) {
-			int day = Utils.getDayOfWeek(date);
-			if(prev) {
-				lessonModel.findPrevTo(day, lessonHour, teacher);
-			} else {
-				lessonModel.findNextTo(day, lessonHour, teacher);
-			}
+		int day = Utils.getDayOfWeek(date);
+		Lesson lesson;
+		if(prev) {
+			lesson = lessonModel.findPrevTo(day, lessonHour, teacher);
+		} else {
+			lesson = lessonModel.findNextTo(day, lessonHour, teacher);
+		}
+		
+		LessonEntry newEntry = null;
+		if(lesson != null) {
+			 newEntry = createEntryFrom(lesson, date, lessonHour, prev);
 		}
 
-		return null;
+		try {
+			LessonEntry entry = (LessonEntry) query.getSingleResult();
+			if(prev && (entry.getDate().before(newEntry.getDate()) || entry.getLessonHour() < newEntry.getLessonHour())) {
+				return newEntry;
+			}
+			if(!prev && (entry.getDate().after(newEntry.getDate()) || entry.getLessonHour() > newEntry.getLessonHour())) {
+				return newEntry;
+			}
+			return entry;
+		} catch(Exception e) {
+			return newEntry;
+		}
 
+	}
+
+
+	private LessonEntry createEntryFrom(Lesson lesson, Date from_date, int from_hour, boolean prev) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(from_date);
+
+		int from_day = cal.get(Calendar.DAY_OF_WEEK);
+
+		int roll = 0;
+		if(from_day == lesson.getDay()) {
+			if(prev && lesson.getHour() > from_hour) {
+				roll = -7;
+			}
+			if(!prev && lesson.getHour() < from_hour) {
+				roll = 7;
+			}
+		} else {
+			roll = lesson.getDay() - from_day;
+		}
+
+		cal.add(Calendar.DAY_OF_WEEK, roll);
+
+		LessonEntry entry = new LessonEntry();
+		entry.setClazz(lesson.getClazz());
+		entry.setDate(cal.getTime());
+		entry.setLessonHour(lesson.getHour());
+		entry.setAssignment(lesson.getAssignment());
+
+		return entry;
 	}
 
 }

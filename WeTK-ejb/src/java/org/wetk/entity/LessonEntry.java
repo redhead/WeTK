@@ -19,12 +19,12 @@ import javax.persistence.*;
 	query = "SELECT e FROM LessonEntry e"
 	+ " WHERE ((e.date = :date AND e.lessonHour < :lessonHour) OR e.date < :date)"
 	+ " AND e.assignment.teacher = :teacher"
-	+ " ORDER BY e.date DESC, e.lessonHour DESC LIMIT 1"),
+	+ " ORDER BY e.date DESC, e.lessonHour DESC"),
 	@NamedQuery(name = LessonEntry.FIND_NEXT_TO_DATE_HOUR,
 	query = "SELECT e FROM LessonEntry e"
 	+ " WHERE ((e.date = :date AND e.lessonHour > :lessonHour) OR e.date > :date)"
 	+ " AND e.assignment.teacher = :teacher"
-	+ " ORDER BY e.date ASC, e.lessonHour ASC LIMIT 1")
+	+ " ORDER BY e.date ASC, e.lessonHour ASC")
 })
 public class LessonEntry extends AbstractEntity {
 	
