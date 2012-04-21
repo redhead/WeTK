@@ -5,8 +5,6 @@ package org.wetk.business;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
-import org.hibernate.Session;
-import org.hibernate.ejb.HibernateEntityManager;
 import org.wetk.business.local.ILesson;
 import org.wetk.dto.LessonDTO;
 import org.wetk.entity.ClassEntity;
@@ -60,15 +58,14 @@ public class LessonModel extends AbstractModel<Lesson, LessonDTO> implements ILe
 
 	@Override
 	public Lesson findPrevTo(int day, int lessonHour, Teacher teacher) {
-		HibernateEntityManager hem = (HibernateEntityManager) getEntityManager().getDelegate();
-		org.hibernate.Query query = hem.getSession().createQuery("SELECT l FROM Lesson l WHERE l.assignment.teacher = :teacher"
-				+ " ORDER BY (l.day > :day OR (l.day = :day AND l.hour >= :hour)),"
-				+ " l.day DESC, l.hour DESC");
+		Query query = getEntityManager().createQuery("SELECT l FROM Lesson l WHERE l.assignment.teacher = :teacher"
+									+ " ORDER BY (l.day > :day OR (l.day = :day AND l.hour >= :hour)),"
+									+ " l.day DESC, l.hour DESC");
 		query.setParameter("teacher", teacher);
 		query.setParameter("day", day);
 		query.setParameter("hour", lessonHour);
 		
-		Lesson lesson = (Lesson) query.uniqueResult();
+		Lesson lesson = (Lesson) query.getSingleResult();
 		return lesson;
 	}
 

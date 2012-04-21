@@ -5,8 +5,6 @@
         <data xmlns="http://www.netbeans.org/ns/j2ee-ejbjarproject/3">
             <name>WeTK-ejb</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
-            <included-library dirs="200">libs.hibernate-persistence.classpath</included-library>
-            <included-library dirs="200">libs.hibernate-support.classpath</included-library>
             <included-library dirs="200">libs.MySQLDriver.classpath</included-library>
             <source-roots>
                 <root id="src.dir"/>
