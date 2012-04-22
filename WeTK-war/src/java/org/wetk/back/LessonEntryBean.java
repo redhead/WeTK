@@ -57,13 +57,10 @@ public class LessonEntryBean implements Serializable {
 
 
 	public String deleteEntry() {
-		if(lessonEntry == null || lessonEntry.getId() == null) {
-			return null;
+		if(lessonEntry != null && lessonEntry.getId() != null) {
+			entryModel.delete(lessonEntry.getId());
+			editting = false;
 		}
-
-		entryModel.delete(lessonEntry.getId());
-
-		editting = false;
 		return PAGE_ID;
 	}
 
