@@ -44,4 +44,10 @@ public class TeachersModel extends AbstractModel<Teacher, TeacherDTO> implements
 		}
 	}
 
+
+	@Override
+	public List<Teacher> getWithClass() {
+		return getEntityManager().createNamedQuery(Teacher.GET_ALL_WITH_CLASS).getResultList();
+	}
+
 }

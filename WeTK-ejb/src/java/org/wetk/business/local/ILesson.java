@@ -4,6 +4,7 @@ package org.wetk.business.local;
 
 import javax.ejb.Local;
 import org.wetk.dto.LessonDTO;
+import org.wetk.entity.ClassEntity;
 import org.wetk.entity.Lesson;
 import org.wetk.entity.Teacher;
 
@@ -25,5 +26,8 @@ public interface ILesson extends IAbstractAdminModel<Lesson> {
 
 
 	public Lesson findNextTo(int day, int lessonHour, Teacher teacher);
+
+
+	public long getLessonCountFor(Long classId);
 
 }

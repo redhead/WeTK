@@ -20,4 +20,7 @@ public interface ITeacher extends IAbstractAdminModel<Teacher> {
 
 	public Teacher findByUsername(String username);
 
+
+	public List<Teacher> getWithClass();
+
 }

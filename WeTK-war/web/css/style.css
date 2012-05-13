@@ -141,6 +141,10 @@ ul.alert.alert-error {
 	background: dodgerblue url('../img/arrows.png') no-repeat -60px center;
 }
 
+.lesson-entry .btn-danger {
+	margin-left: 10px;
+}
+
 
 input.topic-input {
 	font-size: 20px;
@@ -172,6 +176,27 @@ input.topic-input {
 .lesson-entry .alert.info {
 	margin-top: 27px;
 	text-align: center;
+}
+
+.student-table {
+	margin-top: 40px;
+}
+
+.absence-radio label {
+	display: none;
+}
+.absence-radio span {
+	padding: 5px;
+	display: inline-block;
+}
+.absence-radio .present {
+	background-color: #dcffdf;
+}
+.absence-radio .absent {
+	background-color: #fed6d6;
+}
+.absence-radio .late {
+	background-color: #fdf6d1;
 }
 
 /*   Medy's  part of css   */

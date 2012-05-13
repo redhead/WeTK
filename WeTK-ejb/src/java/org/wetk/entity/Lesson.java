@@ -23,7 +23,9 @@ import javax.persistence.*;
 	query = "SELECT l FROM Lesson l WHERE l.assignment.teacher = :teacher"
 	+ " ORDER BY CASE WHEN (l.day < :day OR (l.day = :day AND l.hour <= :hour))"
 	+ " THEN 1 ELSE 0 END,"
-	+ " l.day ASC, l.hour ASC")
+	+ " l.day ASC, l.hour ASC"),
+	@NamedQuery(name = Lesson.COUNT_FOR_CLASS,
+	query = "SELECT count(l) FROM Lesson l WHERE l.clazz = :class")
 })
 public class Lesson extends AbstractEntity {
 
@@ -36,6 +38,8 @@ public class Lesson extends AbstractEntity {
 	public static final String FIND_PREV_TO = "Lesson.findPrevTo";
 
 	public static final String FIND_NEXT_TO = "Lesson.findNextTo";
+
+	public static final String COUNT_FOR_CLASS = "Lesson.countForClass";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

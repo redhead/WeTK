@@ -10,7 +10,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import org.wetk.business.local.ILessonEntry;
 import org.wetk.dto.LessonEntryDTO;
-import org.wetk.entity.LessonEntry;
 
 
 /**
@@ -43,13 +42,14 @@ public class LessonEntryBean implements Serializable {
 
 
 	public void findEntry() {
-		LessonEntry entry = entryModel.getLessonEntryFor(selectedClassId, date, lessonHour);
+		LessonEntryDTO entry = entryModel.getLessonEntryFor(selectedClassId, date, lessonHour);
 		setup(entry);
 	}
 
 
 	public String saveEntry() {
-		entryModel.save(lessonEntry, selectedClassId, date, lessonHour, assignmentId);
+		Long signerId = (lessonEntry.getId() == null ? userBean.getTeacher().getId() : null);
+		entryModel.save(lessonEntry, selectedClassId, date, lessonHour, assignmentId, signerId);
 		editting = false;
 		findEntry();
 		return PAGE_ID;
@@ -59,6 +59,7 @@ public class LessonEntryBean implements Serializable {
 	public String deleteEntry() {
 		if(lessonEntry != null && lessonEntry.getId() != null) {
 			entryModel.delete(lessonEntry.getId());
+			lessonEntry = null;
 			editting = false;
 		}
 		return PAGE_ID;
@@ -81,7 +82,7 @@ public class LessonEntryBean implements Serializable {
 
 
 	public String prevEntry() {
-		LessonEntry entry = entryModel.findPreviousTo(date, lessonHour, userBean.getTeacher());
+		LessonEntryDTO entry = entryModel.findPreviousTo(date, lessonHour, userBean.getTeacher());
 
 		if(entry != null) {
 			setup(entry);
@@ -91,7 +92,7 @@ public class LessonEntryBean implements Serializable {
 
 
 	public String nextEntry() {
-		LessonEntry entry = entryModel.findNextTo(date, lessonHour, userBean.getTeacher());
+		LessonEntryDTO entry = entryModel.findNextTo(date, lessonHour, userBean.getTeacher());
 
 		if(entry != null) {
 			setup(entry);
@@ -101,15 +102,15 @@ public class LessonEntryBean implements Serializable {
 	}
 
 
-	private void setup(LessonEntry entry) {
-		lessonEntry = new LessonEntryDTO(entry);
+	private void setup(LessonEntryDTO entry) {
+		lessonEntry = entry;
+		
+		selectedClassId = entry.getClassId();
+		date = entry.getDate();
+		lessonHour = entry.getLessonHour();
+		assignmentId = entry.getAssignmentId();
 
-		selectedClassId = lessonEntry.getClassId();
-		date = lessonEntry.getDate();
-		lessonHour = lessonEntry.getLessonHour();
-		assignmentId = lessonEntry.getAssignmentId();
-
-		editting = (lessonEntry.getId() == null ? true : false);
+		editting = (entry.getId() == null ? true : false);
 	}
 
 

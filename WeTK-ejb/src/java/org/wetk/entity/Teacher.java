@@ -14,7 +14,8 @@ import org.wetk.helper.PasswordHashProvider;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = Teacher.GET_ALL_TEACHERS, query = "SELECT t FROM Teacher t ORDER BY username"),
-	@NamedQuery(name = Teacher.GET_BY_USERNAME, query = "SELECT t FROM Teacher t WHERE username = :username")
+	@NamedQuery(name = Teacher.GET_BY_USERNAME, query = "SELECT t FROM Teacher t WHERE username = :username"),
+	@NamedQuery(name = Teacher.GET_ALL_WITH_CLASS, query = "SELECT t FROM Teacher t WHERE t.clazz.id > 0")
 })
 public class Teacher extends Person {
 
@@ -23,6 +24,8 @@ public class Teacher extends Person {
 	public static final String GET_ALL_TEACHERS = "Teacher.getAllTeachers";
 
 	public static final String GET_BY_USERNAME = "Teacher.getByUsername";
+
+	public static final String GET_ALL_WITH_CLASS = "Teacher.getAllWithClass";
 
 	@Column(nullable = false, unique = true)
 	private String username;

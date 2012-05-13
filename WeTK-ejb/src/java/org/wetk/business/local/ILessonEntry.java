@@ -16,15 +16,18 @@ import org.wetk.entity.Teacher;
 @Local
 public interface ILessonEntry extends IAbstractModel<LessonEntry> {
 
-	public LessonEntry getLessonEntryFor(Long classId, Date date, int lessonHour);
+	public LessonEntryDTO getLessonEntryFor(Long classId, Date date, int lessonHour);
 
 
-	public void save(LessonEntryDTO lessonEntry, Long classId, Date date, int lessonHour, Long assignmentId);
+	public void save(LessonEntryDTO lessonEntry, Long classId, Date date, int lessonHour, Long assignmentId, Long signerId);
 
 
-	public LessonEntry findPreviousTo(Date date, int lessonHour, Teacher teacher);
+	public LessonEntryDTO findPreviousTo(Date date, int lessonHour, Teacher teacher);
 
 
-	public LessonEntry findNextTo(Date date, int lessonHour, Teacher teacher);
+	public LessonEntryDTO findNextTo(Date date, int lessonHour, Teacher teacher);
+
+
+	public long getEntryCount(Long classId, Date start, Date now);
 
 }

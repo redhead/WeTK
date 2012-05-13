@@ -83,4 +83,15 @@ public class LessonModel extends AbstractModel<Lesson, LessonDTO> implements ILe
 		return lesson;
 	}
 
+
+	@Override
+	public long getLessonCountFor(Long classId) {
+		ClassEntity clazz = getReference(ClassEntity.class, classId);
+
+		Query query = getEntityManager().createNamedQuery(Lesson.COUNT_FOR_CLASS);
+		query.setParameter("class", clazz);
+		
+		return (Long) query.getSingleResult();
+	}
+
 }

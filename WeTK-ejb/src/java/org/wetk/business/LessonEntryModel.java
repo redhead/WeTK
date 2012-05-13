@@ -27,7 +27,7 @@ public class LessonEntryModel extends AbstractModel<LessonEntry, LessonEntryDTO>
 
 
 	@Override
-	public LessonEntry getLessonEntryFor(Long classId, Date date, int lessonHour) {
+	public LessonEntryDTO getLessonEntryFor(Long classId, Date date, int lessonHour) {
 		ClassEntity clazz = getReference(ClassEntity.class, classId);
 
 		Query query = getEntityManager().createNamedQuery(LessonEntry.GET_BY_CLASS_DATE_HOUR);
@@ -36,9 +36,10 @@ public class LessonEntryModel extends AbstractModel<LessonEntry, LessonEntryDTO>
 		query.setParameter("lessonHour", lessonHour);
 
 		try {
-			return (LessonEntry) query.getSingleResult();
+			return new LessonEntryDTO((LessonEntry) query.getSingleResult());
 		} catch(NoResultException e) {
-			return computeNewEntryFor(classId, date, lessonHour);
+			LessonEntry entry = computeNewEntryFor(classId, date, lessonHour);
+			return (entry == null ? null : new LessonEntryDTO(entry));
 		}
 	}
 
@@ -61,7 +62,7 @@ public class LessonEntryModel extends AbstractModel<LessonEntry, LessonEntryDTO>
 
 
 	@Override
-	public void save(LessonEntryDTO dto, Long classId, Date date, int lessonHour, Long assignmentId) {
+	public void save(LessonEntryDTO dto, Long classId, Date date, int lessonHour, Long assignmentId, Long signerId) {
 		ClassEntity clazz = getReference(ClassEntity.class, classId);
 		SubjectAssignment assign = getReference(SubjectAssignment.class, assignmentId);
 
@@ -71,19 +72,24 @@ public class LessonEntryModel extends AbstractModel<LessonEntry, LessonEntryDTO>
 		entry.setLessonHour(lessonHour);
 		entry.setAssignment(assign);
 
+		if(signerId != null && signerId != 0) {
+			Teacher signer = getReference(Teacher.class, signerId);
+			entry.setSigner(signer);
+		}
+
 		saveEntity(entry);
 	}
 
 
 	@Override
-	public LessonEntry findPreviousTo(Date date, int lessonHour, Teacher teacher) {
-		return findPrevOrNext(true, date, lessonHour, teacher);
+	public LessonEntryDTO findPreviousTo(Date date, int lessonHour, Teacher teacher) {
+		return new LessonEntryDTO(findPrevOrNext(true, date, lessonHour, teacher));
 	}
 
 
 	@Override
-	public LessonEntry findNextTo(Date date, int lessonHour, Teacher teacher) {
-		return findPrevOrNext(false, date, lessonHour, teacher);
+	public LessonEntryDTO findNextTo(Date date, int lessonHour, Teacher teacher) {
+		return new LessonEntryDTO(findPrevOrNext(false, date, lessonHour, teacher));
 	}
 
 
@@ -94,7 +100,7 @@ public class LessonEntryModel extends AbstractModel<LessonEntry, LessonEntryDTO>
 		query.setParameter("date", date);
 		query.setParameter("lessonHour", lessonHour);
 		query.setParameter("teacher", teacher);
-		
+
 		query.setMaxResults(1);
 
 		int day = Utils.getDayOfWeek(date);
@@ -104,10 +110,10 @@ public class LessonEntryModel extends AbstractModel<LessonEntry, LessonEntryDTO>
 		} else {
 			lesson = lessonModel.findNextTo(day, lessonHour, teacher);
 		}
-		
+
 		LessonEntry newEntry = null;
 		if(lesson != null) {
-			 newEntry = createEntryFrom(lesson, date, lessonHour, prev);
+			newEntry = createEntryFrom(lesson, date, lessonHour, prev);
 		}
 
 		try {
@@ -153,6 +159,20 @@ public class LessonEntryModel extends AbstractModel<LessonEntry, LessonEntryDTO>
 		entry.setAssignment(lesson.getAssignment());
 
 		return entry;
+	}
+
+
+	@Override
+	public long getEntryCount(Long classId, Date from, Date to) {
+		ClassEntity clazz = getReference(ClassEntity.class, classId);
+
+		Query query = getEntityManager().createNamedQuery(LessonEntry.COUNT_BETWEEN);
+
+		query.setParameter("class", clazz);
+		query.setParameter("from", from);
+		query.setParameter("to", to);
+
+		return (Long) query.getSingleResult();
 	}
 
 }

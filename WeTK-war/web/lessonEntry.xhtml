@@ -34,10 +34,12 @@
 							<span class="icon-search"></span><span class="hidden">Hledat</span> 
 						</h:commandLink>
 					</div>
+				</h:form>
 
+				<h:form>
 					<c:if test="#{!entries.editting || entries.lessonEntry.id == null}">
-						<div id="prevLesson"><h:commandLink action="#{entries.prevEntry}" /></div>
-						<div id="nextLesson"><h:commandLink action="#{entries.nextEntry}" /></div>
+						<div id="prevLesson"><h:commandLink action="#{entries.prevEntry}" title="#{msgs.lessonEntry_prev}" /></div>
+						<div id="nextLesson"><h:commandLink action="#{entries.nextEntry}" title="#{msgs.lessonEntry_next}" /></div>
 					</c:if>
 				</h:form>
 
@@ -60,6 +62,9 @@
 									</h:selectOneMenu>
 								</div>
 							</div>
+							
+							<ui:include src="includes/lessonEntryStudentList.xhtml">
+							</ui:include>
 
 							<div class="form-actions">
 								<h:commandButton value="#{msgs.action_save}" action="#{entries.saveEntry}" class="btn btn-large btn-success" />
@@ -68,6 +73,7 @@
 						</fieldset>
 					</h:form>
 				</c:if>
+
 				<div class="lesson-entry">
 					<c:if test="#{entries.lessonEntry != null and !entries.editting}">
 						<table>
@@ -80,23 +86,24 @@
 								<td>#{entries.lessonEntry.subjectTitle}</td>
 							</tr>
 							<tr>
-								<th>#{msgs.teacher}:</th>
+								<th>#{msgs.lessonEntry_signer}:</th>
 								<td>
-									#{entries.lessonEntry.teacherFullname}
-									<c:if test="#{user.teacher.id eq entries.lessonEntry.teacherId}">
-										<span class="muted">(já)</span>
+									#{entries.lessonEntry.signer}
+									<c:if test="#{user.teacher.id eq entries.lessonEntry.signerId}">
+										<span class="muted">(#{msgs.me})</span>
+									</c:if>
+									<c:if test="#{entries.lessonEntry.substituted}">
+										<span class="muted"> - #{msgs.lessonEntry_substitutedFor} #{entries.lessonEntry.teacherFullname}</span>
 									</c:if>
 								</td>
 							</tr>
 						</table>
 
-						<c:if test="#{entries.lessonEntry.teacherId eq user.teacher.id or entries.lessonEntry.classId eq user.teacher.clazz.id}">
+						<c:if test="#{entries.lessonEntry.signerId eq user.teacher.id or entries.lessonEntry.classId eq user.teacher.clazz.id}">
 							<hr />
 							<h:form>
-								<div class="btn-group">
-									<h:commandLink action="#{entries.editEntry()}" value="#{msgs.action_edit}" class="btn" />
-									<h:commandLink action="#{entries.deleteEntry()}" value="#{msgs.action_delete}" class="btn btn-danger" onclick="return confirm('#{msgs.message_confirmDelete}')" />
-								</div>
+								<h:commandLink action="#{entries.editEntry()}" value="#{msgs.action_edit}" class="btn" />
+								<h:commandLink action="#{entries.deleteEntry()}" value="#{msgs.action_delete}" class="btn btn-danger" onclick="return confirm('#{msgs.message_confirmDelete}')" />
 							</h:form>
 						</c:if>
 					</c:if>

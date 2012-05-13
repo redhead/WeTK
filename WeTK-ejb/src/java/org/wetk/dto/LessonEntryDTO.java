@@ -3,11 +3,10 @@
 package org.wetk.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.wetk.entity.ClassEntity;
-import org.wetk.entity.LessonEntry;
-import org.wetk.entity.SubjectAssignment;
+import org.wetk.entity.*;
 
 
 /**
@@ -28,17 +27,19 @@ public class LessonEntryDTO extends AbstractDTO<LessonEntry> implements Serializ
 
 	private String classTitle;
 
-	private Long lessonId;
-
 	private Long assignmentId;
 
 	private String subjectTitle;
 
-	private String teacherFullname;
-
 	private Long teacherId;
 
-	private List<Long> absentStudentIds;
+	private String teacherFullname;
+
+	private Long signerId;
+
+	private String signer;
+
+	private List<LessonEntryStudentDTO> students = new ArrayList<LessonEntryStudentDTO>();
 
 
 	public LessonEntryDTO() {
@@ -52,11 +53,32 @@ public class LessonEntryDTO extends AbstractDTO<LessonEntry> implements Serializ
 		lessonHour = entry.getLessonHour();
 		topic = entry.getTopic();
 		date = entry.getDate();
+		signer = new TeacherDTO(entry.getSigner()).getFullName();
+
+		if(entry.getSigner() != null) {
+			signerId = entry.getSigner().getId();
+		}
 
 		ClassEntity clazz = entry.getClazz();
 		if(clazz != null) {
 			classId = clazz.getId();
 			classTitle = clazz.getTitle();
+
+			List<Absence> absences = new ArrayList<Absence>();
+			if(entry.getAbsences() != null) {
+				absences = entry.getAbsences();
+			}
+
+			for(Student s : clazz.getStudents()) {
+				Absence studentAbsence = null;
+				for(Absence a : absences) {
+					if(a.getStudent().equals(s)) {
+						studentAbsence = a;
+						break;
+					}
+				}
+				students.add(new LessonEntryStudentDTO(s, studentAbsence));
+			}
 		}
 
 		SubjectAssignment assign = entry.getAssignment();
@@ -102,8 +124,8 @@ public class LessonEntryDTO extends AbstractDTO<LessonEntry> implements Serializ
 	}
 
 
-	public List<Long> getAbsentStudentIds() {
-		return absentStudentIds;
+	public List<LessonEntryStudentDTO> getStudents() {
+		return students;
 	}
 
 
@@ -114,11 +136,6 @@ public class LessonEntryDTO extends AbstractDTO<LessonEntry> implements Serializ
 
 	public String getClassTitle() {
 		return classTitle;
-	}
-
-
-	public Long getLessonId() {
-		return lessonId;
 	}
 
 
@@ -137,8 +154,18 @@ public class LessonEntryDTO extends AbstractDTO<LessonEntry> implements Serializ
 	}
 
 
-	public Long getTeacherId() {
-		return teacherId;
+	public Long getSignerId() {
+		return signerId;
+	}
+
+
+	public String getSigner() {
+		return signer;
+	}
+
+
+	public boolean isSubstituted() {
+		return (signerId != teacherId);
 	}
 
 
@@ -147,6 +174,54 @@ public class LessonEntryDTO extends AbstractDTO<LessonEntry> implements Serializ
 		entity.setId(id);
 		entity.setTopic(topic);
 		return entity;
+	}
+
+
+	public static class LessonEntryStudentDTO {
+
+		private StudentDTO sDTO;
+
+		private boolean absent;
+
+		private boolean late;
+
+		private boolean excused;
+
+
+		private LessonEntryStudentDTO(Student student, Absence absence) {
+			sDTO = new StudentDTO(student);
+			if(absence != null) {
+				absent = true;
+				late = absence.isLate();
+				excused = (absence.getExuse() != null);
+			}
+		}
+
+
+		public boolean isAbsent() {
+			return absent;
+		}
+
+
+		public int getOrdinal() {
+			return sDTO.getOrdinal();
+		}
+
+
+		public String getFullName() {
+			return sDTO.getFullName();
+		}
+
+
+		public boolean isExcused() {
+			return excused;
+		}
+
+
+		public boolean isLate() {
+			return late;
+		}
+
 	}
 
 }
