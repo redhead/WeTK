@@ -18,7 +18,10 @@ abstract public class AbstractEntity implements Serializable {
 	public boolean equals(Object obj) {
 		if(obj.getClass() == this.getClass()) {
 			AbstractEntity ent = (AbstractEntity) obj;
-			return (ent.getId().equals(this.getId()));
+			if(ent.getId() != null && this.getId() != null) {
+				return (ent.getId().equals(this.getId()));
+			}
+			return false;
 		}
 		return false;
 	}
@@ -26,7 +29,8 @@ abstract public class AbstractEntity implements Serializable {
 
 	@Override
 	public int hashCode() {
-		int hash = (int) (7 * getId());
+		long id = (getId() == null ? 0 : getId());
+		int hash = (int) (7 * id);
 		return hash;
 	}
 
