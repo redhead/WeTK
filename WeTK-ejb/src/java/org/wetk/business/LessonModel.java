@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.Query;
 import org.wetk.business.local.ILesson;
 import org.wetk.dto.LessonDTO;
+import org.wetk.dto.TimeTable;
 import org.wetk.entity.ClassEntity;
 import org.wetk.entity.Lesson;
 import org.wetk.entity.SubjectAssignment;
@@ -90,8 +91,19 @@ public class LessonModel extends AbstractModel<Lesson, LessonDTO> implements ILe
 
 		Query query = getEntityManager().createNamedQuery(Lesson.COUNT_FOR_CLASS);
 		query.setParameter("class", clazz);
-		
+
 		return (Long) query.getSingleResult();
+	}
+
+
+	@Override
+	public TimeTable getTimeTableFor(Long teacherId) {
+		Teacher teacher = getReference(Teacher.class, teacherId);
+
+		Query query = getEntityManager().createNamedQuery(Lesson.GET_FOR_TEACHER);
+		query.setParameter("teacher", teacher);
+
+		return new TimeTable((List<Lesson>) query.getResultList());
 	}
 
 }

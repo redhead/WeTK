@@ -4,7 +4,7 @@ package org.wetk.business.local;
 
 import javax.ejb.Local;
 import org.wetk.dto.LessonDTO;
-import org.wetk.entity.ClassEntity;
+import org.wetk.dto.TimeTable;
 import org.wetk.entity.Lesson;
 import org.wetk.entity.Teacher;
 
@@ -29,5 +29,8 @@ public interface ILesson extends IAbstractAdminModel<Lesson> {
 
 
 	public long getLessonCountFor(Long classId);
+
+
+	public TimeTable getTimeTableFor(Long teacherId);
 
 }

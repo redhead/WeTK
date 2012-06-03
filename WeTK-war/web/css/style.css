@@ -254,3 +254,28 @@ input.topic-input {
 	width: 125px;
 	text-align: center;
 }
+
+.time-table {
+	max-width: 100%;
+	margin: 0 auto 0 auto;
+	border: 1px solid grey;
+	border-radius: 5px;
+}
+.time-table td, .time-table th {
+	min-width: 50px;
+	text-align: center;
+	border: 1px solid grey;
+}
+.time-table th {
+	padding: 10px;
+}
+.time-table a {
+	display: block;
+	padding: 10px;
+}
+.time-table a:hover {
+	text-decoration: none;
+	background-color: dodgerblue;
+	color: white;
+	text-shadow: 0 1px 1px black;
+}

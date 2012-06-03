@@ -29,6 +29,8 @@ public class LessonDTO extends AbstractDTO<Lesson> {
 
 	private String subjectTitle;
 
+	private String subjectCode;
+
 
 	public LessonDTO() {
 	}
@@ -55,6 +57,7 @@ public class LessonDTO extends AbstractDTO<Lesson> {
 			}
 			if(assign.getSubject() != null) {
 				subjectTitle = assign.getSubject().getTitle();
+				subjectCode = assign.getSubject().getCode();
 			}
 		}
 
@@ -114,6 +117,11 @@ public class LessonDTO extends AbstractDTO<Lesson> {
 
 	public String getTeacherFullName() {
 		return teacherFullName;
+	}
+
+
+	public String getSubjectCode() {
+		return subjectCode;
 	}
 
 

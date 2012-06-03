@@ -9,6 +9,87 @@
 		<ui:composition template="templates/layout.xhtml">
 			<ui:define name="content">
 				<h2>#{msgs.timetable_heading}</h2>
+
+				<h:form>
+					<table class="time-table">
+						<tr>
+							<th></th>
+							<c:forEach items="#{timetable.timeTable.hourList}" var="hour">
+								<th>#{hour}</th>
+							</c:forEach>
+						</tr>
+						<tr>
+							<th>Po</th>
+							<c:forEach items="#{timetable.timeTable.monTable}" var="lesson">
+								<td>
+									<c:if test="#{lesson != null}">
+										<h:commandLink action="#{entries.selectLesson(lesson.classId, lesson.day, lesson.hour)}">
+											<strong>#{lesson.subjectCode}</strong>
+											<br/>
+											#{lesson.classTitle}
+										</h:commandLink>
+									</c:if>
+								</td>
+							</c:forEach>
+						</tr>
+						<tr>
+							<th>Út</th>
+							<c:forEach items="#{timetable.timeTable.tueTable}" var="lesson">
+								<td>
+									<c:if test="#{lesson != null}">
+										<h:commandLink action="#{entries.selectLesson(lesson.classId, lesson.day, lesson.hour)}">
+											<strong>#{lesson.subjectCode}</strong>
+											<br/>
+											#{lesson.classTitle}
+										</h:commandLink>
+									</c:if>
+								</td>
+							</c:forEach>
+						</tr>
+						<tr>
+							<th>St</th>
+							<c:forEach items="#{timetable.timeTable.wedTable}" var="lesson">
+								<td>
+									<c:if test="#{lesson != null}">
+										<h:commandLink action="#{entries.selectLesson(lesson.classId, lesson.day, lesson.hour)}">
+											<strong>#{lesson.subjectCode}</strong>
+											<br/>
+											#{lesson.classTitle}
+										</h:commandLink>
+									</c:if>
+								</td>
+							</c:forEach>
+						</tr>
+						<tr>
+							<th>Čt</th>
+							<c:forEach items="#{timetable.timeTable.thuTable}" var="lesson">
+								<td>
+									<c:if test="#{lesson != null}">
+										<h:commandLink action="#{entries.selectLesson(lesson.classId, lesson.day, lesson.hour)}">
+											<strong>#{lesson.subjectCode}</strong>
+											<br/>
+											#{lesson.classTitle}
+										</h:commandLink>
+									</c:if>
+								</td>
+							</c:forEach>
+						</tr>
+						<tr>
+							<th>Pá</th>
+							<c:forEach items="#{timetable.timeTable.friTable}" var="lesson">
+								<td>
+									<c:if test="#{lesson != null}">
+										<h:commandLink action="#{entries.selectLesson(lesson.classId, lesson.day, lesson.hour)}">
+											<strong>#{lesson.subjectCode}</strong>
+											<br/>
+											#{lesson.classTitle}
+										</h:commandLink>
+									</c:if>
+								</td>
+							</c:forEach>
+						</tr>
+					</table>
+				</h:form>
 			</ui:define>
 		</ui:composition>
     </h:body>

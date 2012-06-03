@@ -3,6 +3,7 @@
 package org.wetk.back;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -83,28 +84,37 @@ public class LessonEntryBean implements Serializable {
 
 	public String prevEntry() {
 		LessonEntryDTO entry = entryModel.findPreviousTo(date, lessonHour, userBean.getTeacher());
+		setup(entry);
 
-		if(entry != null) {
-			setup(entry);
-		}
 		return PAGE_ID;
 	}
 
 
 	public String nextEntry() {
 		LessonEntryDTO entry = entryModel.findNextTo(date, lessonHour, userBean.getTeacher());
+		setup(entry);
 
-		if(entry != null) {
-			setup(entry);
-		}
+		return PAGE_ID;
+	}
 
+
+	public String selectLesson(long classId, int day, int hour) {
+		selectedClassId = classId;
+		lessonHour = hour;
+		
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.DAY_OF_WEEK, day);
+		date = cal.getTime();
+		
+		findEntry();
+		
 		return PAGE_ID;
 	}
 
 
 	private void setup(LessonEntryDTO entry) {
 		lessonEntry = entry;
-		
+
 		selectedClassId = entry.getClassId();
 		date = entry.getDate();
 		lessonHour = entry.getLessonHour();
