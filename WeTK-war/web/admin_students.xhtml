@@ -27,7 +27,9 @@
 								inputValue="#{students.student.firstName}"
 								inputId="firstName"
 								required="true"
-								requiredMessage="#{msgs.message_firstNameRequired}" />
+								requiredMessage="#{msgs.message_firstNameRequired}">
+								<f:validator id="myValidator" for="firstName"/>
+							</wetk:input>
 							
 							<!-- nahrazeni kompozitni komponentou <div class="control-group">
 								<h:outputLabel for="firstName" value="#{msgs.person_firstName}" class="control-label" />
