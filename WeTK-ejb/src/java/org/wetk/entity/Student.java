@@ -50,4 +50,14 @@ public class Student extends Person {
 		this.clazz = clazz;
 	}
 
+
+	public List<Absence> getAbsences() {
+		return absences;
+	}
+
+
+	public void setAbsences(List<Absence> absences) {
+		this.absences = absences;
+	}
+
 }
