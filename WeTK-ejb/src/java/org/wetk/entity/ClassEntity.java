@@ -15,7 +15,7 @@ import javax.persistence.*;
 	@NamedQuery(name = ClassEntity.GET_BY_TITLE, query = "SELECT c FROM ClassEntity c WHERE c.title = :title"),
 	@NamedQuery(name = ClassEntity.GET_ALL_CLASSES, query = "SELECT c FROM ClassEntity c ORDER BY c.title"),
 	@NamedQuery(name = ClassEntity.GET_ALL_FOR_TEACHER,
-	query = "SELECT l.clazz FROM Lesson l WHERE l.assignment.teacher = :teacher ORDER BY l.clazz.title"),
+	query = "SELECT DISTINCT l.clazz FROM Lesson l WHERE l.assignment.teacher = :teacher ORDER BY l.clazz.title"),
 	@NamedQuery(name = ClassEntity.GET_ALL_EXCEPT,
 	query = "SELECT c FROM ClassEntity c WHERE c NOT IN (:classes) ORDER BY c.title")
 })

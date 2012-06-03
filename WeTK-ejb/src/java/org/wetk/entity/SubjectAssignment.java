@@ -14,7 +14,7 @@ import javax.persistence.*;
 	@NamedQuery(name = SubjectAssignment.GET_ALL_ASSIGNMENTS,
 	query = "SELECT a FROM SubjectAssignment a ORDER BY a.subject.title, a.teacher.lastName"),
 	@NamedQuery(name = SubjectAssignment.GET_ALL_FOR_TEACHER_CLASS,
-	query = "SELECT a FROM SubjectAssignment a, Lesson l WHERE a.teacher = :teacher"
+	query = "SELECT DISTINCT a FROM SubjectAssignment a, Lesson l WHERE a.teacher = :teacher"
 	+ " AND l.clazz = :class AND l.assignment.teacher = :teacher AND a = l.assignment"
 	+ " ORDER BY a.subject.title, a.teacher.lastName"),
 	@NamedQuery(name = SubjectAssignment.GET_ALL_FOR_CLASS_EXCEPT,
