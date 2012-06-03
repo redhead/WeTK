@@ -12,8 +12,6 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = Lesson.GET_ALL_LESSONS, query = "SELECT l FROM Lesson l ORDER BY clazz.title, day, hour"),
-	@NamedQuery(name = Lesson.GET_FOR_CLASS_DAY_HOUR,
-	query = "SELECT l FROM Lesson l WHERE l.clazz = :class AND day = :day AND hour = :hour"),
 	@NamedQuery(name = Lesson.FIND_PREV_TO,
 	query = "SELECT l FROM Lesson l WHERE l.assignment.teacher = :teacher"
 	+ " ORDER BY CASE WHEN (l.day > :day OR (l.day = :day AND l.hour >= :hour))"

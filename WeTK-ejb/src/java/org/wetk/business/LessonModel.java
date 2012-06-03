@@ -5,11 +5,15 @@ package org.wetk.business;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import org.wetk.business.local.ILesson;
 import org.wetk.dto.LessonDTO;
 import org.wetk.dto.TimeTable;
 import org.wetk.entity.ClassEntity;
 import org.wetk.entity.Lesson;
+import org.wetk.entity.Lesson_;
 import org.wetk.entity.SubjectAssignment;
 import org.wetk.entity.Teacher;
 
@@ -31,13 +35,17 @@ public class LessonModel extends AbstractModel<Lesson, LessonDTO> implements ILe
 	public Lesson getLessonFor(Long classId, int day, int lessonHour) {
 		ClassEntity clazz = getReference(ClassEntity.class, classId);
 
-		Query query = getEntityManager().createNamedQuery(Lesson.GET_FOR_CLASS_DAY_HOUR);
-		query.setParameter("class", clazz);
-		query.setParameter("day", day);
-		query.setParameter("hour", lessonHour);
+		CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
+
+		CriteriaQuery<Lesson> query = builder.createQuery(Lesson.class);
+		Root<Lesson> root = query.from(Lesson.class);
+		
+		query.where(builder.equal(root.get(Lesson_.clazz), clazz));
+		query.where(builder.equal(root.get(Lesson_.day), new Integer(day)));
+		query.where(builder.equal(root.get(Lesson_.hour), new Integer(lessonHour)));
 
 		try {
-			return (Lesson) query.getSingleResult();
+			return getEntityManager().createQuery(query).getSingleResult();
 		} catch(Exception e) {
 			return null;
 		}
