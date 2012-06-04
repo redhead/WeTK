@@ -257,6 +257,9 @@ input.topic-input {
 	text-align: center;
 	border: 1px solid grey;
 }
+.time-table td {
+	border-color: #bbb;
+}
 .time-table th {
 	padding: 10px;
 	background-color: #eee;
