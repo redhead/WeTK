@@ -4,6 +4,7 @@ package org.wetk.entity;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.*;
 
 
@@ -27,7 +28,7 @@ import javax.persistence.*;
 	+ " ORDER BY e.date ASC, e.lessonHour ASC"),
 	@NamedQuery(name = LessonEntry.COUNT_BETWEEN,
 	query = "SELECT count(e) FROM LessonEntry e WHERE e.clazz = :class"
-		+ " AND date >= :from AND date <= :to")
+	+ " AND date >= :from AND date <= :to")
 })
 public class LessonEntry extends AbstractEntity {
 
@@ -61,8 +62,8 @@ public class LessonEntry extends AbstractEntity {
 
 	private int lessonHour;
 
-	@OneToMany(mappedBy = "lessonEntry", cascade = CascadeType.ALL)
-	private List<Absence> absences;
+	@OneToMany(mappedBy = "lessonEntry", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Absence> absences;
 
 
 	@Override
@@ -106,12 +107,12 @@ public class LessonEntry extends AbstractEntity {
 	}
 
 
-	public List<Absence> getAbsences() {
+	public Set<Absence> getAbsences() {
 		return absences;
 	}
 
 
-	public void setAbsences(List<Absence> absences) {
+	public void setAbsences(Set<Absence> absences) {
 		this.absences = absences;
 	}
 

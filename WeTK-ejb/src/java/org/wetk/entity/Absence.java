@@ -20,16 +20,27 @@ public class Absence extends AbstractEntity {
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name="student")
+	@JoinColumn(name = "student")
 	private Student student;
 
 	@ManyToOne
-	@JoinColumn(name="lessonEntry")
+	@JoinColumn(name = "lessonEntry")
 	private LessonEntry lessonEntry;
 
 	private boolean late;
 
 	private String exuse;
+
+
+	public Absence() {
+	}
+
+
+	public Absence(LessonEntry entry, boolean late, Student student) {
+		this.lessonEntry = entry;
+		this.late = late;
+		this.student = student;
+	}
 
 
 	@Override

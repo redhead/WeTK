@@ -3,8 +3,8 @@
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
         <Node id="admin_subjects.xhtml" x="900" y="150" zoom="true"/>
-        <Node id="admin_assignments.xhtml" x="650" y="300" zoom="true"/>
         <Node id="lessonEntry.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="admin_assignments.xhtml" x="650" y="300" zoom="true"/>
         <Node id="admin_lessons.xhtml" x="150" y="600" zoom="true"/>
         <Node id="login.xhtml" x="650" y="150" zoom="true"/>
         <Node id="index.xhtml" x="400" y="300" zoom="true"/>

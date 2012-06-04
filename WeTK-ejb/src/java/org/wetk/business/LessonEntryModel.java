@@ -4,6 +4,11 @@ package org.wetk.business;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
@@ -11,6 +16,7 @@ import javax.persistence.Query;
 import org.wetk.business.local.ILesson;
 import org.wetk.business.local.ILessonEntry;
 import org.wetk.dto.LessonEntryDTO;
+import org.wetk.dto.LessonEntryDTO.LessonEntryStudentDTO;
 import org.wetk.entity.*;
 import org.wetk.helper.Utils;
 
@@ -72,12 +78,55 @@ public class LessonEntryModel extends AbstractModel<LessonEntry, LessonEntryDTO>
 		entry.setLessonHour(lessonHour);
 		entry.setAssignment(assign);
 
+		persistAbsences(entry, dto.getStudents());
+
 		if(signerId != null && signerId != 0) {
 			Teacher signer = getReference(Teacher.class, signerId);
 			entry.setSigner(signer);
 		}
 
 		saveEntity(entry);
+	}
+
+
+	private void persistAbsences(LessonEntry entry, List<LessonEntryStudentDTO> students) {
+		Set<Absence> absences = entry.getAbsences();
+		if(absences == null) {
+			absences = new HashSet<Absence>();
+		}
+		
+		Map<Long, Absence> map = new HashMap<Long, Absence>();
+		for(Absence a : absences) {
+			map.put(a.getId(), a);
+		}
+
+		for(LessonEntryStudentDTO s : students) {
+			if(!s.hasChanged()) continue;
+
+			if(!s.isAbsent() && s.getAbsenceId() != null) {
+				Absence a = map.get(s.getAbsenceId());
+				if(a != null) {
+					a.setLessonEntry(null);
+					absences.remove(a);
+				}
+			} else if(s.isAbsent()) {
+				if(s.getAbsenceId() != null) {
+					Absence a = map.get(s.getAbsenceId());
+					if(a != null) {
+						a.setLate(s.isLate());
+					}
+				} else {
+					if(s.isAbsent()) {
+						Student student = getReference(Student.class, s.getStudentId());
+						Absence a = new Absence(entry, s.isLate(), student);
+						absences.add(a);
+					}
+				}
+			}
+		}
+		if(entry.getAbsences() == null) {
+			entry.setAbsences(absences);
+		}
 	}
 
 

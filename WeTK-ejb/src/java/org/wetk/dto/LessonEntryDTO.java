@@ -5,7 +5,9 @@ package org.wetk.dto;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.wetk.entity.*;
 
 
@@ -64,9 +66,11 @@ public class LessonEntryDTO extends AbstractDTO<LessonEntry> implements Serializ
 			classId = clazz.getId();
 			classTitle = clazz.getTitle();
 
-			List<Absence> absences = new ArrayList<Absence>();
+			Set<Absence> absences;
 			if(entry.getAbsences() != null) {
 				absences = entry.getAbsences();
+			} else {
+				absences = new HashSet<Absence>();
 			}
 
 			for(Student s : clazz.getStudents()) {
@@ -187,16 +191,25 @@ public class LessonEntryDTO extends AbstractDTO<LessonEntry> implements Serializ
 
 		private boolean excused;
 
+		private boolean valueChanged;
+
+		private Long absenceId = null;
+
 
 		private LessonEntryStudentDTO(Student student, Absence absence) {
 			sDTO = new StudentDTO(student);
 			if(absence != null) {
+				absenceId = absence.getId();
 				absent = true;
 				late = absence.isLate();
+				System.out.println("EXCUSE " + absence.getExuse());
 				excused = (absence.getExuse() != null);
 			}
 		}
 
+		public Long getStudentId() {
+			return sDTO.getId();
+		}
 
 		public boolean isAbsent() {
 			return absent;
@@ -220,6 +233,39 @@ public class LessonEntryDTO extends AbstractDTO<LessonEntry> implements Serializ
 
 		public boolean isLate() {
 			return late;
+		}
+
+
+		public int getAbsenceValue() {
+			if(isLate()) return 1;
+			if(isAbsent()) return 2;
+			return 0;
+		}
+
+
+		public void setAbsenceValue(int val) {
+			if(isExcused()) return;
+
+			if(getAbsenceValue() != val) {
+				valueChanged = true;
+			}
+			late = absent = false;
+			switch(val) {
+				case 1:
+					late = true;
+				case 2:
+					absent = true;
+			}
+		}
+
+
+		public boolean hasChanged() {
+			return valueChanged;
+		}
+
+
+		public Long getAbsenceId() {
+			return absenceId;
 		}
 
 	}
