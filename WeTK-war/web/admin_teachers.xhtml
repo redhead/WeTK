@@ -5,7 +5,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
 	  xmlns:c="http://java.sun.com/jsp/jstl/core"
 	  xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:p="http://primefaces.prime.com.tr/ui">
+	  xmlns:p="http://primefaces.prime.com.tr/ui"
+	  xmlns:wetk="http://java.sun.com/jsf/composite/wetk">
 
     <h:body>
 		<ui:composition template="templates/layout.xhtml">
@@ -21,24 +22,25 @@
 						<h:messages id="form-errors" errorClass="error" class="alert alert-error" />
 						<fieldset>
 							<h:inputHidden id="id" value="#{teachers.teacher.id}" />
-							<div class="control-group">
-								<h:outputLabel for="firstName" value="#{msgs.person_firstName}" class="control-label" />
-								<div class="controls">
-									<h:inputText id="firstName" value="#{teachers.teacher.firstName}" required="true" requiredMessage="#{msgs.message_firstNameRequired}" />
-								</div>
-							</div>
-							<div class="control-group">
-								<h:outputLabel for="lastName" value="#{msgs.person_lastName}" class="control-label" />
-								<div class="controls">
-									<h:inputText id="lastName" value="#{teachers.teacher.lastName}" required="true" requiredMessage="#{msgs.message_lastNameRequired}" />
-								</div>
-							</div>
-							<div class="control-group">
-								<h:outputLabel for="username" value="#{msgs.teacher_username}" class="control-label" />
-								<div class="controls">
-									<h:inputText id="username" value="#{teachers.teacher.username}" required="true" requiredMessage="#{msgs.message_usernameRequired}" />
-								</div>
-							</div>
+							<wetk:input
+								labelValue="#{msgs.person_firstName}"
+								inputId="firstName"
+								inputValue="#{teachers.teacher.firstName}"
+								required="true"
+								requiredMessage="#{msgs.message_firstNameRequired}" />
+							<wetk:input
+								labelValue="#{msgs.person_lastName}"
+								inputId="lastName"
+								inputValue="#{teachers.teacher.lastName}"
+								required="true"
+								requiredMessage="#{msgs.message_lastNameRequired}" />
+							<wetk:input
+								labelValue="#{msgs.teacher_username}"
+								inputId="username"
+								inputValue="#{teachers.teacher.username}"
+								required="true"
+								requiredMessage="#{msgs.message_usernameRequired}" />
+							
 							<div class="control-group">
 								<h:outputLabel for="password" value="#{msgs.teacher_password}" class="control-label" />
 								<div class="controls">
@@ -48,12 +50,13 @@
 									</c:if>
 								</div>
 							</div>
-							<div class="control-group">
-								<h:outputLabel for="email" value="#{msgs.person_email}" class="control-label" />
-								<div class="controls">
-									<h:inputText id="email" value="#{teachers.teacher.email}" required="true" requiredMessage="#{msgs.message_emailRequired}" />
-								</div>
-							</div>
+							<wetk:input
+								labelValue="#{msgs.person_email}"
+								inputId="email"
+								inputValue="#{teachers.teacher.email}"
+								required="true"
+								requiredMessage="#{msgs.message_emailRequired}" />
+
 							<div class="control-group">
 								<h:outputLabel for="admin" value="#{msgs.teacher_admin}" class="control-label" />
 								<div class="controls">
@@ -61,18 +64,17 @@
 								</div>
 							</div>
 							<hr/>
-							<div class="control-group">
-								<h:outputLabel for="titleBefore" value="#{msgs.teacher_titleBefore}" class="control-label" />
-								<div class="controls">
-									<h:inputText id="titleBefore" value="#{teachers.teacher.titleBefore}" />
-								</div>
-							</div>
-							<div class="control-group">
-								<h:outputLabel for="titleAfter" value="#{msgs.teacher_titleAfter}" class="control-label" />
-								<div class="controls">
-									<h:inputText id="titleAfter" value="#{teachers.teacher.titleAfter}" />
-								</div>
-							</div>
+							
+							<wetk:input
+								labelValue="#{msgs.teacher_titleBefore}"
+								inputId="titleBefore"
+								inputValue="#{teachers.teacher.titleBefore}" />
+							
+							<wetk:input
+								labelValue="#{msgs.teacher_titleAfter}"
+								inputId="titleAfter"
+								inputValue="#{teachers.teacher.titleAfter}" />
+							
 							<div class="form-actions">
 								<h:commandButton value="#{msgs.action_save}" action="#{teachers.saveTeacher}" class="btn btn-large btn-success" />
 								<h:outputLink value="" class="btn btn-large btn-action">#{msgs.action_reset}</h:outputLink>
