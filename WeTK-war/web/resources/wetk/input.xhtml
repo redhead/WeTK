@@ -14,13 +14,14 @@
 		<composite:attribute name="inputValue" />
 		<composite:attribute name="required" />
 		<composite:attribute name="requiredMessage" />
+		<composite:attribute name="inputClass" />
 		<composite:editableValueHolder name="#{cc.attrs.inputId}" targets="#{cc.attrs.inputId}" />
 	</composite:interface>
 	<composite:implementation>
 		<div class="control-group">
 			<h:outputLabel for="#{cc.attrs.inputId}" value="#{cc.attrs.labelValue}" class="control-label" />
 			<div class="controls">
-				<h:inputText id="#{cc.attrs.inputId}" value="#{cc.attrs.inputValue}" required="#{cc.attrs.required}" requiredMessage="#{cc.attrs.requiredMessage}" />
+				<h:inputText id="#{cc.attrs.inputId}" value="#{cc.attrs.inputValue}" class="#{cc.attrs.inputClass}" required="#{cc.attrs.required}" requiredMessage="#{cc.attrs.requiredMessage}" />
 			</div>
 		</div>
 	</composite:implementation>
