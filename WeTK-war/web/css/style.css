@@ -179,24 +179,15 @@ input.topic-input {
 }
 
 .student-table {
-	margin-top: 40px;
+	margin: 40px auto 0 auto;
+	font-size: 12px;
+	width: 450px;
 }
-
-.absence-radio label {
-	display: none;
+.student-table td {
+	vertical-align: middle;
 }
-.absence-radio span {
-	padding: 5px;
-	display: inline-block;
-}
-.absence-radio .present {
-	background-color: #dcffdf;
-}
-.absence-radio .absent {
-	background-color: #fed6d6;
-}
-.absence-radio .late {
-	background-color: #fdf6d1;
+.student-table .ordinal {
+	width: 100px;
 }
 
 /*   Medy's  part of css   */
@@ -268,6 +259,7 @@ input.topic-input {
 }
 .time-table th {
 	padding: 10px;
+	background-color: #eee;
 }
 .time-table a {
 	display: block;
