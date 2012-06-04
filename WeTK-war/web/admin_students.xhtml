@@ -53,15 +53,15 @@
 								requiredMessage="#{msgs.message_emailRequired}"
 								inputClass="span1" />
 
-							<div class="control-group">
-								<h:outputLabel for="class" value="#{msgs.student_class}" class="control-label" />
-								<div class="controls">
-									<h:selectOneMenu id="class" value="#{students.classId}" class="span1" required="true" requiredMessage="#{msgs.message_classRequired}">
-										<f:selectItem itemValue="" itemLabel="" />
-										<f:selectItems value="#{classes.selectItems}" />
-									</h:selectOneMenu>
-								</div>
-							</div>
+							<wetk:select
+								labelValue="#{msgs.student_class}"
+								selectId="class"
+								selectOneMenuValue="#{students.classId}"
+								selectClass="span1"
+								required="true"
+								requiredMessage="#{msgs.message_classRequired}"
+								selectItemsValue="#{classes.selectItems}"
+								/>
 							<div class="form-actions">
 								<h:commandButton value="#{msgs.action_save}" action="#{students.saveStudent}" class="btn btn-large btn-success" />
 								<h:outputLink value="" class="btn btn-large btn-action">#{msgs.action_reset}</h:outputLink>
