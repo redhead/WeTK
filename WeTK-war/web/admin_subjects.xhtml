@@ -5,7 +5,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.prime.com.tr/ui">
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+	  xmlns:wetk="http://java.sun.com/jsf/composite/wetk">
 
 	<h:body>
 		<ui:composition template="templates/layout.xhtml">
@@ -21,18 +22,20 @@
 						<h:messages id="form-errors" errorClass="error" class="alert alert-error" />
 						<fieldset>
 							<h:inputHidden id="id" value="#{subjects.subject.id}" />
-							<div class="control-group">
-								<h:outputLabel for="title" value="#{msgs.subject_title}" class="control-label" />
-								<div class="controls">
-									<h:inputText id="title" value="#{subjects.subject.title}" required="true" requiredMessage="#{msgs.message_subjectTitleRequired}" />
-								</div>
-							</div>
-							<div class="control-group">
-								<h:outputLabel for="code" value="#{msgs.subject_code}" class="control-label" />
-								<div class="controls">
-									<h:inputText id="code" value="#{subjects.subject.code}" required="true" requiredMessage="#{msgs.message_subjectCodeRequired}" />
-								</div>
-							</div>
+							<wetk:input
+								labelValue="#{msgs.subject_title}"
+								inputId="title"
+								inputValue="#{subjects.subject.title}"
+								required="true"
+								requiredMessage="#{msgs.message_subjectTitleRequired}" />
+							
+							<wetk:input
+								labelValue="#{msgs.subject_code}"
+								inputId="code"
+								inputValue="#{subjects.subject.code}"
+								required="true"
+								requiredMessage="#{msgs.message_subjectCodeRequired}" />
+							
 							<div class="form-actions">
 								<h:commandButton value="#{msgs.action_save}" action="#{subjects.saveSubject}" class="btn btn-large btn-success" />
 								<h:outputLink value="" class="btn btn-large btn-action">#{msgs.action_reset}</h:outputLink>
