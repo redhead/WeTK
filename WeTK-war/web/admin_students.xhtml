@@ -5,7 +5,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.prime.com.tr/ui">
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+	  xmlns:wetk="http://java.sun.com/jsf/composite/wetk" >
 
 	<h:body>
 		<ui:composition template="templates/layout.xhtml">
@@ -13,47 +14,54 @@
 				<ui:include src="templates/admin-menu.xhtml">
 					<ui:param name="active" value="students" />
 				</ui:include>
-				
+
 				<h2>#{msgs.administration_students}</h2>
-				
+
 				<f:view>
 					<h:form class="form-horizontal admin-form">
 						<h:messages errorClass="error" class="alert alert-error" />
 						<fieldset>
 							<h:inputHidden id="id" value="#{students.student.id}" />
-							<div class="control-group">
-								<h:outputLabel for="firstName" value="#{msgs.person_firstName}" class="control-label" />
-								<div class="controls">
-									<h:inputText id="firstName" value="#{students.student.firstName}" required="true" requiredMessage="#{msgs.message_firstNameRequired}" />
-								</div>
-							</div>
-							<div class="control-group">
-								<h:outputLabel for="lastName" value="#{msgs.person_lastName}" class="control-label" />
-								<div class="controls">
-									<h:inputText id="lastName" value="#{students.student.lastName}" required="true" requiredMessage="#{msgs.message_lastNameRequired}" />
-								</div>
-							</div>
-							<div class="control-group">
-								<h:outputLabel for="email" value="#{msgs.person_email}" class="control-label" />
-								<div class="controls">
-									<h:inputText id="email" value="#{students.student.email}" required="true" requiredMessage="#{msgs.message_emailRequired}" />
-								</div>
-							</div>
-							<div class="control-group">
-								<h:outputLabel for="ordinal" value="#{msgs.student_ordinal}" class="control-label" />
-								<div class="controls">
-									<h:inputText id="ordinal" value="#{students.student.ordinal}" class="span1" />
-								</div>
-							</div>
-							<div class="control-group">
-								<h:outputLabel for="class" value="#{msgs.student_class}" class="control-label" />
-								<div class="controls">
-									<h:selectOneMenu id="class" value="#{students.classId}" class="span1" required="true" requiredMessage="#{msgs.message_classRequired}">
-										<f:selectItem itemValue="" itemLabel="" />
-										<f:selectItems value="#{classes.selectItems}" />
-									</h:selectOneMenu>
-								</div>
-							</div>
+							<wetk:input
+								labelValue="#{msgs.person_firstName}"
+								inputValue="#{students.student.firstName}"
+								inputId="firstName"
+								required="true"
+								requiredMessage="#{msgs.message_firstNameRequired}">
+								<f:validator id="myValidator" for="firstName"/>
+							</wetk:input>
+
+							<wetk:input
+								labelValue="#{msgs.person_lastName}"
+								inputId="lastName"
+								inputValue="#{students.student.lastName}"
+								required="true"
+								requiredMessage="#{msgs.message_lastNameRequired}"/>
+
+							<wetk:input
+								labelValue="#{msgs.person_email}"
+								inputId="email"
+								inputValue="#{students.student.email}"
+								required="true"
+								requiredMessage="#{msgs.message_emailRequired}"/>
+
+							<wetk:input
+								labelValue="#{msgs.student_ordinal}"
+								inputId="ordinal"
+								inputValue="#{students.student.ordinal}"
+								required="false"
+								requiredMessage="#{msgs.message_emailRequired}"
+								inputClass="span1" />
+
+							<wetk:select
+								labelValue="#{msgs.student_class}"
+								selectId="class"
+								selectOneMenuValue="#{students.classId}"
+								selectClass="span1"
+								required="true"
+								requiredMessage="#{msgs.message_classRequired}"
+								selectItemsValue="#{classes.selectItems}"
+								/>
 							<div class="form-actions">
 								<h:commandButton value="#{msgs.action_save}" action="#{students.saveStudent}" class="btn btn-large btn-success" />
 								<h:outputLink value="" class="btn btn-large btn-action">#{msgs.action_reset}</h:outputLink>
