@@ -1,5 +1,7 @@
 package org.wetk.validators;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -14,17 +16,21 @@ import javax.faces.validator.ValidatorException;
 @FacesValidator("emailValidator")
 public class EmailValidator implements Validator {
 
+	private static final String EMAIL_REGEXP = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	private Pattern mask;
+
 	@Override
 	public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
 		String email = (String) value;
-		int atPosition = email.indexOf("@");
-		int dotPosition = email.lastIndexOf(".");
-		if (atPosition == -1 || dotPosition == -1 || atPosition > dotPosition) {
-			FacesMessage message = new FacesMessage();
-			message.setDetail("Please enter a valid email");
-			message.setSummary("Email not valid");
-			message.setSeverity(FacesMessage.SEVERITY_ERROR);
-			throw new ValidatorException(message);
-		}
+		mask = Pattern.compile(EMAIL_REGEXP);
+		Matcher matcher = mask.matcher(email);
+
+		if (!matcher.matches()) {
+            FacesMessage message = new FacesMessage();
+            message.setDetail("Please enter a valid email");
+            message.setSummary("Email not valid");
+            message.setSeverity(FacesMessage.SEVERITY_ERROR);
+            throw new ValidatorException(message);
+        }
 	}
 }
