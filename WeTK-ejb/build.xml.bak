@@ -9,7 +9,6 @@
 <!-- in the project's Project Properties dialog box.-->
 <project name="WeTK-ejb" default="default" basedir="." xmlns:ejbjarproject="http://www.netbeans.org/ns/j2ee-ejbjarproject/3">
     <description>Builds, tests, and runs the project WeTK-ejb.</description>
-    <import file="nbproject/wsit-deploy.xml"/>
     <import file="nbproject/build-impl.xml"/>
     <!--
 
