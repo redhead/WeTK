@@ -27,9 +27,7 @@
 								inputValue="#{students.student.firstName}"
 								inputId="firstName"
 								required="true"
-								requiredMessage="#{msgs.message_firstNameRequired}">
-								<f:validator id="myValidator" for="firstName"/>
-							</wetk:input>
+								requiredMessage="#{msgs.message_firstNameRequired}"/>
 
 							<wetk:input
 								labelValue="#{msgs.person_lastName}"
@@ -43,7 +41,9 @@
 								inputId="email"
 								inputValue="#{students.student.email}"
 								required="true"
-								requiredMessage="#{msgs.message_emailRequired}"/>
+								requiredMessage="#{msgs.message_emailRequired}">
+								<f:validator id="emailValidator" for="input" validatorId="emailValidator"/>
+							</wetk:input>
 
 							<wetk:input
 								labelValue="#{msgs.student_ordinal}"
