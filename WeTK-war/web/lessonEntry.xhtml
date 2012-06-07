@@ -23,7 +23,14 @@
 						</h:selectOneMenu>
 
 						<h:outputLabel for="date" value="#{msgs.date}:" /><span class="input-append">
-							<h:inputText id="date" value="#{entries.date}" class="input-small datepicker-input" disabled="#{entries.searchDisabled}" required="true" requiredMessage="#{msgs.message_dateRequired}">
+							<h:inputText
+								id="date"
+								value="#{entries.date}"
+								class="input-small datepicker-input"
+								disabled="#{entries.searchDisabled}"
+								required="true"
+								requiredMessage="#{msgs.message_dateRequired}"
+								converterMessage="Nevalidní email">
 								<f:convertDateTime pattern="d.M.yyyy" timeZone="#{days.timeZone}" />
 							</h:inputText><span class="add-on"><i class="icon-calendar"></i></span>
 						</span>
