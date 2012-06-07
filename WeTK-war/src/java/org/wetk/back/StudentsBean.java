@@ -5,8 +5,11 @@ package org.wetk.back;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import org.wetk.ErrorType;
+import org.wetk.Utils;
 import org.wetk.business.local.IStudent;
 import org.wetk.dto.StudentDTO;
 import org.wetk.entity.Student;
@@ -57,8 +60,15 @@ public class StudentsBean {
 
 
 	public String saveStudent() {
-		studentModel.save(student, classId);
-		return "success";
+		try {
+			studentModel.save(student, classId);
+			return "success";
+		} catch(EJBException e) {
+			if(Utils.getErrorType(e) == ErrorType.DUPLICATE) {
+				Utils.addMessage("form-errors", "Ve tříde již existuje student s pořadovým číslem '" + student.getOrdinal() + "'");
+			}
+		}
+		return null;
 	}
 
 
