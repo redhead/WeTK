@@ -11,8 +11,8 @@
     <filter-mapping>
         <filter-name>Pretty Filter</filter-name>
         <url-pattern>/*</url-pattern>
-        <dispatcher>FORWARD</dispatcher>
         <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
         <dispatcher>ERROR</dispatcher>
     </filter-mapping>
     <servlet>
@@ -81,6 +81,11 @@
             <web-resource-name>img</web-resource-name>
             <description/>
             <url-pattern>/img/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>faces resource</web-resource-name>
+            <description/>
+            <url-pattern>/faces/javax.faces.resource/*</url-pattern>
         </web-resource-collection>
     </security-constraint>
     <login-config>
