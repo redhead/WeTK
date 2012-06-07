@@ -62,7 +62,9 @@
 								inputValue="#{lessons.lesson.hour}"
 								required="false"
 								requiredMessage=""
-								inputClass="span1" />
+								inputClass="span1"  >
+								<f:validator for="input" id="ordinalValidator" validatorId="hourValidator" />
+							</wetk:input>
 							
 							<div class="form-actions">
 								<h:commandButton value="#{msgs.action_save}" action="#{lessons.saveLesson}" class="btn btn-large btn-success" />
