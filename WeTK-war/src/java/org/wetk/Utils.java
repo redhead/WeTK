@@ -4,8 +4,6 @@ package org.wetk;
 
 import java.sql.SQLException;
 import java.text.MessageFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.ejb.EJBException;
@@ -67,6 +65,24 @@ public class Utils {
 
 	public static void addMessage(String clientId, String msg) {
 		FacesContext.getCurrentInstance().addMessage(clientId, new FacesMessage(msg));
+	}
+
+
+	public static boolean validatePositive(Object value) {
+		int number;
+		if(value instanceof String) {
+			try {
+				number = Integer.parseInt((String) value);
+			} catch(NumberFormatException e) {
+				return false;
+			}
+		} else {
+			number = (Integer) value;
+		}
+		if(number < 1) {
+			return false;
+		}
+		return true;
 	}
 
 }

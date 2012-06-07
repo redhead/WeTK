@@ -6,6 +6,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
+import org.wetk.Utils;
+
 
 /**
  *
@@ -16,8 +18,7 @@ public class OrdinalValidator implements Validator {
 
 	@Override
 	public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-		int number = (Integer) value;
-		if (number < 1) {
+		if(!Utils.validatePositive(value)) {
 			FacesMessage message = new FacesMessage();
 			message.setDetail("Prosím, vložte správné číslo pořadí");
 			message.setSummary("Pořadové číslo není vpořádku");
@@ -25,4 +26,5 @@ public class OrdinalValidator implements Validator {
 			throw new ValidatorException(message);
 		}
 	}
+
 }
