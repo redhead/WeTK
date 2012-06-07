@@ -22,18 +22,17 @@
 							<f:selectItems value="#{classes.teacherClassSelectItems}" />
 						</h:selectOneMenu>
 
-						<h:outputLabel for="date" value="#{msgs.date}:" /><span class="input-append">
-							<h:inputText
-								id="date"
-								value="#{entries.date}"
-								class="input-small datepicker-input"
-								disabled="#{entries.searchDisabled}"
-								required="true"
-								requiredMessage="#{msgs.message_dateRequired}"
-								converterMessage="Nevalidní email">
-								<f:convertDateTime pattern="d.M.yyyy" timeZone="#{days.timeZone}" />
-							</h:inputText><span class="add-on"><i class="icon-calendar"></i></span>
-						</span>
+						<h:outputLabel for="date" value="#{msgs.date}:" />
+						<h:inputText
+							id="date"
+							value="#{entries.date}"
+							class="input-small datepicker-input"
+							disabled="#{entries.searchDisabled}"
+							required="true"
+							requiredMessage="#{msgs.message_dateRequired}"
+							converterMessage="Nevalidní email (formát: 1.9.2012)">
+							<f:convertDateTime pattern="d.M.yyyy" timeZone="#{days.timeZone}" />
+						</h:inputText>
 
 						<h:outputLabel for="hour" value="#{msgs.lesson_hour}:" />
 						<h:inputText id="hour" value="#{entries.lessonHour}" class="span1 number" disabled="#{entries.searchDisabled}" >

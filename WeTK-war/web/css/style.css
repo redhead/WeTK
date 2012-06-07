@@ -102,13 +102,17 @@ ul.alert.alert-error {
 	padding: 5px 10px 5px 10px;
 	background-color: #D6EAFF;
 	border-radius: 5px;
+	text-align: center;
 }
 .find-entry-form label {
-	margin-left: 10px;
-	margin-right: 5px;
+	margin-left: 25px;
+	margin-right: 10px;
+}
+.find-entry-form label:first-child {
+	margin-left: 0;
 }
 .find-entry-form .btn {
-	margin-left: 10px;
+	margin-left: 20px;
 }
 .find-entry-form.disabled {
 	background-color: #F8F8F8;
