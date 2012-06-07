@@ -29,7 +29,9 @@
 						</span>
 
 						<h:outputLabel for="hour" value="#{msgs.lesson_hour}:" />
-						<h:inputText id="hour" value="#{entries.lessonHour}" class="span1 number" disabled="#{entries.searchDisabled}" />
+						<h:inputText id="hour" value="#{entries.lessonHour}" class="span1 number" disabled="#{entries.searchDisabled}" >
+							<f:validator for="hour" id="hourNumberValidator" validatorId="hourValidator" />
+						</h:inputText>
 
 						<h:commandLink action="#{entries.findEntry}" class="btn #{entries.searchDisabled ? 'disabled' : ''}" disabled="#{entries.searchDisabled}">
 							<span class="icon-search"></span><span class="hidden">Hledat</span> 
