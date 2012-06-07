@@ -45,17 +45,9 @@
 								selectId="day"
 								selectOneMenuValue="#{lessons.lesson.day}"
 								required="true"
-								requiredMessage="#{msgs.message_assignRequired}"
+								requiredMessage="#{msgs.message_dayRequired}"
 								selectItemsValue="#{days.selectItems}"
 								/>
-							<!--<div class="control-group">
-								<h:outputLabel for="day" value="#{msgs.lesson_day}" class="control-label" />
-								<div class="controls">
-									<h:selectOneMenu id="day" value="#{lessons.lesson.day}" required="true" requiredMessage="#{msgs.message_assignRequired}">
-										<f:selectItems value="#{days.selectItems}" />
-									</h:selectOneMenu>
-								</div>
-							</div>-->
 							<wetk:input
 								labelValue="#{msgs.lesson_hour}"
 								inputId="hour"
