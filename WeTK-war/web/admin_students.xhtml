@@ -51,7 +51,9 @@
 								inputValue="#{students.student.ordinal}"
 								required="false"
 								requiredMessage="#{msgs.message_emailRequired}"
-								inputClass="span1" />
+								inputClass="span1">
+								<f:validator for="input" id="ordinalValidator" validatorId="ordinalValidator" />
+							</wetk:input>
 
 							<wetk:select
 								labelValue="#{msgs.student_class}"
