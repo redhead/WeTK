@@ -44,7 +44,7 @@
 							<div class="control-group">
 								<h:outputLabel for="password" value="#{msgs.teacher_password}" class="control-label" />
 								<div class="controls">
-									<h:inputSecret id="password" value="#{teachers.password}" />
+									<h:inputSecret id="password" value="#{teachers.password}" required="#{teachers.teacher.id == null}" requiredMessage="Heslo je povinné" />
 									<c:if test="#{teachers.teacher.id != null}">
 										<span class="help-inline">#{msgs.message_leaveBlank}</span>
 									</c:if>
