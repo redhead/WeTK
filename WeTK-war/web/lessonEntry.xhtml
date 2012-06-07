@@ -53,32 +53,18 @@
 							<wetk:input
 								labelValue="#{msgs.lessonEntry_topic}"
 								inputValue="#{entries.lessonEntry.topic}"
+								inputClass="topic-input"
 								/>
-							<!--<div class="control-group">
-								<h:outputLabel for="topic" value="#{msgs.lessonEntry_topic}:" class="control-label" />
-								<div class="controls">
-									<h:inputText id="topic" value="#{entries.lessonEntry.topic}" class="topic-input" />
-								</div>
-							</div>-->
 
 							<wetk:select
 								labelValue="Předmět:"
 								selectId="selectedClass"
 								selectOneMenuValue="#{entries.assignmentId}"
-								selectClass="span3"
+								selectClass="span4"
 								required="true"
 								requiredMessage="#{msgs.message_assignRequired}"
 								selectItemsValue="#{assignments.getSelectItemsFor(user.teacher.id, entries.selectedClassId)}"
 								/>
-							<!--<div class="control-group">
-								<label for="subject" class="control-label">Předmět:</label>
-								<div class="controls">
-									<h:selectOneMenu id="selectedClass" value="#{entries.assignmentId}" class="span4" required="true" requiredMessage="#{msgs.message_assignRequired}">
-										<f:selectItem itemValue="" itemLabel="" />
-										<f:selectItems value="#{assignments.getSelectItemsFor(user.teacher.id, entries.selectedClassId)}" />
-									</h:selectOneMenu>
-								</div>
-							</div>-->
 							
 							<ui:include src="includes/lessonEntryStudentList.xhtml">
 							</ui:include>
