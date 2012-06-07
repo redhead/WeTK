@@ -27,8 +27,8 @@ public class EmailValidator implements Validator {
 
 		if (!matcher.matches()) {
             FacesMessage message = new FacesMessage();
-            message.setDetail("Please enter a valid email");
-            message.setSummary("Email not valid");
+            message.setDetail("Prosím, vložte správný email");
+            message.setSummary("Email není vpořádku");
             message.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(message);
         }
