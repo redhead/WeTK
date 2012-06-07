@@ -55,7 +55,9 @@
 								inputId="email"
 								inputValue="#{teachers.teacher.email}"
 								required="true"
-								requiredMessage="#{msgs.message_emailRequired}" />
+								requiredMessage="#{msgs.message_emailRequired}" >
+								<f:validator for="input" id="emailValidator" validatorId="emailValidator" />
+							</wetk:input>
 
 							<div class="control-group">
 								<h:outputLabel for="admin" value="#{msgs.teacher_admin}" class="control-label" />
