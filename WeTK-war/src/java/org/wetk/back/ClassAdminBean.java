@@ -63,11 +63,9 @@ public class ClassAdminBean {
 
 
 	public String saveExcuse(Long id) {
-		System.out.println("FUCK " + id);
 		for(AbsenceDTO a : absences) {
 			System.out.println(a.getId());
 			if(id.equals(a.getId())) {
-				System.out.println("YES");
 				absenceModel.saveExcuse(a);
 				break;
 			}
