@@ -80,7 +80,7 @@ public class ClassModel extends AbstractModel<ClassEntity, ClassDTO> implements 
 	public List<StudentAbsenceDTO> getStudentsFor(long classId) {
 		ClassEntity clazz = getReference(classId);
 		Query q = getEntityManager().createQuery("SELECT NEW org.wetk.dto.StudentAbsenceDTO(s, "
-				+ "SUM(CASE WHEN a.exuse IS NULL THEN 1 ELSE 0 END)) "
+				+ "SUM(CASE WHEN a.exuse IS NULL AND a.id IS NOT NULL THEN 1 ELSE 0 END)) "
 				+ "FROM Student AS s "
 				+ "LEFT JOIN s.absences a "
 				+ "WHERE s.clazz = :class "

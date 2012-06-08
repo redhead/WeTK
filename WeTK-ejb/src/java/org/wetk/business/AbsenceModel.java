@@ -25,6 +25,9 @@ public class AbsenceModel extends AbstractModel<Absence, AbsenceDTO> implements 
 		Student s = find(Student.class, studentId);
 		List<Absence> absences = s.getAbsences();
 		List<AbsenceDTO> list = new ArrayList<AbsenceDTO>();
+		
+		if(absences == null) return list;
+		
 		for(Absence a : absences) {
 			list.add(new AbsenceDTO(a));
 		}
