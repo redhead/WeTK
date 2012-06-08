@@ -12,7 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQueries({
-	@NamedQuery(name = Student.GET_ALL_STUDENTS, query = "SELECT s FROM Student s ORDER BY s.lastName, s.firstName")
+	@NamedQuery(name = Student.GET_ALL_STUDENTS, query = "SELECT s FROM Student s ORDER BY s.clazz.title, s.lastName, s.firstName")
 })
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "ordinal", "clazz_id" }))
 public class Student extends Person {
