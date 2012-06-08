@@ -293,6 +293,10 @@ input.topic-input {
 .student-absence-list td {
 	padding: 0;
 }
+.student-absence-list td.selected a {
+	color: white;
+	background-color: dodgerblue;
+}
 .student-absence-list .has-absence {
 	font-weight: bold;
 }

@@ -45,7 +45,18 @@ public class ClassAdminBean {
 			Long classId = userBean.getTeacher().getClazz().getId();
 			students = classModel.getStudentsFor(classId);
 			if(selectedId != null) {
-				absences = absenceModel.getFor(selectedId);
+				boolean ok = false;
+				for(StudentAbsenceDTO s : students) {
+					if(selectedId.equals(s.getId())) {
+						ok = true;
+						break;
+					}
+				}
+				if(ok) {
+					absences = absenceModel.getFor(selectedId);
+				} else {
+					selectedId = null;
+				}
 			}
 		}
 	}

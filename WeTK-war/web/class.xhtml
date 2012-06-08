@@ -14,7 +14,7 @@
 				<table class="student-absence-list table table-bordered table-striped" style="float: left">
 					<c:forEach items="#{classAdmin.students}" var="student">
 						<tr>
-							<td>
+							<td class="#{student.id eq param.selectedId ? 'selected' : ''}">
 								<h:link outcome="pretty:class">
 									<f:param name="selectedId" value="#{student.id}" />
 									#{student.fullName}
@@ -27,6 +27,7 @@
 						</tr>
 					</c:forEach>
 				</table>
+				
 				<c:if test="#{param.selectedId != null}">
 					<h:outputText rendered="#{empty classAdmin.absences}" value="Žádné absence" />
 					<h:dataTable value="#{classAdmin.absences}"
