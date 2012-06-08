@@ -75,6 +75,12 @@ h2 {
 	color: dodgerblue;
 }
 
+h3 {
+	margin: 0 0 10px 0;
+	font-size: 15px;
+	color: grey;
+}
+
 hr {
 	margin: 20px 0 20px 0;
 }
@@ -277,4 +283,53 @@ input.topic-input {
 	background-color: dodgerblue;
 	color: white;
 	text-shadow: 0 1px 1px black;
+}
+
+.student-absence-list {
+	width: 350px;
+	font-size: 12px;
+	margin-right: 20px;
+}
+.student-absence-list td {
+	padding: 0;
+}
+.student-absence-list .has-absence {
+	font-weight: bold;
+}
+.student-absence-list a {
+	display: block;
+	padding: 8px;
+}
+.absence-list {
+	width: 600px;
+	font-size: 12px;
+}
+.absence-list td {
+	padding: 5px;
+	vertical-align: middle;
+}
+.absence-list .cb-column {
+	width: 20px;
+	text-align: center;
+}
+.absence-list .late-column {
+	width: 100px;
+	text-align: center;
+}
+.absence-list .date-column {
+	width: 110px;
+	text-align: center;
+}
+.absence-list .excuse-column {
+	text-align: right;
+}
+.absence-list input {
+	margin-bottom: 0;
+}
+.absence-list form {
+	margin: 0;
+}
+.absence-list .save-button {
+	margin-left: 10px;
+	margin-right: 10px;
 }

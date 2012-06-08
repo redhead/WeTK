@@ -5,6 +5,7 @@ package org.wetk.business.local;
 import java.util.List;
 import javax.ejb.Local;
 import org.wetk.dto.ClassDTO;
+import org.wetk.dto.StudentAbsenceDTO;
 import org.wetk.entity.ClassEntity;
 import org.wetk.entity.Teacher;
 
@@ -23,5 +24,8 @@ public interface IClass extends IAbstractAdminModel<ClassEntity> {
 
 
 	public List<ClassEntity> getAllExcept(List<ClassEntity> classes);
+
+
+	public List<StudentAbsenceDTO> getStudentsFor(long classId);
 
 }

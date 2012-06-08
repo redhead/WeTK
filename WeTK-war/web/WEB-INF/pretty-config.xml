@@ -42,6 +42,11 @@
 		<pattern value="/trida" />
 		<view-id value="/faces/class.xhtml" />
 	</url-mapping>
+	<url-mapping id="classWithParam">
+		<pattern value="/trida" />
+		<view-id value="/faces/class.xhtml" />
+		<query-param name="selectedId">#{classAdmin.selectedId}</query-param>
+	</url-mapping>
 	<url-mapping id="timetable">
 		<pattern value="/muj-rozvrh" />
 		<view-id value="/faces/timetable.xhtml" />

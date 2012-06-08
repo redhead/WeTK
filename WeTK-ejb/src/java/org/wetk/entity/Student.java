@@ -28,6 +28,7 @@ public class Student extends Person {
 	private ClassEntity clazz;
 
 	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OrderBy("id DESC")
 	private List<Absence> absences;
 
 

@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.persistence.Query;
 import org.wetk.business.local.IClass;
 import org.wetk.dto.ClassDTO;
+import org.wetk.dto.StudentAbsenceDTO;
 import org.wetk.entity.ClassEntity;
 import org.wetk.entity.Teacher;
 
@@ -69,6 +70,21 @@ public class ClassModel extends AbstractModel<ClassEntity, ClassDTO> implements 
 			Query query = getEntityManager().createNamedQuery(ClassEntity.GET_ALL_CLASSES);
 			return query.getResultList();
 		}
+	}
+
+
+	@Override
+	public List<StudentAbsenceDTO> getStudentsFor(long classId) {
+		ClassEntity clazz = getReference(classId);
+		Query q = getEntityManager().createQuery("SELECT NEW org.wetk.dto.StudentAbsenceDTO(s, "
+				+ "SUM(CASE WHEN a.exuse IS NULL THEN 1 ELSE 0 END)) "
+				+ "FROM Student AS s "
+				+ "LEFT JOIN s.absences a "
+				+ "WHERE s.clazz = :class "
+				+ "GROUP BY s "
+				+ "ORDER BY s.ordinal");
+		q.setParameter("class", clazz);
+		return q.getResultList();
 	}
 
 }

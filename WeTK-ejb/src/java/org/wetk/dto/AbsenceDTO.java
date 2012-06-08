@@ -2,6 +2,7 @@
  */
 package org.wetk.dto;
 
+import java.util.Date;
 import org.wetk.entity.Absence;
 
 
@@ -15,7 +16,21 @@ public class AbsenceDTO extends AbstractDTO<Absence> {
 
 	private boolean late;
 
-	private String exuse;
+	private String excuse;
+
+	private Date date;
+
+	private int hour;
+
+
+	public AbsenceDTO(Absence a) {
+		if(a == null) return;
+		id = a.getId();
+		late = a.isLate();
+		excuse = a.getExuse();
+		date = a.getLessonEntry().getDate();
+		hour = a.getLessonEntry().getLessonHour();
+	}
 
 
 	@Override
@@ -29,13 +44,13 @@ public class AbsenceDTO extends AbstractDTO<Absence> {
 	}
 
 
-	public String getExuse() {
-		return exuse;
+	public String getExcuse() {
+		return excuse;
 	}
 
 
-	public void setExuse(String exuse) {
-		this.exuse = exuse;
+	public void setExcuse(String excuse) {
+		this.excuse = excuse;
 	}
 
 
@@ -44,8 +59,13 @@ public class AbsenceDTO extends AbstractDTO<Absence> {
 	}
 
 
-	public void setLate(boolean late) {
-		this.late = late;
+	public Date getDate() {
+		return date;
+	}
+
+
+	public int getHour() {
+		return hour;
 	}
 
 

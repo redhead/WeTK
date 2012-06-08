@@ -3,14 +3,78 @@
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:c="http://java.sun.com/jsp/jstl/core">
+	  xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:f="http://java.sun.com/jsf/core">
 
     <h:body>
 		<ui:composition template="templates/layout.xhtml">
 			<ui:define name="content">
 				<h2>#{msgs.class_heading}</h2>
+
+				<h3>Absence</h3>
+				<table class="student-absence-list table table-bordered table-striped" style="float: left">
+					<c:forEach items="#{classAdmin.students}" var="student">
+						<tr>
+							<td>
+								<h:link outcome="pretty:class">
+									<f:param name="selectedId" value="#{student.id}" />
+									#{student.fullName}
+									<c:if test="#{student.absenceCount != 0}">
+										<f:attribute name="styleClass" value="has-absence" />
+										(#{student.absenceCount})
+									</c:if>
+								</h:link>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
+				<c:if test="#{param.selectedId != null}">
+					<h:outputText rendered="#{empty classAdmin.absences}" value="Žádné absence" />
+					<h:dataTable value="#{classAdmin.absences}"
+								 var="absence"
+								 rendered="#{not empty classAdmin.absences}"
+								 class="absence-list table table-bordered table-striped"
+								 columnClasses="cb-column,late-column,date-column,excuse-column">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value=""/>
+							</f:facet>
+							<h:form>
+								<h:commandButton action="#{classAdmin.deleteAbsence(absence.id)}" value="#{msgs.action_delete}" class="btn-mini btn btn-danger" onclick="return confirm('#{msgs.message_confirmDelete}')">
+									<f:param name="selectedId" value="#{param.selectedId}" />
+								</h:commandButton>
+							</h:form>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Pozdn. příchod"/>
+							</f:facet>
+							<h:outputText rendered="#{absence.late}" value="" class="icon-ok" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Datum / Hodina"/>
+							</f:facet>
+							<h:outputText value="#{absence.date}">
+								<f:convertDateTime  pattern="d.M.yyyy" timeZone="#{days.timeZone}" />
+							</h:outputText>
+							/ #{absence.hour}
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Omluva"/>
+							</f:facet>
+							<h:form>
+								<h:inputText value="#{absence.excuse}" />
+								<h:commandButton value="#{msgs.action_save}" action="#{classAdmin.saveExcuse(absence.id)}" class="btn btn-mini save-button">
+									<f:param name="selectedId" value="#{param.selectedId}" />
+								</h:commandButton>
+							</h:form>
+						</h:column>
+					</h:dataTable>
+				</c:if>
+				<div style="clear: both"></div>
 			</ui:define>
 		</ui:composition>
-    </h:body>
+	</h:body>
 
 </html>
