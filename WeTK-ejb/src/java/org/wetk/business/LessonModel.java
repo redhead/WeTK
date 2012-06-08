@@ -40,9 +40,9 @@ public class LessonModel extends AbstractModel<Lesson, LessonDTO> implements ILe
 		CriteriaQuery<Lesson> query = builder.createQuery(Lesson.class);
 		Root<Lesson> root = query.from(Lesson.class);
 		
-		query.where(builder.equal(root.get(Lesson_.clazz), clazz));
-		query.where(builder.equal(root.get(Lesson_.day), new Integer(day)));
-		query.where(builder.equal(root.get(Lesson_.hour), new Integer(lessonHour)));
+		query.where(builder.and(builder.equal(root.get(Lesson_.clazz), clazz.getId()),
+				builder.equal(root.get(Lesson_.day), new Integer(day)),
+				builder.equal(root.get(Lesson_.hour), new Integer(lessonHour))));
 
 		try {
 			return getEntityManager().createQuery(query).getSingleResult();
