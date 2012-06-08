@@ -45,7 +45,7 @@ public class UserBean implements Serializable {
 
 		loggedInTeacher = null;
 
-		return "pretty:home";
+		return "pretty:timetable";
 	}
 
 

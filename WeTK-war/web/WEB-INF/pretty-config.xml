@@ -4,9 +4,9 @@
 			   xsi:schemaLocation="http://ocpsoft.com/prettyfaces/3.3.0
 			   http://ocpsoft.com/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.0.xsd">
 
-	<url-mapping id="home"> 
+	<url-mapping id="timetable"> 
 		<pattern value="/" /> 
-		<view-id value="/faces/index.xhtml" />
+		<view-id value="/faces/timetable.xhtml" />
 	</url-mapping>
 	
 	<url-mapping id="admin">
@@ -46,10 +46,6 @@
 		<pattern value="/trida" />
 		<view-id value="/faces/class.xhtml" />
 		<query-param name="selectedId">#{classAdmin.selectedId}</query-param>
-	</url-mapping>
-	<url-mapping id="timetable">
-		<pattern value="/muj-rozvrh" />
-		<view-id value="/faces/timetable.xhtml" />
 	</url-mapping>
 	<url-mapping id="lessonEntry">
 		<pattern value="/zaznam-hodiny" />
