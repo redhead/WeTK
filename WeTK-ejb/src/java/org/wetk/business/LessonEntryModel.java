@@ -29,7 +29,7 @@ import org.wetk.helper.Utils;
 public class LessonEntryModel extends AbstractModel<LessonEntry, LessonEntryDTO> implements ILessonEntry {
 
 	@EJB
-	ILesson lessonModel;
+	private ILesson lessonModel;
 
 
 	@Override
@@ -94,7 +94,7 @@ public class LessonEntryModel extends AbstractModel<LessonEntry, LessonEntryDTO>
 		if(absences == null) {
 			absences = new HashSet<Absence>();
 		}
-		
+
 		Map<Long, Absence> map = new HashMap<Long, Absence>();
 		for(Absence a : absences) {
 			map.put(a.getId(), a);
@@ -116,11 +116,9 @@ public class LessonEntryModel extends AbstractModel<LessonEntry, LessonEntryDTO>
 						a.setLate(s.isLate());
 					}
 				} else {
-					if(s.isAbsent()) {
-						Student student = getReference(Student.class, s.getStudentId());
-						Absence a = new Absence(entry, s.isLate(), student);
-						absences.add(a);
-					}
+					Student student = getReference(Student.class, s.getStudentId());
+					Absence a = new Absence(entry, s.isLate(), student);
+					absences.add(a);
 				}
 			}
 		}
@@ -197,9 +195,15 @@ public class LessonEntryModel extends AbstractModel<LessonEntry, LessonEntryDTO>
 			}
 		} else {
 			roll = lesson.getDay() - from_day;
+			if(roll > 0 && prev) {
+				roll = -7 + roll;
+			}
+			if(roll < 0 && !prev) {
+				roll = 7 + roll;
+			}
 		}
 
-		cal.add(Calendar.DAY_OF_WEEK, roll);
+		cal.add(Calendar.DATE, roll);
 
 		LessonEntry entry = new LessonEntry();
 		entry.setClazz(lesson.getClazz());
