@@ -55,12 +55,12 @@ public class LessonEntryModel extends AbstractModel<LessonEntry, LessonEntryDTO>
 		Lesson lesson = lessonModel.getLessonFor(classId, day, lessonHour);
 
 		LessonEntry entry = new LessonEntry();
+		entry.setDate(date);
+		entry.setLessonHour(lessonHour);
+		entry.setClazz(getReference(ClassEntity.class, classId));
 
 		if(lesson != null) {
 			entry.setAssignment(lesson.getAssignment());
-			entry.setDate(date);
-			entry.setLessonHour(lessonHour);
-			entry.setClazz(getReference(ClassEntity.class, classId));
 		}
 
 		return entry;
@@ -187,10 +187,10 @@ public class LessonEntryModel extends AbstractModel<LessonEntry, LessonEntryDTO>
 
 		int roll = 0;
 		if(from_day == lesson.getDay()) {
-			if(prev && lesson.getHour() > from_hour) {
+			if(prev && lesson.getHour() >= from_hour) {
 				roll = -7;
 			}
-			if(!prev && lesson.getHour() < from_hour) {
+			if(!prev && lesson.getHour() <= from_hour) {
 				roll = 7;
 			}
 		} else {
