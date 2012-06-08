@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -218,6 +219,7 @@ public class LessonEntryModel extends AbstractModel<LessonEntry, LessonEntryDTO>
 
 
 	@Override
+	@PermitAll
 	public long getEntryCount(Long classId, Date from, Date to) {
 		ClassEntity clazz = getReference(ClassEntity.class, classId);
 

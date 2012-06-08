@@ -3,6 +3,7 @@
 package org.wetk.business;
 
 import java.util.List;
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
@@ -97,6 +98,7 @@ public class LessonModel extends AbstractModel<Lesson, LessonDTO> implements ILe
 
 
 	@Override
+	@PermitAll
 	public long getLessonCountFor(Long classId) {
 		ClassEntity clazz = getReference(ClassEntity.class, classId);
 

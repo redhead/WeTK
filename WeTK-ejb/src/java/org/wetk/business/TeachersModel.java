@@ -3,6 +3,7 @@
 package org.wetk.business;
 
 import java.util.List;
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
@@ -49,6 +50,7 @@ public class TeachersModel extends AbstractModel<Teacher, TeacherDTO> implements
 
 
 	@Override
+	@PermitAll
 	public List<Teacher> getWithClass() {
 		return getEntityManager().createNamedQuery(Teacher.GET_ALL_WITH_CLASS).getResultList();
 	}
