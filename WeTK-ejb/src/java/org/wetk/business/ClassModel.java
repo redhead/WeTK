@@ -4,6 +4,7 @@ package org.wetk.business;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 import org.wetk.business.local.IClass;
@@ -18,6 +19,7 @@ import org.wetk.entity.Teacher;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Stateless
+@RolesAllowed("teacher")
 public class ClassModel extends AbstractModel<ClassEntity, ClassDTO> implements IClass {
 
 	@Override
@@ -27,6 +29,7 @@ public class ClassModel extends AbstractModel<ClassEntity, ClassDTO> implements 
 
 
 	@Override
+	@RolesAllowed("admin")
 	public void save(ClassDTO dto, Long teacherId) {
 		ClassEntity clazz = dtoToEntity(dto);
 

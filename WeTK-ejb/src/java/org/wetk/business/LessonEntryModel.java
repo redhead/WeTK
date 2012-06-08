@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
@@ -26,6 +27,7 @@ import org.wetk.helper.Utils;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Stateless
+@RolesAllowed("teacher")
 public class LessonEntryModel extends AbstractModel<LessonEntry, LessonEntryDTO> implements ILessonEntry {
 
 	@EJB
@@ -226,6 +228,13 @@ public class LessonEntryModel extends AbstractModel<LessonEntry, LessonEntryDTO>
 		query.setParameter("to", to);
 
 		return (Long) query.getSingleResult();
+	}
+
+
+	@Override
+	@RolesAllowed("teacher")
+	public void delete(Long id) {
+		super.delete(id);
 	}
 
 }

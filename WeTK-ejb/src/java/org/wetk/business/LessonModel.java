@@ -3,6 +3,7 @@
 package org.wetk.business;
 
 import java.util.List;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -23,6 +24,7 @@ import org.wetk.entity.Teacher;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Stateless
+@RolesAllowed("teacher")
 public class LessonModel extends AbstractModel<Lesson, LessonDTO> implements ILesson {
 
 	@Override
@@ -39,7 +41,7 @@ public class LessonModel extends AbstractModel<Lesson, LessonDTO> implements ILe
 
 		CriteriaQuery<Lesson> query = builder.createQuery(Lesson.class);
 		Root<Lesson> root = query.from(Lesson.class);
-		
+
 		query.where(builder.and(builder.equal(root.get(Lesson_.clazz), clazz.getId()),
 				builder.equal(root.get(Lesson_.day), new Integer(day)),
 				builder.equal(root.get(Lesson_.hour), new Integer(lessonHour))));
@@ -53,6 +55,7 @@ public class LessonModel extends AbstractModel<Lesson, LessonDTO> implements ILe
 
 
 	@Override
+	@RolesAllowed("admin")
 	public void save(LessonDTO dto, Long classId, Long assignmentId) {
 		ClassEntity clazz = getReference(ClassEntity.class, classId);
 		SubjectAssignment assignment = getReference(SubjectAssignment.class, assignmentId);

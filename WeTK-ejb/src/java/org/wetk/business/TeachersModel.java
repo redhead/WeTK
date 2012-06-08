@@ -3,6 +3,7 @@
 package org.wetk.business;
 
 import java.util.List;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 import org.wetk.business.local.ITeacher;
@@ -15,6 +16,7 @@ import org.wetk.entity.Teacher;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Stateless
+@RolesAllowed("teacher")
 public class TeachersModel extends AbstractModel<Teacher, TeacherDTO> implements ITeacher {
 
 	@Override
@@ -24,6 +26,7 @@ public class TeachersModel extends AbstractModel<Teacher, TeacherDTO> implements
 
 
 	@Override
+	@RolesAllowed("admin")
 	public void save(TeacherDTO teacher, String password) {
 		Teacher t = dtoToEntity(teacher);
 		if(password != null && !password.isEmpty()) {

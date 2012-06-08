@@ -4,6 +4,7 @@ package org.wetk.business;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import javax.annotation.security.RolesAllowed;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.wetk.dto.AbstractDTO;
@@ -55,6 +56,7 @@ abstract public class AbstractModel<T extends AbstractEntity, TDTO extends Abstr
 	}
 
 
+	@RolesAllowed("admin")
 	public void delete(Long id) {
 		T entity = getReference(id);
 		if(entity != null) {

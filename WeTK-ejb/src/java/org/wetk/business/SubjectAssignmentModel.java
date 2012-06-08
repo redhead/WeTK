@@ -3,6 +3,7 @@
 package org.wetk.business;
 
 import java.util.List;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 import org.wetk.business.local.ISubjectAssignment;
@@ -18,6 +19,7 @@ import org.wetk.entity.Teacher;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Stateless
+@RolesAllowed("teacher")
 public class SubjectAssignmentModel extends AbstractModel<SubjectAssignment, SubjectAssignmentDTO>
 		implements ISubjectAssignment {
 
@@ -28,6 +30,7 @@ public class SubjectAssignmentModel extends AbstractModel<SubjectAssignment, Sub
 
 
 	@Override
+	@RolesAllowed("admin")
 	public void save(Long teacherId, Long subjectId) {
 		Teacher teacher = getEntityManager().find(Teacher.class, teacherId);
 		Subject subject = getEntityManager().find(Subject.class, subjectId);

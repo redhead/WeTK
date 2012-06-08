@@ -5,7 +5,6 @@ package org.wetk.business.local;
 import java.util.List;
 import javax.ejb.Local;
 import org.wetk.dto.AbsenceDTO;
-import org.wetk.dto.StudentAbsenceDTO;
 import org.wetk.entity.Absence;
 
 
@@ -15,9 +14,6 @@ import org.wetk.entity.Absence;
  */
 @Local
 public interface IAbsence extends IAbstractModel<Absence> {
-
-	public void save(AbsenceDTO dto, Long studentId, Long lessonEntryId);
-
 
 	public void saveExcuse(AbsenceDTO a);
 

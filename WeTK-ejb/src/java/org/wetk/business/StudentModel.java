@@ -3,6 +3,7 @@
 package org.wetk.business;
 
 import java.util.List;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import org.wetk.business.local.IStudent;
 import org.wetk.dto.StudentDTO;
@@ -15,6 +16,7 @@ import org.wetk.entity.Student;
  * @author Radek Ježdík <jezdik.radek@gmail.com>
  */
 @Stateless
+@RolesAllowed("teacher")
 public class StudentModel extends AbstractModel<Student, StudentDTO> implements IStudent {
 
 	@Override
@@ -24,6 +26,7 @@ public class StudentModel extends AbstractModel<Student, StudentDTO> implements 
 
 
 	@Override
+	@RolesAllowed("admin")
 	public void save(StudentDTO dto, Long classId) {
 		Student student = dtoToEntity(dto);
 
