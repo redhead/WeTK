@@ -18,7 +18,7 @@ import javax.persistence.*;
 	+ " AND l.clazz = :class AND l.assignment.teacher = :teacher AND a = l.assignment"
 	+ " ORDER BY a.subject.title, a.teacher.lastName"),
 	@NamedQuery(name = SubjectAssignment.GET_ALL_FOR_CLASS_EXCEPT,
-	query = "SELECT a FROM SubjectAssignment a, Lesson l"
+	query = "SELECT DISTINCT a FROM SubjectAssignment a, Lesson l"
 		+ " WHERE l.clazz = :class AND a = l.assignment "
 		+ " AND a NOT IN (:assignments)"
 		+ " ORDER BY a.subject.title, a.teacher.lastName")
